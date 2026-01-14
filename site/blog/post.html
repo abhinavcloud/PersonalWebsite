@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post | Abhinav Kumar</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+
+  <!-- Prism syntax highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
+</head>
+
+<body>
+
+<header class="blog-header">
+  <a class="back-link" href="index.html">← All Posts</a>
+  <h1 class="blog-title-center">Architecture &amp; Cloud</h1>
+  <button id="theme-toggle" class="theme-toggle">🌙</button>
+</header>
+
+<main class="container">
+  <article id="content" class="blog-post"></article>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-yaml.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-hcl.min.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const post = params.get("post");
+  const content = document.getElementById("content");
+
+  if (!post) {
+    content.innerHTML = "<p>❌ No post specified.</p>";
+  } else {
+    // Relative path works perfectly with current bucket structure
+    const path = `posts/${post}.md`;
+
+    fetch(path)
+      .then(res => {
+        if (!res.ok) throw new Error(`Post not found: ${path}`);
+        return res.text();
+      })
+      .then(md => {
+        content.innerHTML = marked.parse(md);
+      })
+      .catch(err => {
+        content.innerHTML = `
+          <p>❌ Failed to load post.</p>
+          <p><code>${path}</code></p>
+        `;
+        console.error(err);
+      });
+  }
+</script>
+
+
+<script src="../js/theme.js"></script>
+</body>
+</html>

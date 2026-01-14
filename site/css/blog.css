@@ -1,0 +1,137 @@
+/* ================= Blog Header ================= */
+
+.blog-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1.4rem 2rem;
+  background: linear-gradient(135deg, var(--card), var(--bg));
+  border-bottom: 1px solid rgba(56,189,248,0.15);
+}
+
+.blog-title-center {
+  justify-self: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.back-link {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.back-link:hover { color: var(--accent); }
+
+/* ================= Toolbar ================= */
+
+.blogs-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.blog-search {
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(56,189,248,0.3);
+  background: var(--card);
+  color: var(--text);
+}
+
+/* ================= Tag Filter ================= */
+
+.tag-filter {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.tag {
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56,189,248,0.15);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tag.active {
+  background: var(--accent);
+  color: #020617;
+}
+
+/* ================= Blog Cards ================= */
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.blog-tile {
+  display: flex;
+  gap: 1.2rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--card), rgba(56,189,248,0.08));
+  border: 1px solid rgba(56,189,248,0.35);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(56,189,248,0.35);
+}
+
+.blog-icon { font-size: 1.8rem; }
+
+.blog-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.blog-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0.3rem 0;
+}
+
+.blog-subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.blog-tags {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.blog-arrow {
+  margin-left: auto;
+  opacity: 0.6;
+}
+
+/* ================= Blog Post ================= */
+
+.blog-post {
+  background: var(--card);
+  padding: 2.8rem;
+  border-radius: 18px;
+}
+
+.blog-post img {
+  display: block;         /* Makes the image a block element */
+  margin: 20px auto;      /* Centers the image horizontally and adds vertical spacing */
+  max-width: 100%;        /* Prevents image from overflowing the container */
+  height: auto;           /* Maintain aspect ratio */
+  border-radius: 8px;     /* Optional: round corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: subtle shadow */
+}
