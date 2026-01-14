@@ -1,0 +1,131 @@
+name: Terraform Drift-Aware Deployment
+
+on:
+  push:
+    paths:
+      - "infra/**"
+
+jobs:
+  plan:
+    name: Terraform Plan & Drift Detection
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infra
+
+    outputs:
+      drift: ${{ steps.drift_check.outputs.drift }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Plan (Detect Drift)
+        id: drift_check
+        run: |
+          set -e
+          terraform plan -input=false -detailed-exitcode -out=tfplan || EXIT_CODE=$?
+
+          if [ "${EXIT_CODE:-0}" -eq 0 ]; then
+            echo "drift=false" >> $GITHUB_OUTPUT
+          elif [ "${EXIT_CODE:-0}" -eq 2 ]; then
+            echo "drift=true" >> $GITHUB_OUTPUT
+          else
+            echo "Terraform plan failed"
+            exit 1
+          fi
+
+      - name: Upload Terraform Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: infra/tfplan
+
+  apply-no-drift:
+    name: Apply (No Drift)
+    needs: plan
+    if: needs.plan.outputs.drift == 'false'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: terraform init -input=false
+      - run: terraform apply -input=false -auto-approve
+
+  accept-drift:
+    name: Accept Drift (Refresh State → Apply Code)
+    needs: plan
+    if: needs.plan.outputs.drift == 'true'
+    runs-on: ubuntu-latest
+    environment: accept-drift
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: terraform init -input=false
+      - run: |
+          terraform apply -refresh-only -auto-approve
+          terraform apply -input=false -auto-approve
+
+  reject-drift:
+    name: Reject Drift (Restore Infra from Code)
+    needs: plan
+    if: needs.plan.outputs.drift == 'true'
+    runs-on: ubuntu-latest
+    environment: reject-drift
+
+    defaults:
+      run:
+        working-directory: infra
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: terraform init -input=false
+      - run: terraform apply -input=false -auto-approve
