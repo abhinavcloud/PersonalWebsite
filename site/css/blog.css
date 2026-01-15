@@ -257,3 +257,89 @@
   }
 }
 
+/* ================= Mobile Blog Post ================= */
+@media (max-width: 768px) {
+
+  /* Reduce content padding */
+  .container {
+    padding: 1rem;
+  }
+
+  .blog-post {
+    padding: 1.4rem 1.2rem;
+    border-radius: 14px;
+  }
+
+  /* Headings readability */
+  .blog-post h1 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .blog-post h2 {
+    font-size: 1.25rem;
+    margin-top: 1.6rem;
+  }
+
+  .blog-post h3 {
+    font-size: 1.1rem;
+    margin-top: 1.2rem;
+  }
+
+  /* Paragraph spacing */
+  .blog-post p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  /* Code blocks */
+  .blog-post pre {
+    font-size: 0.75rem;
+    padding: 0.9rem;
+    overflow-x: auto;
+    border-radius: 10px;
+  }
+
+  .blog-post code {
+    font-size: 0.8rem;
+  }
+
+  /* Images */
+  .blog-post img {
+    margin: 1rem auto;
+    border-radius: 10px;
+  }
+
+  /* Lists */
+  .blog-post ul,
+  .blog-post ol {
+    padding-left: 1.2rem;
+  }
+
+  .blog-post li {
+    margin-bottom: 0.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .header-top {
+    margin-bottom: 0.2rem;
+  }
+
+  .header-main {
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+    text-align: center;
+  }
+
+  .header-main .back-link {
+    font-size: 0.85rem;
+    justify-self: start;
+  }
+
+  .theme-toggle {
+    justify-self: end;
+  }
+}
