@@ -1,13 +1,19 @@
-name: Terraform Drift-Aware Deployment
+name: Terraform Drift-Aware Pipeline
 
 on:
-  push:
+  pull_request:
     paths:
       - "infra/**"
 
+env:
+  TF_VERSION: 1.14.3
+
 jobs:
-  plan:
-    name: Terraform Plan & Drift Detection
+# --------------------------------------------------
+# 1. DRIFT DETECTION (REFRESH-ONLY)
+# --------------------------------------------------
+  drift-detect:
+    name: Detect Infrastructure Drift
     runs-on: ubuntu-latest
 
     defaults:
@@ -15,75 +21,77 @@ jobs:
         working-directory: infra
 
     outputs:
-      drift: ${{ steps.drift_check.outputs.drift }}
+      drift: ${{ steps.drift.outputs.drift }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.6.6
+          terraform_version: ${{ env.TF_VERSION }}
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Terraform Init
+      - name: Terraform Init (State Lock Enabled)
         run: terraform init -input=false
 
-      - name: Terraform Plan (Detect Drift)
-        id: drift_check
+      - name: Detect Drift (Refresh Only)
+        id: drift
         run: |
-          set -e
-          terraform plan -input=false -detailed-exitcode -out=tfplan || EXIT_CODE=$?
+          set +e
+          terraform plan -refresh-only -detailed-exitcode -out=drift.tfplan
+          EXIT_CODE=$?
 
-          if [ "${EXIT_CODE:-0}" -eq 0 ]; then
+          if [ "$EXIT_CODE" -eq 0 ]; then
             echo "drift=false" >> $GITHUB_OUTPUT
-          elif [ "${EXIT_CODE:-0}" -eq 2 ]; then
+          elif [ "$EXIT_CODE" -eq 2 ]; then
             echo "drift=true" >> $GITHUB_OUTPUT
           else
             echo "Terraform plan failed"
             exit 1
           fi
 
-      - name: Upload Terraform Plan Artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: terraform-plan
-          path: infra/tfplan
+          name: drift-plan
+          path: infra/drift.tfplan
 
-  apply-no-drift:
-    name: Apply (No Drift)
-    needs: plan
-    if: needs.plan.outputs.drift == 'false'
+# --------------------------------------------------
+# 2. WAIT FOR HUMAN DECISION (LABEL-BASED)
+# --------------------------------------------------
+  drift-decision:
+    name: Drift Decision Gate
+    needs: drift-detect
+    if: needs.drift-detect.outputs.drift == 'true'
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: infra
+    environment: drift-decision
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.6
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - run: terraform init -input=false
-      - run: terraform apply -input=false -auto-approve
+      - name: Validate Decision Label
+        run: |
+          echo "Validating PR labels..."
+          LABELS=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
 
+          if echo "$LABELS" | grep -q "^accept-drift$"; then
+            echo "decision=accept" >> $GITHUB_ENV
+          elif echo "$LABELS" | grep -q "^reject-drift$"; then
+            echo "decision=reject" >> $GITHUB_ENV
+          else
+            echo "❌ Missing required label: accept-drift or reject-drift"
+            exit 1
+          fi
+
+# --------------------------------------------------
+# 3A. ACCEPT DRIFT (REALITY → STATE)
+# --------------------------------------------------
   accept-drift:
-    name: Accept Drift (Refresh State → Apply Code)
-    needs: plan
-    if: needs.plan.outputs.drift == 'true'
+    name: Accept Drift (Refresh State)
+    needs: [drift-detect, drift-decision]
+    if: contains(github.event.pull_request.labels.*.name, 'accept-drift')
     runs-on: ubuntu-latest
     environment: accept-drift
 
@@ -93,23 +101,34 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.6.6
+          terraform_version: ${{ env.TF_VERSION }}
+
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - run: terraform init -input=false
-      - run: |
-          terraform apply -refresh-only -auto-approve
-          terraform apply -input=false -auto-approve
+          aws-region: ${{ env.AWS_REGION }}
 
+      - run: terraform init -input=false
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: drift-plan
+          path: infra
+
+      - name: Apply Refresh-Only Plan
+        run: terraform apply -input=false -auto-approve drift.tfplan
+
+# --------------------------------------------------
+# 3B. REJECT DRIFT (CODE → REALITY)
+# --------------------------------------------------
   reject-drift:
     name: Reject Drift (Restore Infra from Code)
-    needs: plan
-    if: needs.plan.outputs.drift == 'true'
+    needs: [drift-detect, drift-decision]
+    if: contains(github.event.pull_request.labels.*.name, 'reject-drift')
     runs-on: ubuntu-latest
     environment: reject-drift
 
@@ -119,13 +138,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.6.6
+          terraform_version: ${{ env.TF_VERSION }}
+
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_REGION }}
+
       - run: terraform init -input=false
-      - run: terraform apply -input=false -auto-approve
+
+      - name: Restore Infra from Code
+        run: terraform apply -input=false -auto-approve
