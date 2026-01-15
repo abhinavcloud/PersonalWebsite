@@ -10,6 +10,21 @@ jobs:
     name: Sync site to S3 and invalidate CloudFront
     runs-on: ubuntu-latest
 
+    env:
+      NAME: ${{ secrets.NAME }}
+      TITLE: ${{ secrets.TITLE }}
+      EMAIL: ${{ secrets.EMAIL }}
+      LINKEDIN: ${{ secrets.LINKEDIN }}
+      GITHUB: ${{ secrets.GITHUB }}
+      CREDLY: ${{ secrets.CREDLY }}
+      RESUME_URL: ${{ secrets.RESUME_URL }}
+      PROFILE_PIC: ${{ secrets.PROFILE_PIC }}  
+      AWS_PROJECT1: ${{ secrets.AWS_PROJECT1}}
+      AWS_PROJECT2: ${{ secrets.AWS_PROJECT2 }}
+      KUBERNETES_PROJECT1: ${{ secrets.KUBERNETES_PROJECT1 }}
+
+
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,10 +35,27 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-
+      
+      - name: Generate index.html from template
+        run: |
+          sed -e "s|{{NAME}}|$NAME|g" \
+              -e "s|{{TITLE}}|$TITLE|g" \
+              -e "s|{{EMAIL}}|$EMAIL|g" \
+              -e "s|{{LINKEDIN}}|$LINKEDIN|g" \
+              -e "s|{{GITHUB}}|$GITHUB|g" \
+              -e "s|{{CREDLY}}|$CREDLY|g" \
+              -e "s|{{RESUME_URL}}|$RESUME_URL|g" \
+              -e "s|{{PROFILE_PIC}}|$PROFILE_PIC|g" \
+              -e "s|{{AWS_PROJECT1}}|$AWS_PROJECT1|g" \
+              -e "s|{{AWS_PROJECT2}}|$AWS_PROJECT2|g" \
+              -e "s|{{KUBERNETES_PROJECT1}}|$KUBERNETES_PROJECT1|g" \
+              site/index.template.html > site/index.html
+      
       - name: Sync site folder to S3
         run: |
           aws s3 sync site/ s3://${{ secrets.S3_BUCKET_NAME }} \
+            --exclude "/resume/*" \
+            --exclude "/images/Profil.png"
             --delete
 
       - name: Invalidate CloudFront cache
