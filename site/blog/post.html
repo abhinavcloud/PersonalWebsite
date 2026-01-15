@@ -37,7 +37,6 @@
   if (!post) {
     content.innerHTML = "<p>❌ No post specified.</p>";
   } else {
-    // Relative path works perfectly with current bucket structure
     const path = `posts/${post}.md`;
 
     fetch(path)
@@ -46,7 +45,13 @@
         return res.text();
       })
       .then(md => {
-        content.innerHTML = marked.parse(md);
+        // 🔥 Strip YAML front-matter
+        const cleaned = md.replace(/^---[\s\S]*?---/, "").trim();
+
+        content.innerHTML = marked.parse(cleaned);
+
+        // Re-run Prism after render
+        Prism.highlightAll();
       })
       .catch(err => {
         content.innerHTML = `
@@ -57,6 +62,7 @@
       });
   }
 </script>
+
 
 
 <script src="../js/theme.js"></script>
