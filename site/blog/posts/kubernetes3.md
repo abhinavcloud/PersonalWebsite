@@ -81,7 +81,7 @@ The simplicity makes it easy to reason about, modify, and extend.
 
 The project is available on GitHub:
 
-👉 **https://lnkd.in/gGgxS8Vt**
+👉 **https://github.com/abhinavcloud/Setting-Up-Kubernetes-From-scratch-in-Linux-Based-Machine-using-Multipass**
 
 ---
 
