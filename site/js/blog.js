@@ -3,7 +3,7 @@ const tagFilter = document.getElementById("tag-filter");
 const search = document.getElementById("search");
 
 let posts = [];
-let activeTag = "all";
+let activeTag = "All";
 
 fetch("posts.json")
   .then(res => res.json())
@@ -14,11 +14,11 @@ fetch("posts.json")
   });
 
 function renderTags() {
-  const tags = new Set(["all"]);
+  const tags = new Set(["All"]);
   posts.forEach(p => p.tags.forEach(t => tags.add(t)));
 
   tagFilter.innerHTML = [...tags].map(tag =>
-    `<button class="tag ${tag === "all" ? "active" : ""}" data-tag="${tag}">${tag}</button>`
+    `<button class="tag ${tag === "All" ? "active" : ""}" data-tag="${tag}">${tag}</button>`
   ).join("");
 
   document.querySelectorAll(".tag").forEach(btn => {
