@@ -53,34 +53,43 @@ jobs:
       
       - name: Generate blog index
         run: |
+          npm install js-yaml
           node <<'EOF'
           const fs = require("fs");
-          const path = "site/blog/posts";
-          const files = fs.readdirSync(path);
+          const yaml = require("js-yaml");
+
+          const POSTS_DIR = "site/blog/posts";
+          const OUT_FILE = "site/blog/posts.json";
+
+          const files = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith(".md"));
 
           const posts = files.map(file => {
-            const raw = fs.readFileSync(`${path}/${file}`, "utf8");
-            const fm = raw.match(/---([\s\S]*?)---/)[1];
+            const raw = fs.readFileSync(`${POSTS_DIR}/${file}`, "utf8");
 
-            const meta = Object.fromEntries(
-              fm.split("\n").filter(Boolean).map(l => {
-                const [k, ...v] = l.split(":");
-                return [k.trim(), v.join(":").trim()];
-              })
-            );
+            const match = raw.match(/---([\s\S]*?)---/);
+            if (!match) {
+              throw new Error(`Missing front-matter in ${file}`);
+            }
+
+            const meta = yaml.load(match[1]);
 
             return {
               slug: file.replace(".md", ""),
               title: meta.title,
-              date: meta.date,
+              date: new Date(meta.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              }),
               readingTime: meta.readingTime,
               subtitle: meta.subtitle,
-              tags: JSON.parse(meta.tags.replace(/'/g,'"')),
+              tags: meta.tags || [],
               icon: meta.icon || "📝"
             };
           });
 
-          fs.writeFileSync("site/blog/posts.json", JSON.stringify(posts, null, 2));
+          fs.writeFileSync(OUT_FILE, JSON.stringify(posts, null, 2));
+          console.log(`✔ Generated ${posts.length} posts`);
           EOF
 
             
