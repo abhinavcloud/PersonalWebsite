@@ -135,3 +135,10 @@
   border-radius: 8px;     /* Optional: round corners */
   box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: subtle shadow */
 }
+
+.header-top {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
