@@ -84,7 +84,7 @@ jobs:
           EOF
 
             
-              - name: Sync site folder to S3
+      - name: Sync site folder to S3
         run: |
           aws s3 sync site/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "/resume/*" \
