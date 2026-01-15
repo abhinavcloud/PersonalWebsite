@@ -247,3 +247,4 @@ coverage.xml
 ###############################################################################
 resume/resume.pdf
 images/Profile.png
+infra/backend.hcl

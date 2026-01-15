@@ -51,27 +51,34 @@ S3 Static Website Origin
 ├── site/
 │   ├── index.template.html   # Homepage template (variables replaced in CI)
 │   ├── index.html            # Generated homepage (not committed)
-│   │
+│
 │   ├── blog/
 │   │   ├── index.html        # Blog listing shell
 │   │   ├── post.html         # Blog post renderer
 │   │   ├── posts/            # Markdown blog posts
 │   │   │   └── *.md
 │   │   └── posts.json        # Auto-generated blog index
-│   │
+│
 │   ├── css/
 │   │   ├── style.css
 │   │   └── blog.css
-│   │
+│
 │   ├── js/
 │   │   ├── theme.js
 │   │   └── blog.js
-│   │
+│
 │   ├── images/
 │   └── resume/
 │
+├── infra/                   # Terraform infrastructure code
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── backend.hcl          # Local file ignored in git for secrets
+│
 ├── .github/workflows/
-│   └── site-deploy.yml
+│   ├── site-deploy.yml
+│   └── infra-drift-aware.yml
 │
 ├── README.md
 └── LICENSE.txt
@@ -269,6 +276,86 @@ Ensures users always receive the latest version.
 
 ---
 
+## 🏗️ Terraform Infrastructure Workflow (infra-drift-aware.yml)
+
+This repository uses **Terraform** for infrastructure provisioning and **GitHub Actions for drift-aware automation**.
+
+### Key Concepts
+
+* **Remote backend** (S3 + DynamoDB) for centralized state and locking
+* **Drift detection** using `terraform plan -refresh-only`
+* **PR-based manual gates** to accept or reject drift
+* **Secrets-driven backend config** to avoid exposing S3/DynamoDB details in git
+
+### Backend Security
+
+* `backend.hcl` contains sensitive info (S3 bucket, DynamoDB table, region) and is **ignored in git**
+* GitHub Actions passes backend info via **Secrets**:
+
+```yaml
+- backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}"
+- backend-config="key=${{ secrets.TF_BACKEND_KEY }}"
+- backend-config="region=${{ secrets.TF_BACKEND_REGION }}"
+- backend-config="use_lockfile=true"
+```
+
+### Terraform Variables Injection (Runtime)
+
+**Variables domain_name and bucket_name are stored as GitHub Secrets:**
+
+* DOMAIN_NAME
+* BUCKET_NAME
+
+
+They are injected into Terraform jobs at runtime using **TF_VAR_* environment variables.**
+
+```
+- name: Set Terraform Variables
+  run: |
+    echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
+    echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
+```
+
+Placement: After terraform init but before terraform plan or terraform apply.
+
+Terraform automatically reads these variables during execution, keeping secrets out of git.
+
+### Workflow Summary
+
+1. **Drift Detection**
+
+   * Runs `terraform plan -refresh-only`
+   * Uploads `drift.tfplan` artifact
+   * Outputs `drift=true/false` to next jobs
+
+2. **Human Decision Gate**
+
+   * PR labels `accept-drift` / `reject-drift`
+   * Validates decision before applying
+
+3. **Accept Drift**
+
+   * Applies refresh-only plan to update remote state from reality
+
+4. **Reject Drift**
+
+   * Applies Terraform code to restore reality to match code
+
+
+### Initial Remote Backend Migration
+
+**One-time manual step**:
+
+```bash
+terraform init -input=false -reconfigure -backend-config=backend.hcl
+```
+
+* Terraform will detect local state and ask to migrate
+* Choose **Yes** to move state to S3 + DynamoDB
+* After this, CI/CD workflow runs fully non-interactively
+
+---
+
 ## ☁️ AWS Infrastructure (Conceptual)
 
 * **S3**
@@ -307,6 +394,8 @@ Ensures users always receive the latest version.
 * CDN fronting origin
 * Immutable static deployments
 * No backend attack surface
+* Terraform remote backend secrets kept out of repo
+* CI/CD handles non-interactive init and drift safely
 
 ---
 
@@ -349,4 +438,14 @@ MIT License — see `LICENSE.txt`
 **Abhinav Kumar**
 Solution Architect | Cloud & Platform Architecture
 AWS · Kubernetes · Terraform · GitHub Actions
+
+---
+
+This README now fully documents:
+
+* **Terraform infra workflow**
+* **Remote backend setup and secrets handling**
+* **Drift detection / PR gates**
+* **CI/CD integration with static site generation**
+
 

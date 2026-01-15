@@ -37,7 +37,18 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Terraform Init (State Lock Enabled)
-        run: terraform init -input=false
+        run: |
+          terraform init -input=false -reconfigure \
+            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
+            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
+            -backend-config="region=${{ secrets.TF_BACKEND_REGION }}" \
+            -backend-config="use_lockfile=true" \
+            -backend-config="encrypt=true"
+      
+      - name: Set Terraform Variables
+        run: |
+          echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
 
       - name: Detect Drift (Refresh Only)
         id: drift
@@ -110,9 +121,20 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - run: terraform init -input=false
+      - run: |
+            terraform init -input=false -reconfigure \
+            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
+            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
+            -backend-config="region=${{ secrets.TF_BACKEND_REGION }}" \
+            -backend-config="use_lockfile=true" \
+            -backend-config="encrypt=true"
+
+      - name: Set Terraform Variables
+        run: |
+          echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
 
       - uses: actions/download-artifact@v4
         with:
@@ -147,9 +169,21 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - run: terraform init -input=false
+      - run: |
+            terraform init -input=false -reconfigure \
+            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
+            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
+            -backend-config="region=${{ secrets.TF_BACKEND_REGION }}" \
+            -backend-config="use_lockfile=true" \
+            -backend-config="encrypt=true"
+      
+      - name: Set Terraform Variables
+        run: |
+          echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
+          echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
+
 
       - name: Restore Infra from Code
         run: terraform apply -input=false -auto-approve
