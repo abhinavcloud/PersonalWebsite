@@ -5,10 +5,26 @@ const search = document.getElementById("search");
 let posts = [];
 let activeTag = "All";
 
+function sortPosts(posts) {
+  return posts.sort((a, b) => {
+    const dateA = a.date ? new Date(a.date) : new Date(0);
+    const dateB = b.date ? new Date(b.date) : new Date(0);
+
+    // Newest first
+    const dateDiff = dateB - dateA;
+    if (dateDiff !== 0) return dateDiff;
+
+    // Same date → alphabetical by title
+    return a.title.localeCompare(b.title);
+  });
+}
+
+
 fetch("posts.json")
   .then(res => res.json())
   .then(data => {
     posts = data;
+    posts = sortPosts(data);
     renderTags();
     renderPosts();
   });
