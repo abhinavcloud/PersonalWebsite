@@ -1,3 +1,12 @@
+---
+title: Terraform + GitHub Actions Multi-Environment Pipeline
+date: 2026-01-12
+readingTime: 6 min read
+tags: [Terraform, GitHubActions]
+subtitle: How I would create a Terraform CI/CD pipeline with GitHub Actions
+icon: ⚡
+---
+
 
 # Terraform + GitHub Actions Multi-Environment Pipeline
 

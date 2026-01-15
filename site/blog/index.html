@@ -12,7 +12,7 @@
 
 <header class="blog-header">
   <a class="back-link" href="../index.html">← Resume</a>
-  <h1 class="blog-title-center">Architecture &amp; Cloud</h1>
+  <h1 class="blog-title-center">Architecture & Cloud</h1>
   <button id="theme-toggle" class="theme-toggle">🌙</button>
 </header>
 
@@ -22,49 +22,15 @@
 
     <div class="blogs-toolbar">
       <h2 class="blogs-heading">📝 Latest Posts</h2>
-
-      <input
-        type="search"
-        id="search"
-        class="blog-search"
-        placeholder="Search posts..."
-      />
+      <input id="search" class="blog-search" placeholder="Search posts..." />
     </div>
 
-    <div class="tag-filter">
-      <button data-tag="all" class="tag active">All</button>
-      <button data-tag="AWS" class="tag aws">AWS</button>
-      <button data-tag="Kubernetes" class="tag kubernetes">Kubernetes</button>
-      <button data-tag="Terraform" class="tag terraform">Terraform</button>
-      <button data-tag="GitHubActions" class="tag gha">GitHub Actions</button>
+    <div class="tag-filter" id="tag-filter"></div>
+
+    <div class="blog-list" id="blog-list">
+      <p>Loading posts…</p>
     </div>
 
-    <div class="blog-list">
-
-      <!-- Event-Driven Post -->
-      <a
-        class="blog-tile"
-        href="post.html?post=terraform-githubactions1"
-        data-tags="Terraform GitHubActions"
-        data-title="Terraform + GitHub Actions Multi-Environment Pipeline"
-      >
-        <div class="blog-icon">⚡</div>
-
-        <div class="blog-text">
-          <div class="blog-title">Terraform + GitHub Actions Multi-Environment Pipeline</div>
-          <div class="blog-meta">Jan 12, 2026 · 6 min read</div>
-          <div class="blog-subtitle">How I would create a Terrafrom CI/CD Pipeline with GitHub Actions</div>
-          <div class="blog-tags">
-            <span class="tag aws">GitHub Actions</span>
-            <span class="tag terraform">Terraform</span>
-          </div>
-        </div>
-
-        <div class="blog-arrow">→</div>
-      </a>
-
- 
-    </div>
   </section>
 
 </main>

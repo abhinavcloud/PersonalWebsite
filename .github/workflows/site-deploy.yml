@@ -51,7 +51,40 @@ jobs:
               -e "s|{{KUBERNETES_PROJECT1}}|$KUBERNETES_PROJECT1|g" \
               site/index.template.html > site/index.html
       
-      - name: Sync site folder to S3
+      - name: Generate blog index
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+          const path = "site/blog/posts";
+          const files = fs.readdirSync(path);
+
+          const posts = files.map(file => {
+            const raw = fs.readFileSync(`${path}/${file}`, "utf8");
+            const fm = raw.match(/---([\s\S]*?)---/)[1];
+
+            const meta = Object.fromEntries(
+              fm.split("\n").filter(Boolean).map(l => {
+                const [k, ...v] = l.split(":");
+                return [k.trim(), v.join(":").trim()];
+              })
+            );
+
+            return {
+              slug: file.replace(".md", ""),
+              title: meta.title,
+              date: meta.date,
+              readingTime: meta.readingTime,
+              subtitle: meta.subtitle,
+              tags: JSON.parse(meta.tags.replace(/'/g,'"')),
+              icon: meta.icon || "📝"
+            };
+          });
+
+          fs.writeFileSync("site/blog/posts.json", JSON.stringify(posts, null, 2));
+          EOF
+
+            
+              - name: Sync site folder to S3
         run: |
           aws s3 sync site/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "/resume/*" \
