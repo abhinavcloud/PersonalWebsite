@@ -55,7 +55,7 @@ jobs:
         run: |
           aws s3 sync site/ s3://${{ secrets.S3_BUCKET_NAME }} \
             --exclude "/resume/*" \
-            --exclude "/images/Profil.png" \
+            --exclude "/images/Profile.png" \
             --delete
 
       - name: Invalidate CloudFront cache
