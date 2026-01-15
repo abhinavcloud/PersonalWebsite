@@ -290,17 +290,7 @@ footer {
   100% { transform: translateY(0); }
 }
 
-.blog-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: linear-gradient(135deg, var(--card), var(--bg));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem 2rem;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
-}
+
 
 .blog-header h1 {
   font-size: 1.6rem;
