@@ -182,3 +182,78 @@
     justify-self: end;
   }
 }
+
+/* ================= Mobile Blog Layout ================= */
+@media (max-width: 768px) {
+
+  /* Reduce global padding */
+  .container {
+    padding: 1rem;
+  }
+
+  /* Toolbar stacks vertically */
+  .blogs-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .blogs-heading {
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  .blog-search {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* Tags scroll horizontally instead of wrapping */
+  .tag-filter {
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+  }
+
+  .tag {
+    white-space: nowrap;
+    font-size: 0.75rem;
+  }
+
+  /* Blog cards become vertical */
+  .blog-tile {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.1rem;
+    gap: 0.6rem;
+  }
+
+  .blog-icon {
+    font-size: 1.4rem;
+  }
+
+  .blog-title {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .blog-meta {
+    font-size: 0.7rem;
+  }
+
+  .blog-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .blog-tags {
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  /* Arrow goes bottom-right */
+  .blog-arrow {
+    align-self: flex-end;
+    margin-left: 0;
+    font-size: 1.1rem;
+  }
+}
+
