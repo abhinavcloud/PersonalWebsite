@@ -36,7 +36,7 @@ function renderPosts() {
 
   list.innerHTML = posts
     .filter(p =>
-      (activeTag === "all" || p.tags.includes(activeTag)) &&
+      (activeTag === "All" || p.tags.includes(activeTag)) &&
       p.title.toLowerCase().includes(query)
     )
     .map(p => `

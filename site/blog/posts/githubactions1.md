@@ -3,8 +3,7 @@ title: GitHub Actions with Event Fiters and Action Types
 subtitle: How GitHub Actions Triggers Actually Work
 date: 2026-01-14
 readingTime: 4 min read
-tags:
-  - GitHubActions
+tags: [GitHubActions]
 icon: ⚡
 ---
 
