@@ -16,6 +16,7 @@
   justify-self: center;
   font-size: 1.7rem;
   font-weight: 700;
+  text-align: center
 }
 
 .back-link {
@@ -140,5 +141,11 @@
   width: 100%;
   text-align: left;
   margin-bottom: 8px;
+}
+
+.header-main {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
 }
 
