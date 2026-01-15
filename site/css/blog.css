@@ -48,6 +48,9 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.6rem;
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .tag {
