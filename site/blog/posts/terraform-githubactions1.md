@@ -14,7 +14,7 @@ I spent the last few days designing a Terraform and GitHub Actions pipeline for 
 
 ---
 
-![GitHub Action Pipleing for Terraform Multi Environment Infa Structure](/images/terraform-githubactions1.jpeg)
+![GitHub Action Pipleine for Terraform Multi Environment Infa Structure](/images/terraform-githubactions1.jpeg)
 
 ## 📁 Repo Structure
 
