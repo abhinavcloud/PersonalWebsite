@@ -139,13 +139,14 @@
 .header-top {
   width: 100%;
   text-align: left;
-  margin-bottom: 8px;
+  margin-bottom: 1.2rem;
 }
 
 .header-main {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+  padding-top: 0.4rem;
 }
 
 
