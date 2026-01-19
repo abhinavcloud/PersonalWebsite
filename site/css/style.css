@@ -151,7 +151,11 @@ ol li + li {
   margin-top: 0.5rem;
 }
 
-h1 + h2 + h3 + p {
+h1 + h2 + h3 {
+  margin-top: 2.0rem;
+}
+
+p {
   margin-top: 0.75rem;
 }
 
