@@ -1,13 +1,12 @@
 ---
-title: "Managing Terraform Drift the Right Way"
+title: Managing Terraform Drift the Right Way
 date: 2026-01-19
-author: "Abhinav Kumar"
-tags:
+readingTime: 4 min read
+tags: 
   - terraform
   - IaC
-  - cloud
-  - automation
-summary: "Detecting and managing Terraform drift by refreshing state"
+subtitle: "Detecting and managing Terraform drift by refreshing state"
+icon: ⚡
 ---
 
 Working with Terraform, I’ve often seen teams struggle with drift between the **code**, the **state**, and the **actual resources**.  
