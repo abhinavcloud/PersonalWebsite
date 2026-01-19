@@ -45,9 +45,9 @@ This workflow intentionally demonstrates **all of these concepts**.
 
 ---
 
-## Complete Reference Workflow (Comments Removed)
+## Complete Reference Workflow 
 
-The following workflow is the **canonical reference** for this article. All explanations below refer to this file.
+The following workflow is the **canonical reference** for this article. All explanations below refer to this file. This is a sample workflow example which lints, test, build and deploy an application.
 
 ```yaml
 name: Trigger workflow on push event on main, project2 and dummy branches
