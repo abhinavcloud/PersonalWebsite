@@ -279,11 +279,13 @@
   .blog-post h1 {
     font-size: 1.5rem;
     line-height: 1.3;
+    text-align: center;
   }
 
   .blog-post h2 {
     font-size: 1.25rem;
     margin-top: 1.6rem;
+    text-align:center
   }
 
   .blog-post h3 {

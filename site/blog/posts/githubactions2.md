@@ -23,7 +23,7 @@ By the end of this article, you will understand not only *how* GitHub Actions wo
 
 ---
 
-## Mental Model of GitHub Actions
+### Mental Model of GitHub Actions
 
 Before diving into YAML, it is essential to understand the execution hierarchy:
 
@@ -47,7 +47,7 @@ This workflow intentionally demonstrates **all of these concepts**.
 
 ---
 
-## Complete Reference Workflow 
+### Complete Reference Workflow 
 
 The following workflow is the **canonical reference** for this article. All explanations below refer to this file. This is a sample workflow example which lints, test, build and deploy an
 
@@ -232,7 +232,7 @@ jobs:
 
 ---
 
-## Workflow Triggers and Event Filters
+### Workflow Triggers and Event Filters
 
 ```yaml
 on:
@@ -245,7 +245,7 @@ on:
 
 This workflow is triggered by a **push event**, but only when the push occurs on specific branches.
 
-### Why event filters matter
+#### Why event filters matter
 
 Without filters:
 
@@ -261,7 +261,7 @@ Event filters enable:
 
 ---
 
-## Jobs and Runners
+### Jobs and Runners
 
 Each job defines its execution environment:
 
@@ -281,7 +281,7 @@ This isolation is the reason artifacts and outputs exist.
 
 ---
 
-## Job Dependencies with `needs`
+### Job Dependencies with `needs`
 
 ```yaml
 needs: lint
@@ -303,9 +303,9 @@ lint → test → build → deploy
 
 ---
 
-## Job-Level `if` Conditions
+### Job-Level `if` Conditions
 
-### Build Job Condition
+#### Build Job Condition
 
 ```yaml
 if: always() && needs.test.result == 'failure'
@@ -329,7 +329,7 @@ Rule:
 
 ---
 
-## Step-Level `if` Conditions
+### Step-Level `if` Conditions
 
 ```yaml
 if: failure() && steps.test-code-step.outcome == 'failure'
@@ -350,9 +350,9 @@ This pattern is ideal for:
 
 ---
 
-## Environment Variables and Secrets
+### Environment Variables and Secrets
 
-### Job-Level Environment Variables
+#### Job-Level Environment Variables
 
 ```yaml
 env:
@@ -364,7 +364,7 @@ Not accessible by other jobs.
 
 ---
 
-### Step-Level Environment Variables
+#### Step-Level Environment Variables
 
 ```yaml
 env:
@@ -375,7 +375,7 @@ Scope: Single step only.
 
 ---
 
-### Environment-Scoped Secrets
+#### Environment-Scoped Secrets
 
 ```yaml
 environment: dummy
@@ -391,7 +391,7 @@ Deployment only succeeds when the workflow runs on a branch mapped to the enviro
 
 ---
 
-## Dependency Caching
+### Dependency Caching
 
 ```yaml
 uses: actions/cache@v3
@@ -411,15 +411,15 @@ Using `hashFiles('package-lock.json')` ensures:
 
 ---
 
-## Artifacts: Sharing Files Between Jobs
+### Artifacts: Sharing Files Between Jobs
 
-### Upload
+#### Upload
 
 ```yaml
 uses: actions/upload-artifact@v4
 ```
 
-### Download
+#### Download
 
 ```yaml
 uses: actions/download-artifact@v4
@@ -434,15 +434,15 @@ Artifacts:
 
 ---
 
-## Outputs: Sharing Values Between Jobs
+### Outputs: Sharing Values Between Jobs
 
-### Setting Step Output
+#### Setting Step Output
 
 ```bash
 echo "js-file=value" >> $GITHUB_OUTPUT
 ```
 
-### Exposing Job Output
+#### Exposing Job Output
 
 ```yaml
 outputs:
@@ -465,7 +465,7 @@ Comparison:
 
 ---
 
-## Deployment Gating
+### Deployment Gating
 
 ```yaml
 if: always() && needs.build.result == 'success'
@@ -484,7 +484,7 @@ This pattern prevents:
 
 ---
 
-## Final Takeaways
+### Final Takeaways
 
 This single workflow demonstrates:
 
