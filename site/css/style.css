@@ -151,6 +151,10 @@ ol li + li {
   margin-top: 0.5rem;
 }
 
+h1 + h2 + h3 + p {
+  margin: 0.75rem;
+}
+
 .theme-toggle {
 
   position: absolute;
