@@ -147,6 +147,10 @@ li {
   margin-bottom: 0.75rem;
 }
 
+ol li + li {
+  margin-top: 0.5rem;
+}
+
 .theme-toggle {
 
   position: absolute;
