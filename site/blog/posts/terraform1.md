@@ -14,7 +14,7 @@ Working with Terraform, I’ve often seen teams struggle with drift between the 
 
 The state is what Terraform *believes* exists, but when resources are changed manually, reality can diverge. A normal `terraform apply` only compares the **state** with the **code**, so without refreshing, drift can go completely unnoticed.
 
-![Bootstrapping Kubernetes the Real Way (Without Managed Services)](/images/terraform1.jpeg)
+![Managing Terraform Drift the Right Way](/images/terraform1.jpeg)
 
 ## Refreshing State First
 
