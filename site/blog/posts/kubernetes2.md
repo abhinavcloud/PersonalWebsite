@@ -90,12 +90,12 @@ This ensures that **pod placement does not affect reachability**.
 
 Putting it all together, the request path looks like this:
 
-   1. Client sends a request from the internet
-   2. External load balancer receives the connection
-   3. Load balancer forwards traffic to a worker node
-   4. Ingress controller pod evaluates the request at Layer 7
-   5. Ingress routes the request to a Kubernetes service
-   6. Service forwards the request to one of the backing pods
+- Client sends a request from the internet
+- External load balancer receives the connection
+- Load balancer forwards traffic to a worker node
+- Ingress controller pod evaluates the request at Layer 7
+- Ingress routes the request to a Kubernetes service
+- Service forwards the request to one of the backing pods
 
 Each component operates at a **different layer** and solves a **different problem**.
 
