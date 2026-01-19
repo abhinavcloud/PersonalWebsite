@@ -47,10 +47,10 @@ This runs on **every push**, with **no restrictions**.
 
 Some events have **sub-actions** (event types), such as:
 
-* `opened`
-* `closed`
-* `synchronize`
-* `labeled`
+- opened
+-  closed
+- synchronize
+- labeled
 
 #### Example
 

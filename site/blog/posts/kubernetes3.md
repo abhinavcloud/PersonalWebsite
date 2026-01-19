@@ -42,16 +42,16 @@ This approach forces a deeper understanding of what Kubernetes needs to run and 
 
 Using a **single automation script**, the lab performs the following steps end to end:
 
-    1. Provisions **two Multipass virtual machines**
-    2. Prepares the VMs for Kubernetes prerequisites
-    3. Installs **containerd** as the container runtime
-    4. Installs required **Kubernetes components**
-    5. Initializes the control plane using **kubeadm**
-    6. Automatically joins a worker node to the cluster
-    7  . Sets up **Flannel** for pod networking
-    8. Configures **kubectl access** on the host machine
+ 1. Provisions **two Multipass virtual machines**
+ 2. Prepares the VMs for Kubernetes prerequisites
+ 3. Installs **containerd** as the container runtime
+ 4. Installs required **Kubernetes components**
+ 5. Initializes the control plane using **kubeadm**
+ 6. Automatically joins a worker node to the cluster
+ 7. Sets up **Flannel** for pod networking
+ 8. Configures **kubectl access** on the host machine
 
-    The entire flow is **scripted**, **logged**, and **non-interactive**.
+The entire flow is **scripted**, **logged**, and **non-interactive**.
 
 ---
 
