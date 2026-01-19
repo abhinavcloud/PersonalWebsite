@@ -283,15 +283,15 @@ This isolation is the reason artifacts and outputs exist.
 
 ---
 
-### Job Dependencies with `needs`
+### Job Dependencies with "needs"
 
 ```yaml
 needs: lint
 ```
 
-`needs` enforces execution order and enables data access.
+needs enforces execution order and enables data access.
 
-Capabilities unlocked by `needs`:
+Capabilities unlocked by needs:
 
 * Sequential execution
 * Access to job results
@@ -305,7 +305,7 @@ lint → test → build → deploy
 
 ---
 
-### Job-Level `if` Conditions
+### Job-Level if Conditions
 
 #### Build Job Condition
 
@@ -317,21 +317,21 @@ This condition controls whether the **entire job** executes.
 
 | Expression          | Meaning                                  |
 | ------------------- | ---------------------------------------- |
-| `always()`          | Evaluate job even if dependencies failed |
-| `needs.test.result` | Final result of `test` job               |
-| `== 'failure'`      | Run only if test failed                  |
+| always()            | Evaluate job even if dependencies failed |
+| needs.test.result   | Final result of `test` job               |
+| == 'failure         | Run only if test failed                  |
 
-### Why `always()` is required
+### Why always() is required
 
-If a dependent job fails, GitHub skips downstream jobs **unless `always()` is used**.
+If a dependent job fails, GitHub skips downstream jobs **unless "always()" is used**.
 
 Rule:
 
-> Any job that depends on a failed job must include `always()` to be evaluated.
+> Any job that depends on a failed job must include always() to be evaluated.
 
 ---
 
-### Step-Level `if` Conditions
+### Step-Level "if" Conditions
 
 ```yaml
 if: failure() && steps.test-code-step.outcome == 'failure'
@@ -341,8 +341,8 @@ This condition controls **individual step execution**.
 
 | Function             | Purpose                            |
 | -------------------- | ---------------------------------- |
-| `failure()`          | Checks if any previous step failed |
-| `steps.<id>.outcome` | Checks a specific step result      |
+| failure()            | Checks if any previous step failed |
+| steps.<id>.outcome   | Checks a specific step result      |
 
 This pattern is ideal for:
 
@@ -403,10 +403,10 @@ Cache configuration:
 
 | Field  | Purpose        |
 | ------ | -------------- |
-| `path` | Files to cache |
-| `key`  | Cache identity |
+| path   | Files to cache |
+| key    | Cache identity |
 
-Using `hashFiles('package-lock.json')` ensures:
+Using hashFiles('package-lock.json') ensures:
 
 * Cache invalidation on dependency change
 * No stale dependencies
