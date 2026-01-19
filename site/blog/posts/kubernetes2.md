@@ -8,9 +8,9 @@ icon: 🌐
 ---
 
 # Kubernetes Load Balancer vs Ingress Explained
-
+---
 ### Understanding where load balancers, ingress controllers, and services actually sit
-
+---
 ## Introduction
 
 A common question in Kubernetes is how the **load balancer** and **ingress** actually interact, where each one sits, and why they are often confused as doing the same job.

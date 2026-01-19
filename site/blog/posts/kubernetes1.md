@@ -8,8 +8,9 @@ icon: 🚀
 ---
 
 # Kubernetes Autoscaling: Moving Beyond CPU-Based HPA
-
+---
 ### Designing load-aware autoscaling using request and concurrency metrics
+---
 
 ## Problem
 
