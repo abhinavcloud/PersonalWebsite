@@ -49,7 +49,7 @@ This workflow intentionally demonstrates **all of these concepts**.
 
 ## Complete Reference Workflow 
 
-The following workflow is the **canonical reference** for this article. All explanations below refer to this file. This is a sample workflow example which lints, test, build and deploy an application.
+The following workflow is the **canonical reference** for this article. All explanations below refer to this file. This is a sample workflow example which lints, test, build and deploy an
 
 ```yaml
 name: Trigger workflow on push event on main, project2 and dummy branches
@@ -271,11 +271,11 @@ runs-on: ubuntu-latest
 
 Key characteristics:
 
-| Property    |               Description                  |
-| ----------- | --- -------------------------------------- |
-| Isolation   |         Each job runs on a fresh VM        |
-| Persistence |         Runner is destroyed after job      |
-| Sharing     |         No filesystem sharing between jobs |
+| Property    | Description                        |
+| ----------- | ---------------------------------- |
+| Isolation   | Each job runs on a fresh VM        |
+| Persistence | Runner is destroyed after job      |
+| Sharing     | No filesystem sharing between jobs |
 
 This isolation is the reason artifacts and outputs exist.
 
@@ -313,11 +313,11 @@ if: always() && needs.test.result == 'failure'
 
 This condition controls whether the **entire job** executes.
 
-| Expression                  |               Meaning                    |
-| --------------------------  | ---------------------------------------- |
-| `always()`                  | Evaluate job even if dependencies failed |
-| `needs.test.result`         | Final result of `test` job               |
-| `== 'failure'`              | Run only if test failed                  |
+| Expression          | Meaning                                  |
+| ------------------- | ---------------------------------------- |
+| `always()`          | Evaluate job even if dependencies failed |
+| `needs.test.result` | Final result of `test` job               |
+| `== 'failure'`      | Run only if test failed                  |
 
 ### Why `always()` is required
 
@@ -337,10 +337,10 @@ if: failure() && steps.test-code-step.outcome == 'failure'
 
 This condition controls **individual step execution**.
 
-| Function                       | Purpose                            |
-| ------------------------------ | ---------------------------------- |
-| `failure()`                    | Checks if any previous step failed |
-| `steps.<id>.outcome`           | Checks a specific step result      |
+| Function             | Purpose                            |
+| -------------------- | ---------------------------------- |
+| `failure()`          | Checks if any previous step failed |
+| `steps.<id>.outcome` | Checks a specific step result      |
 
 This pattern is ideal for:
 
@@ -399,10 +399,10 @@ uses: actions/cache@v3
 
 Cache configuration:
 
-| Field         | Purpose        |
-| ------------- | -------------- |
-| `path`        | Files to cache |
-| `key`         | Cache identity |
+| Field  | Purpose        |
+| ------ | -------------- |
+| `path` | Files to cache |
+| `key`  | Cache identity |
 
 Using `hashFiles('package-lock.json')` ensures:
 
@@ -457,11 +457,11 @@ ${{ needs.build.outputs.script-file }}
 
 Comparison:
 
-| Feature            | Artifacts              | Outputs       |
-| ------------------ | ---------------------- | ------------- |
-| Type               | Files                  | Values        |
-| Storage            | GitHub zip             | Metadata      |
-| Use case           | Build assets           | IDs, versions |
+| Feature  | Artifacts    | Outputs       |
+| -------- | ------------ | ------------- |
+| Type     | Files        | Values        |
+| Storage  | GitHub zip   | Metadata      |
+| Use case | Build assets | IDs, versions |
 
 ---
 
