@@ -10,7 +10,7 @@ icon: ⚡
 
 # Terraform + GitHub Actions Multi-Environment Pipeline
 ---
-### How I would create a Terraform CI/CD pipeline with GitHub Actions
+## How I would create a Terraform CI/CD pipeline with GitHub Actions
 ---
 I spent the last few days designing a Terraform and GitHub Actions pipeline for managing multi-environment infrastructure. Sharing the final approach with real technical examples.
 
@@ -18,7 +18,7 @@ I spent the last few days designing a Terraform and GitHub Actions pipeline for 
 
 ![GitHub Action Pipleine for Terraform Multi Environment Infa Structure](/images/terraform-githubactions1.jpeg)
 
-## 📁 Repo Structure
+### 📁 Repo Structure
 
 ```
 /modules
@@ -28,7 +28,7 @@ I spent the last few days designing a Terraform and GitHub Actions pipeline for 
 
 ---
 
-## ⚡ Core Decisions and Reasoning
+### ⚡ Core Decisions and Reasoning
 
 ---
 
@@ -38,7 +38,7 @@ No separate dev or prod branches. This avoids merge conflicts and environment dr
 
 ---
 
-### Environment Isolation Using Folders and Workflows
+#### Environment Isolation Using Folders and Workflows
 
 Each environment has its own workflow triggered by path filters.
 
@@ -54,7 +54,7 @@ on:
 
 ---
 
-### Secrets and Credentials
+#### Secrets and Credentials
 
 No `tfvars` committed to the repo. All secrets live in GitHub Environments. Each job explicitly declares the environment.
 
@@ -74,7 +74,7 @@ The AWS provider automatically picks these up at runtime. No profiles or hardcod
 
 ---
 
-### Terraform Backend
+#### Terraform Backend
 
 Remote S3 backend is configured via `backend.hcl` and initialized like this:
 
@@ -84,7 +84,7 @@ terraform init -backend-config=backend.hcl -migrate-state
 
 ---
 
-### Dev is Fully Automated
+#### Dev is Fully Automated
 
 Any change in `dev` or `modules` runs:
 
@@ -97,7 +97,7 @@ This gives fast feedback and safe iteration.
 
 ---
 
-### Prod is Controlled
+#### Prod is Controlled
 
 Prod runs only via `workflow_dispatch`. Plan and apply are clearly separated:
 
@@ -108,13 +108,13 @@ terraform apply -refresh=true plan.tfplan
 
 ---
 
-### Module Promotion
+#### Module Promotion
 
 Modules are merged once, validated automatically in dev, and reused in prod with a different state and secret scope. No cherry picking or rebasing.
 
 ---
 
-## ✅ Result
+### ✅ Result
 
 - Clear environment isolation  
 - Strong security boundaries  

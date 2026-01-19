@@ -13,7 +13,7 @@ icon: ⚡
 
 ---
 
-### Detecting and managing Terraform drift by refreshing state
+## Detecting and managing Terraform drift by refreshing state
 
 ---
 
@@ -25,7 +25,7 @@ The state is what Terraform *believes* exists, but when resources are changed ma
 
 ---
 
-## Refreshing State First
+### Refreshing State First
 
 The key is refreshing the state before making any decisions.
 
@@ -48,7 +48,7 @@ gives a true picture of what has changed **without modifying any resources**. On
 
 ---
 
-## A Subtle but Costly Trap
+### A Subtle but Costly Trap
 
 There’s a subtle trap I’ve seen teams fall into:
 
@@ -64,7 +64,7 @@ This leads to:
 
 ---
 
-## The Workflow That Works
+### The Workflow That Works
 
 The workflow I’ve settled on is simple but effective:
 
@@ -80,7 +80,7 @@ It may feel like an extra step, but it:
 
 ----
 
-## Final Thoughts
+### Final Thoughts
 
 Understanding the interplay between **state**, **code**, and **actual resources** has completely changed how I manage Terraform environments.
 

@@ -13,7 +13,7 @@ icon: 🚀
 
 ---
 
-### How Terraform Really Resolves Variables — The Flow No One Explains Clearly
+## How Terraform Really Resolves Variables — The Flow No One Explains Clearly
 
 ---
 
@@ -26,7 +26,7 @@ Let me walk you through it
 ![Variable resolution in Terraform modules](/images/terraform2.jpeg)
 ---
 
-## Terraform’s Logic — Step by Step
+### Terraform’s Logic — Step by Step
 
 ### Resource references a variable
 
@@ -130,7 +130,7 @@ aws_ami.latest.id
 
 ---
 
-## Key Learnings
+### Key Learnings
 
 * **Variables = inputs, Outputs = return values** — treat modules like functions
 * If a variable has a **default**, Terraform stops searching upward
@@ -143,7 +143,7 @@ aws_ami.latest.id
 
 ---
 
-## Visualize Your Dependency Graph
+### Visualize Your Dependency Graph
 
 ```bash
 terraform graph | dot -Tpng > graph.png

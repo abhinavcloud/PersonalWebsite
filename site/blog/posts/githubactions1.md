@@ -10,7 +10,7 @@ icon: ⚡
 # How GitHub Actions Triggers Actually Work
 
 ---
-### How GitHub Actions Triggers Actually Work
+## How GitHub Actions Triggers Actually Work
 ---
 GitHub Actions is **event-driven**.  
 A workflow runs **only when an event occurs** and the workflow configuration allows it.
@@ -22,7 +22,7 @@ Most confusion comes from mixing up **events**, **event types**, and **filters**
 
 ---
 
-## 1. Events
+### 1. Events
 
 An **event** is something that happens in a repository, such as:
 
@@ -31,7 +31,7 @@ An **event** is something that happens in a repository, such as:
 - `issues`
 - `release`
 
-### Example
+#### Example
 
 ```yaml
 on: push
@@ -41,7 +41,7 @@ This runs on **every push**, with **no restrictions**.
 
 ---
 
-## 2. Event Types
+### 2. Event Types
 
 Some events have **sub-actions** (event types), such as:
 
@@ -50,7 +50,7 @@ Some events have **sub-actions** (event types), such as:
 * `synchronize`
 * `labeled`
 
-### Example
+#### Example
 
 ```yaml
 on:
@@ -64,11 +64,11 @@ If an event occurs but its **type is not listed**, the workflow **does not run**
 
 ---
 
-## 3. Filters
+### 3. Filters
 
 Filters restrict **where** or **how** an event applies.
 
-### Example
+#### Example
 
 ```yaml
 on:
@@ -82,7 +82,7 @@ This runs **only** on pushes to `main`.
 
 ---
 
-## 4. How They Combine
+### 4. How They Combine
 
 A workflow runs **only if all conditions match**:
 
@@ -92,7 +92,7 @@ A workflow runs **only if all conditions match**:
 
 If **any condition fails**, **nothing runs**.
 
-### Example
+#### Example
 
 ```yaml
 name: Issue Label Validation
@@ -116,14 +116,14 @@ jobs:
 
 ---
 
-## 5. Filters vs `if`
+### 5. Filters vs `if`
 
 * **Filters** decide **whether a workflow starts**
 * **`if` conditions** decide whether **jobs or steps run after it starts**
 
 ---
 
-## Conclusion
+### Conclusion
 
 GitHub Actions is **strict and deterministic**.
 

@@ -9,9 +9,9 @@ icon: 🌐
 
 # Kubernetes Load Balancer vs Ingress Explained
 ---
-### Understanding where load balancers, ingress controllers, and services actually sit
+## Understanding where load balancers, ingress controllers, and services actually sit
 ---
-## Introduction
+### Introduction
 
 A common question in Kubernetes is how the **load balancer** and **ingress** actually interact, where each one sits, and why they are often confused as doing the same job.
 
@@ -23,7 +23,7 @@ Understanding their roles becomes much easier once you follow the request path f
 
 ---
 
-## External Load Balancer: The Cluster Entry Point
+### External Load Balancer: The Cluster Entry Point
 
 The external load balancer sits **outside** the Kubernetes cluster.
 
@@ -44,7 +44,7 @@ From the load balancer’s perspective, a Kubernetes cluster is simply a **set o
 
 ---
 
-## Ingress: Layer 7 Traffic Routing
+### Ingress: Layer 7 Traffic Routing
 
 Ingress is often misunderstood as a **control-plane component**.
 
@@ -66,7 +66,7 @@ This is where URL-based routing, virtual hosts, and TLS termination occur.
 
 ---
 
-## Kubernetes Service: Pod-Level Load Balancing
+### Kubernetes Service: Pod-Level Load Balancing
 
 Kubernetes services provide a **stable abstraction** over a dynamic set of pods.
 
@@ -86,7 +86,7 @@ This ensures that **pod placement does not affect reachability**.
 
 ---
 
-## End-to-End Request Flow
+### End-to-End Request Flow
 
 Putting it all together, the request path looks like this:
 
@@ -101,7 +101,7 @@ Each component operates at a **different layer** and solves a **different proble
 
 ---
 
-## Why These Components Are Often Confused
+### Why These Components Are Often Confused
 
 Because the load balancer, ingress controller, and service all participate in the same request path, it is easy to assume they overlap in responsibility.
 
@@ -115,7 +115,7 @@ Once their boundaries are understood, the Kubernetes networking model becomes mu
 
 ---
 
-## Summary
+#####Summary
 
 The load balancer and ingress do **not** compete with each other — they **complement** each other.
 

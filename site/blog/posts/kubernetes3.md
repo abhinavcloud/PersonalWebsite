@@ -9,9 +9,9 @@ icon: 🧪
 
 # Building a Kubernetes Cluster the “Real” Way (Without Managed Services)
 ---
-### Building a reproducible Kubernetes cluster from scratch using Multipass and kubeadm
+## Building a reproducible Kubernetes cluster from scratch using Multipass and kubeadm
 ---
-## Introduction
+### Introduction
 
 I recently built and published a small **Kubernetes lab** on GitHub that focuses on doing things the *“real” way* — without managed services or lightweight abstractions such as **Minikube**.
 
@@ -21,7 +21,7 @@ The goal was to create a **simple, repeatable setup** that demonstrates how a Ku
 
 ---
 
-## Design Goals
+### Design Goals
 
 The lab was designed with a few clear objectives:
 
@@ -34,7 +34,7 @@ This approach forces a deeper understanding of what Kubernetes needs to run and 
 
 ---
 
-## What the Lab Does
+### What the Lab Does
 
 Using a **single automation script**, the lab performs the following steps end to end:
 
@@ -51,7 +51,7 @@ Using a **single automation script**, the lab performs the following steps end t
 
 ---
 
-## Why This Approach
+### Why This Approach
 
 Automating the full lifecycle of a Kubernetes cluster forces you to understand:
 
@@ -65,7 +65,7 @@ Because nothing is abstracted away, each failure mode is visible and explainable
 
 ---
 
-## Use Cases
+### Use Cases
 
 This lab is particularly useful for:
 
@@ -79,7 +79,7 @@ The simplicity makes it easy to reason about, modify, and extend.
 
 ---
 
-## Source Code
+### Source Code
 
 The project is available on GitHub:
 
@@ -87,7 +87,7 @@ The project is available on GitHub:
 
 ---
 
-## Closing Thoughts
+### Closing Thoughts
 
 If you want to understand Kubernetes beyond managed services and local wrappers, building a cluster yourself is one of the most effective ways to do it.
 

@@ -9,10 +9,10 @@ icon: 🚀
 
 # Kubernetes Autoscaling: Moving Beyond CPU-Based HPA
 ---
-### Designing load-aware autoscaling using request and concurrency metrics
+## Designing load-aware autoscaling using request and concurrency metrics
 ---
 
-## Problem
+### Problem
 
 Horizontal Pod Autoscaler (HPA) is most commonly configured using **CPU utilization**.
 
@@ -33,7 +33,7 @@ Lowering CPU thresholds improves reaction time but:
 ![Kubernetes Autoscaling Beyond CPU-Based HPA](/images/kubernetes1.jpeg)
 
 
-## High-Level Direction
+### High-Level Direction
 
 Autoscaling should react to **service load**, not **resource exhaustion**.
 
@@ -46,11 +46,13 @@ These metrics change **immediately** as traffic arrives, enabling earlier scalin
 
 ---
 
-## Metric Placement
+### Metric Placement
 
 Load should be measured at the **service boundary**, not at the node level.
 
 Node-level metrics aggregate multiple workloads and are therefore unsuitable for **service-specific autoscaling**.
+
+---
 
 ### Practical Sources of Load Metrics
 
@@ -67,7 +69,7 @@ This is achieved **without application code changes**.
 
 ---
 
-## Metric Flow to HPA
+### Metric Flow to HPA
 
 The autoscaling control path is as follows:
 
@@ -80,7 +82,7 @@ The autoscaling control path is as follows:
 
 ---
 
-## Cold Start Considerations
+### Cold Start Considerations
 
 Even with accurate load-based metrics, autoscaling has **inherent latency**:
 
@@ -95,7 +97,7 @@ Autoscaling reacts to load — it does **not** eliminate cold start gaps.
 
 ---
 
-## Practical Scaling Model
+### Practical Scaling Model
 
 A production-grade autoscaling setup typically includes:
 
@@ -106,7 +108,7 @@ A production-grade autoscaling setup typically includes:
 
 ---
 
-## Summary
+### Summary
 
 CPU-based HPA is **not incorrect**, but it is **incomplete**.
 
