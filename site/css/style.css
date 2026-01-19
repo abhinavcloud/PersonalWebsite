@@ -143,6 +143,9 @@ ul li:last-child {
   margin-bottom: 12px
 }
 
+li {
+  margin-bottom: 0.75rem;
+}
 
 .theme-toggle {
 
