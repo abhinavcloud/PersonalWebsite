@@ -7,10 +7,12 @@ tags: [GitHubActions]
 icon: ⚡
 ---
 
-
 # GitHub Actions Deep Dive
+
 ---
+
 ## A Complete CI/CD Workflow Explained End-to-End
+
 ---
 
 GitHub Actions is often introduced using small, isolated examples—checking out code, running a build, or deploying an application. While these examples are useful, they rarely demonstrate how **real-world CI/CD pipelines** are designed.
@@ -269,11 +271,11 @@ runs-on: ubuntu-latest
 
 Key characteristics:
 
-| Property    | Description                        |
-| ----------- | ---------------------------------- |
-| Isolation   | Each job runs on a fresh VM        |
-| Persistence | Runner is destroyed after job      |
-| Sharing     | No filesystem sharing between jobs |
+| Property    |               Description                  |
+| ----------- | --- -------------------------------------- |
+| Isolation   |         Each job runs on a fresh VM        |
+| Persistence |         Runner is destroyed after job      |
+| Sharing     |         No filesystem sharing between jobs |
 
 This isolation is the reason artifacts and outputs exist.
 
@@ -311,11 +313,11 @@ if: always() && needs.test.result == 'failure'
 
 This condition controls whether the **entire job** executes.
 
-| Expression          | Meaning                                  |
-| ------------------- | ---------------------------------------- |
-| `always()`          | Evaluate job even if dependencies failed |
-| `needs.test.result` | Final result of `test` job               |
-| `== 'failure'`      | Run only if test failed                  |
+| Expression                  |               Meaning                    |
+| --------------------------  | ---------------------------------------- |
+| `always()`                  | Evaluate job even if dependencies failed |
+| `needs.test.result`         | Final result of `test` job               |
+| `== 'failure'`              | Run only if test failed                  |
 
 ### Why `always()` is required
 
@@ -335,10 +337,10 @@ if: failure() && steps.test-code-step.outcome == 'failure'
 
 This condition controls **individual step execution**.
 
-| Function             | Purpose                            |
-| -------------------- | ---------------------------------- |
-| `failure()`          | Checks if any previous step failed |
-| `steps.<id>.outcome` | Checks a specific step result      |
+| Function                       | Purpose                            |
+| ------------------------------ | ---------------------------------- |
+| `failure()`                    | Checks if any previous step failed |
+| `steps.<id>.outcome`           | Checks a specific step result      |
 
 This pattern is ideal for:
 
@@ -397,10 +399,10 @@ uses: actions/cache@v3
 
 Cache configuration:
 
-| Field  | Purpose        |
-| ------ | -------------- |
-| `path` | Files to cache |
-| `key`  | Cache identity |
+| Field         | Purpose        |
+| ------------- | -------------- |
+| `path`        | Files to cache |
+| `key`         | Cache identity |
 
 Using `hashFiles('package-lock.json')` ensures:
 
@@ -455,11 +457,11 @@ ${{ needs.build.outputs.script-file }}
 
 Comparison:
 
-| Feature  | Artifacts    | Outputs       |
-| -------- | ------------ | ------------- |
-| Type     | Files        | Values        |
-| Storage  | GitHub zip   | Metadata      |
-| Use case | Build assets | IDs, versions |
+| Feature            | Artifacts              | Outputs       |
+| ------------------ | ---------------------- | ------------- |
+| Type               | Files                  | Values        |
+| Storage            | GitHub zip             | Metadata      |
+| Use case           | Build assets           | IDs, versions |
 
 ---
 
