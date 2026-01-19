@@ -8,9 +8,13 @@ icon: 🧪
 ---
 
 # Building a Kubernetes Cluster the “Real” Way (Without Managed Services)
+
 ---
+
 ## Building a reproducible Kubernetes cluster from scratch using Multipass and kubeadm
+
 ---
+
 ### Introduction
 
 I recently built and published a small **Kubernetes lab** on GitHub that focuses on doing things the *“real” way* — without managed services or lightweight abstractions such as **Minikube**.

@@ -21,6 +21,8 @@ This article explains **GitHub Actions in its entirety** using **one production-
 
 By the end of this article, you will understand not only *how* GitHub Actions works, but *why* it is designed the way it is.
 
+![A Complete CI/CD Workflow Explained End-to-End](/images/githubactions2.jpg)
+
 ---
 
 ### Mental Model of GitHub Actions

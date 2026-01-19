@@ -115,7 +115,7 @@ Once their boundaries are understood, the Kubernetes networking model becomes mu
 
 ---
 
-#####Summary
+### Summary
 
 The load balancer and ingress do **not** compete with each other — they **complement** each other.
 

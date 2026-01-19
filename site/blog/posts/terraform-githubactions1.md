@@ -9,9 +9,13 @@ icon: ⚡
 
 
 # Terraform + GitHub Actions Multi-Environment Pipeline
+
 ---
+
 ## How I would create a Terraform CI/CD pipeline with GitHub Actions
+
 ---
+
 I spent the last few days designing a Terraform and GitHub Actions pipeline for managing multi-environment infrastructure. Sharing the final approach with real technical examples.
 
 ---

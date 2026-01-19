@@ -10,7 +10,9 @@ icon: ⚡
 # How GitHub Actions Triggers Actually Work
 
 ---
+
 ## How GitHub Actions Triggers Actually Work
+
 ---
 GitHub Actions is **event-driven**.  
 A workflow runs **only when an event occurs** and the workflow configuration allows it.
