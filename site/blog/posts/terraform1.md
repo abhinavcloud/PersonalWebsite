@@ -5,9 +5,12 @@ readingTime: 4 min read
 tags: 
   - terraform
   - IaC
-subtitle: "Detecting and managing Terraform drift by refreshing state"
+subtitle: Detecting and managing Terraform drift by refreshing state
 icon: ⚡
 ---
+
+# Managing Terraform Drift the Right Way
+### Detecting and managing Terraform drift by refreshing state
 
 Working with Terraform, I’ve often seen teams struggle with drift between the **code**, the **state**, and the **actual resources**.  
 
