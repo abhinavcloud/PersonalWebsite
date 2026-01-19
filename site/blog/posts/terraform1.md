@@ -15,6 +15,8 @@ The state is what Terraform *believes* exists, but when resources are changed ma
 
 ![Managing Terraform Drift the Right Way](/images/terraform1.jpeg)
 
+---
+
 ## Refreshing State First
 
 The key is refreshing the state before making any decisions.
@@ -36,6 +38,8 @@ gives a true picture of what has changed **without modifying any resources**. On
 * Update your code to accept the changes, or
 * Let Terraform reconcile the resources back to the desired state
 
+---
+
 ## A Subtle but Costly Trap
 
 There’s a subtle trap I’ve seen teams fall into:
@@ -50,6 +54,8 @@ This leads to:
 * Confusing plans
 * Reduced confidence in what Terraform is actually doing
 
+---
+
 ## The Workflow That Works
 
 The workflow I’ve settled on is simple but effective:
@@ -63,6 +69,8 @@ It may feel like an extra step, but it:
 * Keeps Terraform’s view accurate
 * Prevents unnecessary updates
 * Ensures infrastructure remains reliable
+
+----
 
 ## Final Thoughts
 
