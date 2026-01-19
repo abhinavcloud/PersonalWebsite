@@ -4,8 +4,7 @@ date: 2026-01-19
 author: "Abhinav Kumar"
 tags:
   - terraform
-  - infrastructure-as-code
-  - devops
+  - IaC
   - cloud
   - automation
 summary: "Detecting and managing Terraform drift by refreshing state"
