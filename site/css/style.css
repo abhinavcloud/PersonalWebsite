@@ -126,12 +126,13 @@ summary {
   cursor: pointer;
 
   color: var(--accent);
+  margin-bottom: 20px;
 
 }
 
 
 ul {
-
+  margin-top: 20px;
   margin-left: 1.5rem;
   margin-bottom: 20px
 
