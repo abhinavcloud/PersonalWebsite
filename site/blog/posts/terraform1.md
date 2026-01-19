@@ -3,16 +3,20 @@ title: Managing Terraform Drift the Right Way
 date: 2026-01-19
 readingTime: 4 min read
 tags: 
-  - terraform
+  - Terraform
   - IaC
 subtitle: Detecting and managing Terraform drift by refreshing state
 icon: ⚡
 ---
 
 # Managing Terraform Drift the Right Way
+
 ---
+
 ### Detecting and managing Terraform drift by refreshing state
+
 ---
+
 Working with Terraform, I’ve often seen teams struggle with drift between the **code**, the **state**, and the **actual resources**.  
 
 The state is what Terraform *believes* exists, but when resources are changed manually, reality can diverge. A normal `terraform apply` only compares the **state** with the **code**, so without refreshing, drift can go completely unnoticed.
