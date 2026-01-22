@@ -464,3 +464,33 @@
 .blog-post table {
   min-width: 420px;
 }
+
+/* ================= Mobile Code Block Containment ================= */
+
+@media (max-width: 768px) {
+
+  .blog-post {
+    overflow-x: hidden; /* keep rounded container intact */
+  }
+
+  .blog-post pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blog-post pre code {
+    display: block;
+    min-width: max-content; /* prevents line wrapping */
+  }
+
+  /* Optional: nicer scrollbar */
+  .blog-post pre::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .blog-post pre::-webkit-scrollbar-thumb {
+    background: rgba(56,189,248,0.4);
+    border-radius: 999px;
+  }
+}
