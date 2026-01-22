@@ -402,43 +402,28 @@
   }
 }
 
+/* ================= Mobile Table Containment Fix ================= */
+
 @media (max-width: 768px) {
-.blog-post table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.6rem 0;
-  font-size: 0.9rem;
-}
 
-.blog-post thead {
-  background: rgba(56,189,248,0.08);
-}
+  .blog-post {
+    overflow-x: hidden; /* keep rounded box intact */
+  }
 
-.blog-post th,
-.blog-post td {
-  padding: 10px 14px;
-  text-align: left;
-  border: 1px solid rgba(255,255,255,0.15);
-  white-space: normal;
-}
+  .blog-post table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
 
-.blog-post th {
-  font-weight: 600;
-  color: var(--text);
-}
+  .blog-post table::-webkit-scrollbar {
+    height: 6px;
+  }
 
-.blog-post tbody tr:nth-child(even) {
-  background: rgba(255,255,255,0.03);
-}
-
-/* Mobile safety */
-.blog-post {
-  overflow-x: auto;
-}
-
-.blog-post table {
-  min-width: 420px;
-}
+  .blog-post table::-webkit-scrollbar-thumb {
+    background: rgba(56,189,248,0.4);
+    border-radius: 999px;
+  }
 }
 
 /* ================= Markdown Tables ================= */
