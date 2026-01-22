@@ -420,6 +420,7 @@ img {
    NAVIGATION (MOBILE FIRST)
    =============================== */
 
+   
 nav {
   display: flex;
   align-items: center;
@@ -554,4 +555,88 @@ a.button {
   .services > * {
     flex: 1 1 30%;
   }
+}
+
+
+/* =====================================================
+   MOBILE FIXES — APPEND ONLY (DO NOT REPLACE ANYTHING)
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  /* ---------- HERO CONTAINER ---------- */
+  .hero {
+    padding: 2.5rem 1rem 2rem;
+    min-height: unset;
+    text-align: center;
+  }
+
+  /* ---------- PROFILE IMAGE ---------- */
+  .hero img,
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+
+  /* ---------- HERO TEXT VISIBILITY ---------- */
+  .hero h1,
+  .hero h2,
+  .hero p {
+    color: #eaf6ff;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero h2 {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+
+  /* ---------- LINKS UNDER NAME ---------- */
+  .hero .links,
+  .hero .social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .hero .links a,
+  .hero .social-links a {
+    font-size: 0.95rem;
+  }
+
+  /* ---------- CTA BUTTON ---------- */
+  .hero .cta,
+  .hero button,
+  .hero a.button {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 1.2rem auto 0;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  /* ---------- SECOND SECTION TEXT ---------- */
+  section h2 {
+    font-size: 1.2rem;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  section p {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
 }
