@@ -47,7 +47,7 @@ Most engineers assume:
 
 That is not how GitHub Actions evaluates execution.
 
----
+
 
 #### The Real Execution Model
 
@@ -77,7 +77,7 @@ Next steps run | Yes
 
 Outcome and conclusion are intentionally different.
 
----
+
 
 #### Why This Design Exists
 
@@ -86,7 +86,7 @@ This allows pipelines to:
 - Run diagnostics and cleanup
 - Apply conditional logic after a failure
 
----
+
 
 #### if Conditions Still See the Failure
 
@@ -104,7 +104,7 @@ Even though the job continues:
 - failure() evaluates to true 
 - Because a step failed internally
 
----
+
 
 #### Job-Level continue-on-error
 
@@ -121,7 +121,7 @@ Effect:
 
 Use this deliberately. It hides failures from the dependency graph.
 
----
+
 
 #### Key Rule
 
@@ -138,7 +138,7 @@ A matrix:
 - Each job gets its own matrix context
 - Each job runs on a separate runner
 
----
+
 
 #### Single Parameter Matrix
 
@@ -150,7 +150,7 @@ strategy:
 
 Creates three parallel jobs.
 
----
+
 
 #### Multi-Parameter Matrix (Cartesian Product)
 
@@ -170,7 +170,7 @@ ubuntu | 20
 windows | 18
 windows | 20
 
----
+
 
 #### Excluding Combinations
 
@@ -184,7 +184,7 @@ Exclusions:
 - Must match exactly
 - Are applied after expansion
 
----
+
 
 #### include: Adding Behavior, Not Just Rows
 
@@ -204,7 +204,7 @@ This:
 if: matrix.experimental == true
 ```
 
----
+
 
 #### Failure Behavior in Matrices
 
@@ -242,7 +242,7 @@ on:
 
 Without this, it cannot be invoked.
 
----
+
 
 #### Defining Inputs (Contract Definition)
 
@@ -284,7 +284,7 @@ jobs:
 
 This is the only valid way to pass inputs.
 
----
+
 
 #### Where Input Values Come From
 
@@ -298,7 +298,7 @@ Outputs of previous jobs
 
 Inputs are resolved before the reusable workflow starts.
 
----
+
 
 #### Input Resolution Order
 
