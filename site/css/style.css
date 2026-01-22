@@ -196,6 +196,13 @@ footer {
 
 }
 
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15); /* tweak */
+  margin: 1.2rem 0;
+}
+
 /* ===============================
    Blog Section (New)
    =============================== */
