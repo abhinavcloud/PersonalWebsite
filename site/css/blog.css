@@ -477,11 +477,15 @@
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 
   .blog-post pre code {
     display: block;
-    min-width: max-content; /* prevents line wrapping */
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal
   }
 
   /* Optional: nicer scrollbar */
