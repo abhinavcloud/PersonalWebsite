@@ -8,7 +8,12 @@ icon: 🧪
 ---
 
 # GitHub Actions Internals Explained 
+
+---
+
 ## Failure Semantics, Matrix Expansion, and Reusable Workflows
+
+---
 
 GitHub Actions is often described as “YAML-based CI/CD”. 
 That description is misleading.
