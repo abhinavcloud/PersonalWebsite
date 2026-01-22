@@ -203,31 +203,7 @@ hr {
   margin: 1.2rem 0;
 }
 
-/* Unvisited link */
-a:link {
-  color: rgba(0, 119, 255, 0.904);
-  text-decoration: none; /* optional */
-}
 
-/* Visited link */
-a:visited {
-  color: rgb(250, 248, 248);
-}
-
-/* Hover state */
-a:hover {
-  color: rgb(222, 230, 159);
-}
-
-/* Active (clicking) state */
-a:active {
-  color: green;
-}
-
-/* Optional: smooth transition */
-a {
-  transition: color 0.3s ease;
-}
 
 /* ===============================
    Blog Section (New)
