@@ -37,7 +37,7 @@ An **event** is something that happens in a repository, such as:
 
 ```yaml
 on: push
-````
+```
 
 This runs on **every push**, with **no restrictions**.
 

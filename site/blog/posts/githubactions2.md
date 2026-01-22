@@ -29,11 +29,7 @@ By the end of this article, you will understand not only *how* GitHub Actions wo
 
 Before diving into YAML, it is essential to understand the execution hierarchy:
 
-```
-
 Event → Workflow → Jobs → Steps → Actions / Commands
-
-````
 
 Key principles:
 
@@ -299,9 +295,7 @@ Capabilities unlocked by needs:
 
 Execution graph:
 
-```
 lint → test → build → deploy
-```
 
 ---
 
