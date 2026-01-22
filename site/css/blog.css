@@ -401,3 +401,42 @@
     justify-self: end;
   }
 }
+
+/* ================= Markdown Tables ================= */
+
+.blog-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0;
+  font-size: 0.9rem;
+}
+
+.blog-post thead {
+  background: rgba(56,189,248,0.08);
+}
+
+.blog-post th,
+.blog-post td {
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.15);
+  white-space: normal;
+}
+
+.blog-post th {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.blog-post tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Mobile safety */
+.blog-post {
+  overflow-x: auto;
+}
+
+.blog-post table {
+  min-width: 420px;
+}
