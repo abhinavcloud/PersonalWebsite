@@ -6,7 +6,7 @@ tags:
   - Terraform
   - IaC
 subtitle: How Terraform Really Resolves Variables — The Flow No One Explains Clearly
-icon: 🚀
+icon: 🏗️
 ---
 
 # Variable resolution in Terraform modules

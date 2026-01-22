@@ -4,7 +4,7 @@ subtitle: A Complete CI/CD Workflow Explained End-to-End
 date: 2026-01-19
 readingTime: 8 min read
 tags: [GitHubActions]
-icon: ⚡
+icon: ▶️
 ---
 
 # GitHub Actions Deep Dive

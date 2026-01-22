@@ -4,7 +4,7 @@ subtitle: Failure Semantics, Matrix Expansion, and Reusable Workflows
 date: 2026-01-22
 readingTime: 5 min read
 tags: [GitHubActions]
-icon: 🧪
+icon: ▶️
 ---
 
 # GitHub Actions Internals Explained 

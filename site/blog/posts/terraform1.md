@@ -6,7 +6,7 @@ tags:
   - Terraform
   - IaC
 subtitle: Detecting and managing Terraform drift by refreshing state
-icon: ⚡
+icon: 🏗️
 ---
 
 # Managing Terraform Drift the Right Way

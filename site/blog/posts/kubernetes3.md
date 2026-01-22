@@ -4,7 +4,7 @@ date: 2026-01-15
 readingTime: 4 min read
 tags: [Kubernetes, kubeadm, containerd, Networking, Labs]
 subtitle: Building a reproducible Kubernetes cluster from scratch using Multipass and kubeadm
-icon: 🧪
+icon: ⚙️
 ---
 
 # Building a Kubernetes Cluster the “Real” Way (Without Managed Services)

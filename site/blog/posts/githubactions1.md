@@ -4,7 +4,7 @@ subtitle: How GitHub Actions Triggers Actually Work
 date: 2026-01-14
 readingTime: 4 min read
 tags: [GitHubActions]
-icon: ⚡
+icon: ▶️
 ---
 
 # How GitHub Actions Triggers Actually Work
