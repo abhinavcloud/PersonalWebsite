@@ -342,3 +342,216 @@ footer {
 .resume-btn:hover {
     background-color: #0d6efd;
 }
+
+
+/* ===============================
+   GLOBAL RESET & BASE
+   =============================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background-color: #fff;
+}
+
+/* ===============================
+   CONTAINERS & LAYOUT
+   =============================== */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  padding: 3rem 1rem;
+}
+
+/* ===============================
+   TYPOGRAPHY
+   =============================== */
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ===============================
+   IMAGES & MEDIA
+   =============================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===============================
+   NAVIGATION (MOBILE FIRST)
+   =============================== */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav .menu-toggle {
+  font-size: 1rem;
+  background: none;
+  border: 1px solid #ccc;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+
+nav ul.open {
+  display: flex;
+}
+
+nav ul li {
+  margin: 0.5rem 0;
+}
+
+nav ul li a {
+  padding: 0.5rem 0;
+  display: block;
+}
+
+/* ===============================
+   GRID / CARD SECTIONS
+   =============================== */
+
+.projects,
+.skills,
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.projects > *,
+.skills > *,
+.services > * {
+  flex: 1 1 100%;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+/* ===============================
+   BUTTONS & LINKS
+   =============================== */
+
+button,
+a.button {
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+/* ===============================
+   SMALL DEVICES (TABLET+)
+   =============================== */
+
+@media (min-width: 600px) {
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  section {
+    padding: 4rem 2rem;
+  }
+
+  .projects > *,
+  .skills > *,
+  .services > * {
+    flex: 1 1 48%;
+  }
+}
+
+/* ===============================
+   LARGE DEVICES (DESKTOP)
+   =============================== */
+
+@media (min-width: 900px) {
+
+  nav {
+    padding: 1rem 2rem;
+  }
+
+  nav .menu-toggle {
+    display: none;
+  }
+
+  nav ul {
+    display: flex !important;
+    flex-direction: row;
+    width: auto;
+    margin: 0;
+    gap: 1.5rem;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  .projects > *,
+  .skills > *,
+  .services > * {
+    flex: 1 1 30%;
+  }
+}
