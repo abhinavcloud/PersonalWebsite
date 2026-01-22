@@ -27,9 +27,9 @@ Most production pipeline issues come from misunderstanding when values are resol
 
 This post breaks down three commonly misunderstood areas:
 
-1. continue-on-error 
-2. Matrix strategies 
-3. Reusable workflows (with a deep dive into inputs and outputs)
+- continue-on-error 
+- Matrix strategies 
+- Reusable workflows (with a deep dive into inputs and outputs)
 
 The focus is not syntax, but runtime behavior.
 
@@ -53,9 +53,9 @@ That is not how GitHub Actions evaluates execution.
 
 Every step has three independent concepts:
 
-1. Exit code – returned by the command 
-2. Outcome – success or failure of execution 
-3. Conclusion – how GitHub records the result for job control 
+- Exit code – returned by the command 
+- Outcome – success or failure of execution 
+- Conclusion – how GitHub records the result for job control 
 
 Example:
 
@@ -302,10 +302,10 @@ Inputs are resolved before the reusable workflow starts.
 
 #### Input Resolution Order
 
-1. Calling workflow expressions are evaluated 
-2. with values are resolved 
-3. Defaults are applied if needed 
-4. Inputs become read-only constants 
+- Calling workflow expressions are evaluated 
+- with values are resolved 
+- Defaults are applied if needed 
+- Inputs become read-only constants 
 
 Inputs cannot be overridden or mutated.
 
@@ -348,8 +348,8 @@ Never pass sensitive data as inputs.
 ### 8. Reusable Workflow Outputs
 
 Outputs must be:
-1. Produced by a job 
-2. Explicitly exposed at workflow_call 
+- Produced by a job 
+- Explicitly exposed at workflow_call 
 
 ```yaml
 on:
