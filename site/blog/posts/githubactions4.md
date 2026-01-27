@@ -83,7 +83,10 @@ jobs.deploy.outputs.deploy_message
 
 At this point:
 
-- Other jobs in the same workflow can access it using needs.deploy.outputs.deploy_message
+- Other jobs in the same workflow can access it using:
+```yaml
+needs.deploy.outputs.deploy_message
+```
 - But nothing outside this workflow can see it
 
 This distinction matters once reusable workflows enter the picture.
@@ -148,8 +151,10 @@ This job:
 
 However, any outputs declared at workflow_call level are automatically attached to this job.
 
-After execution, the caller job exposes: jobs.deploy.outputs.deploy_message
-
+After execution, the caller job exposes: 
+```yaml
+jobs.deploy.outputs.deploy_message
+```
 
 No additional mapping is required at the caller job level.
 
@@ -180,16 +185,18 @@ This is the only valid way to observe or use the output.
 Every hop is explicit:
 
 
-step output
-→ job output (inside reusable workflow)
-→ workflow output
-→ caller job output
-→ downstream job via needs
+
+**step output**
+**→ job output (inside reusable workflow)**
+**→ workflow output**
+**→ caller job output**
+**→ downstream job via needs**
 
 
-If any level is skipped, the value is not available downstream.
 
-There is no implicit promotion.
+If any **level** is skipped, the value is not available downstream.
+
+There is **no implicit promotion**.
 
 ---
 
