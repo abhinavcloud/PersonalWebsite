@@ -8,7 +8,10 @@ icon: ▶️
 ---
 
 # GitHub Actions Reusable Workflows
+
+---
 ## Outputs, Scopes, and Why Things Break If You Skip One Layer
+---
 
 This post documents a very specific problem I ran into while working with GitHub Actions reusable workflows. The issue was not syntax. It was understanding where outputs live, how they move across boundaries, and why GitHub forces you to explicitly promote them at every level.
 
@@ -31,9 +34,10 @@ At the lowest level, outputs are written by steps.
 
 Example:
 
-yaml
+```yaml
 - id: deploy
   run: echo "message=Deploying (simulated)" >> $GITHUB_OUTPUT
+  ```
 
 
 This does one thing only:
@@ -42,9 +46,9 @@ This does one thing only:
 
 GitHub parses that file and exposes the value as:
 
-yaml
+```yaml
 steps.deploy.outputs.message
-
+```
 
 Important boundaries at this level:
 
@@ -60,7 +64,7 @@ If nothing else is done, the value stops here.
 
 If another job needs this value, the step output must be promoted to a job output.
 
-yaml
+```yaml
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -69,18 +73,17 @@ jobs:
     steps:
       - id: deploy
         run: echo "message=Deploying (simulated)" >> $GITHUB_OUTPUT
-
+```
 
 Now the value exists as:
 
-yaml
+```yaml
 jobs.deploy.outputs.deploy_message
-
+```
 
 At this point:
 
-- Other jobs in the same workflow can access it using  
-  needs.deploy.outputs.deploy_message
+- Other jobs in the same workflow can access it using needs.deploy.outputs.deploy_message
 - But nothing outside this workflow can see it
 
 This distinction matters once reusable workflows enter the picture.
@@ -97,7 +100,7 @@ This is where workflow_call.outputs comes in.
 
 Example reusable workflow:
 
-yaml
+```yaml
 name: reusable-deploy
 
 on:
@@ -114,7 +117,7 @@ jobs:
     steps:
       - id: deploy
         run: echo "message=Deploying (simulated)" >> $GITHUB_OUTPUT
-
+```
 
 Key points:
 
@@ -131,11 +134,11 @@ This is enforced by GitHub.
 
 In the caller workflow:
 
-yaml
+```yaml
 jobs:
   deploy:
     uses: ./.github/workflows/reusable-deploy.yml
-
+```
 
 This job:
 
@@ -145,10 +148,7 @@ This job:
 
 However, any outputs declared at workflow_call level are automatically attached to this job.
 
-After execution, the caller job exposes:
-
-yaml
-jobs.deploy.outputs.deploy_message
+After execution, the caller job exposes: jobs.deploy.outputs.deploy_message
 
 
 No additional mapping is required at the caller job level.
@@ -159,7 +159,7 @@ No additional mapping is required at the caller job level.
 
 Since the uses job cannot run steps, any printing or processing must happen in another job.
 
-yaml
+```yaml
 jobs:
   deploy:
     uses: ./.github/workflows/reusable-deploy.yml
@@ -169,7 +169,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ needs.deploy.outputs.deploy_message }}"
-
+```
 
 This is the only valid way to observe or use the output.
 
