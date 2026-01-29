@@ -14,7 +14,7 @@ icon: ▶️
 
 ---
 
-I went into this refactor thinking I was just cleaning up some GitHub Actions YAML.
+I went into a GitHub Action workflow refactor thinking I was just cleaning up some GitHub Actions YAML.
 
 I came out realizing that GitHub Actions is **not configuration glue** — it’s a **layered abstraction system** with strict boundaries, silent failure modes, and real architectural trade-offs.
 
@@ -40,11 +40,11 @@ this will save you hours of confusion.
 
 I had three layers:
 
-    workflow1.yml
-       ↓
-    reusable_workflow.yml
-       ↓
-    custom composite action
+workflow1.yml
+   ↓
+reusable_workflow.yml
+   ↓
+custom composite action
 
 ---
 
@@ -103,7 +103,7 @@ This is where the problem started.
             key: node-modules-${{ hashFiles('**/package-lock.json') }}
 ```
 
-There is **no `inputs:` block**. 
+There is **no inputs: block**. 
 The values are **hardcoded**.
 
 ---
@@ -115,7 +115,7 @@ I assumed:
 > “The reusable workflow will somehow inject its inputs into the composite action.”
 
 I believed GitHub Actions would:
-- inspect the `with:` block
+- inspect the **with:** block
 - override internal values
 - or at least warn me if something was wrong
 
@@ -140,10 +140,10 @@ Here is the *real* execution flow:
 ---
 ### The brutal truth
 
-**Every input I passed from `workflow1.yml` was silently ignored.**
+**Every input I passed from workflow1.yml was silently ignored.**
 
 GitHub Actions:
-- does NOT validate `with:` against action inputs
+- does NOT validate **with:** against action inputs
 - does NOT warn
 - does NOT fail
 
@@ -254,12 +254,12 @@ Now:
 ---
 
 ### Direct usage elsewhere (explicit)
-
+```yaml
     - uses: ./.github/actions/cache-install-deps
       with:
         path: ~/.npm
         key: node-modules-${{ hashFiles('**/package-lock.json') }}
-
+```
 Every caller is honest. 
 Every value is explicit. 
 Nothing is assumed.
@@ -272,19 +272,19 @@ Defaults seem convenient — but they introduce **implicit behavior**.
 
 Here’s why I rejected them deliberately:
 
-- **Defaults hide configuration mistakes** 
+- **Defaults hide configuration mistakes: ** 
    A missing input silently falls back instead of failing.
 
-- **Caching is infrastructure, not a convenience** 
+- **Caching is infrastructure, not a convenience: ** 
    Cache keys are **strategy**, not decoration.
 
-- **Explicit > magical** 
+- **Explicit > magical: ** 
    I want readers to *see* what controls behavior.
 
-- **Fail fast beats silent success** 
+- **Fail fast beats silent success: **
    CI should scream when something is wrong.
 
-- If a value matters, it should be required.**
+- **If a value matters, it should be required.**
 
 ---
 
@@ -295,8 +295,8 @@ Once I stopped thinking of this as YAML and started thinking in architecture, ev
 | Layer | Role |
 |------|------|
 | workflow1.yml | Application |
-| Reusable workflow | Public API / Facade |
-| Composite action | Library / Implementation |
+| Reusable workflow |  Facade |
+| Composite action | Implementation |
 
 Rules:
 - inputs flow **down**
@@ -311,7 +311,7 @@ Rules:
 1. Reusable workflows own the public contract 
 2. Composite actions must explicitly declare all inputs 
 3. If an input affects behavior, make it required 
-4. Never pass `with:` values into actions that don’t declare inputs 
+4. Never pass **with:** values into actions that don’t declare inputs 
 5. Prefer failing fast over hidden defaults 
 
 This prevents 90% of CI confusion.
