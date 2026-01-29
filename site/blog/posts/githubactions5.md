@@ -272,17 +272,17 @@ Defaults seem convenient — but they introduce **implicit behavior**.
 
 Here’s why I rejected them deliberately:
 
-- **Defaults hide configuration mistakes: ** 
-   A missing input silently falls back instead of failing.
+- **Defaults hide configuration mistakes:** 
+    A missing input silently falls back instead of failing.
 
-- **Caching is infrastructure, not a convenience: ** 
-   Cache keys are **strategy**, not decoration.
+- **Caching is infrastructure, not a convenience:** 
+    Cache keys are **strategy**, not decoration.
 
-- **Explicit > magical: ** 
-   I want readers to *see* what controls behavior.
+- **Explicit > magical:** 
+    I want readers to *see* what controls behavior.
 
-- **Fail fast beats silent success: **
-   CI should scream when something is wrong.
+- **Fail fast beats silent success:**
+    CI should scream when something is wrong.
 
 - **If a value matters, it should be required.**
 
