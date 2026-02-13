@@ -437,17 +437,7 @@ To elevate this pipeline even further:
 
 This project demonstrates the **complete DevOps lifecycle**:
 
-From:
-
-```
-git push
-```
-
-To:
-
-```
-Live production website
-```
+From: git push To: Live production website
 
 By building this system, you learn:
 
