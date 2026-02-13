@@ -37,18 +37,7 @@ Repo Link: [GitHub Actions Learning Repo](https://github.com/abhinavcloud/GiHub-
 
 Here’s the full CI/CD flow:
 
-Push to main / project2 / dummy branch  
-↓  
-Lint  
-↓  
-Test  
-↓  
-Build  
-↓  
-Reusable Deploy Workflow  
-↓  
-Upload to AWS S3  
-↓  
+Push to main branch -> Lint -> Test -> Build -> Reusable Deploy Workflow ->Upload to AWS S3 ->   
 Print Static Website URL  
 
 We implement **strict quality gates**, modular workflows, reusable components, and secure cloud authentication.
@@ -88,26 +77,26 @@ If the code doesn’t meet quality standards, we stop immediately.
 
 #### What Happens?
 
-1. Print a job-level secret (`ENV_OWNER`)
-2. Checkout code
-3. Restore cached dependencies
-4. Run `npm run lint`
+- Print a job-level secret **(ENV_OWNER)**
+- Checkout code
+- Restore cached dependencies
+- Run **npm run lint**
 
 #### Concepts Learned
 
 - Job-level secrets
-- Using `actions/checkout`
+- Using **actions/checkout**
 - Local composite actions
-- Dependency caching via `hashFiles('**/package-lock.json')`
+- Dependency caching via hashFiles('**/package-lock.json')
 - Build optimization strategies
 
-Caching `~/.npm` dramatically reduces CI time and cost.
+Caching **~/.npm** dramatically reduces CI time and cost.
 
 ---
 
 ### Stage 2: Test — Quality Gate Enforcement
 
-The `test` job depends on `lint`:
+The **test** job depends on **lint**:
 
 ```yaml
 needs: lint
@@ -119,8 +108,8 @@ This ensures we only test clean code.
 
 - Checkout repository
 - Install dependencies
-- Run `npm run test`
-- Upload `test.json` if tests fail
+- Run npm run test
+- Upload test.json if tests fail
 
 #### Conditional Artifact Upload
 
@@ -136,7 +125,7 @@ This ensures:
 
 #### Concepts Learned
 
-- Job dependencies (`needs`)
+- Job dependencies (needs)
 - Conditional execution
 - Step IDs
 - Artifact uploading
@@ -146,7 +135,7 @@ This ensures:
 
 ### Stage 3: Build — Producing Production Assets
 
-The `build` job runs after `test`.
+The build job runs after test.
 
 ```yaml
 if: always() && (failure() || needs.test.result == 'success')
@@ -161,8 +150,8 @@ This advanced condition means:
 
 - Checkout
 - Restore cache
-- Run `npm run build`
-- Upload `dist/*` as `dist-files`
+- Run npm run build
+- Upload dist/* as `ist-files
 
 ```yaml
 if-no-files-found: error
@@ -217,8 +206,8 @@ secrets: inherit
 
 Securely passes:
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
 
 No hardcoded credentials. Ever.
 
@@ -262,7 +251,7 @@ Secure authentication is one of the most critical DevOps skills.
 
 ### Building a Custom JavaScript GitHub Action
 
-Instead of writing `aws s3 sync` directly in YAML, we created a **custom Node.js GitHub Action**.
+Instead of writing aws s3 sync directly in YAML, we created a **custom Node.js GitHub Action**.
 
 #### Why?
 
@@ -318,10 +307,10 @@ run();
 #### What This Teaches
 
 - Writing JavaScript-based GitHub Actions
-- Using `@actions/core`
-- Using `@actions/exec`
+- Using @actions/core
+- Using @actions/exec
 - Programmatically executing shell commands
-- Error handling with `core.setFailed()`
+- Error handling with core.setFailed()
 - Creating reusable DevOps tooling
 
 This is how professional-grade CI/CD tooling is built.
@@ -413,16 +402,16 @@ This gives:
 
 ### End-to-End Flow Summary
 
-1. Developer pushes code  
-2. Lint validates code quality  
-3. Tests verify correctness  
-4. Build generates production bundle  
-5. Artifacts are uploaded  
-6. Reusable workflow is triggered  
-7. AWS credentials are configured  
-8. Custom JS action syncs files to S3  
-9. Static site becomes publicly accessible  
-10. URL is printed automatically  
+- Developer pushes code  
+- Lint validates code quality  
+- Tests verify correctness  
+- Build generates production bundle  
+- Artifacts are uploaded  
+- Reusable workflow is triggered  
+- AWS credentials are configured  
+- Custom JS action syncs files to S3  
+- Static site becomes publicly accessible  
+- URL is printed automatically  
 
 Fully automated.  
 Fully reproducible.  
@@ -430,7 +419,7 @@ Fully scalable.
 
 ---
 
-### 🔮 Possible Enhancements
+### Possible Enhancements
 
 To elevate this pipeline even further:
 
@@ -474,4 +463,4 @@ This is not just automation.
 
 This is real-world DevOps engineering.
 
-And now — you can build it yourself. 🚀
+And now — you can build it yourself.

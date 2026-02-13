@@ -40,11 +40,7 @@ this will save you hours of confusion.
 
 I had three layers:
 
-workflow1.yml
-   ↓
-reusable_workflow.yml
-   ↓
-custom composite action
+workflow1.yml -> reusable_workflow.yml -> custom composite action
 
 ---
 
