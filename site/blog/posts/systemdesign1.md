@@ -70,23 +70,23 @@ User retrieves order details.
 
 ##### Step-by-step technical flow
 
-1. User sends request
+- User sends request
 
 ```
 GET /orders/123
 Authorization: Bearer JWT
 ```
 
-2. API Gateway receives request
+- API Gateway receives request
 
-3. Gateway forwards request to Order Service
+- Gateway forwards request to Order Service
 
-4. Order Service:
+- Order Service:
    - Reads orderId
    - Validates JWT
    - Fetches order from database
 
-5. Response returned
+- Response returned
 
 ```
 200 OK
@@ -167,8 +167,6 @@ Server response:
 Set-Cookie: SESSIONID=ABC123
 ```
 
----
-
 ##### Step 2 — Next request
 
 Client sends:
@@ -179,12 +177,10 @@ Cookie: SESSIONID=ABC123
 ```
 
 Server:
+- Reads session ID
+- Looks up session
+- Retrieves user context
 
-1. Reads session ID
-2. Looks up session
-3. Retrieves user context
-
----
 
 ##### Problem with Load Balancing
 
@@ -205,12 +201,11 @@ Next request → Server A
 
 Problems:
 
-1. Uneven load distribution
-2. Server memory limits
-3. Session loss if server crashes
-4. Hard to scale horizontally
+- Uneven load distribution
+- Server memory limits
+- Session loss if server crashes
+- Hard to scale horizontally
 
----
 
 ##### Solutions
 
@@ -226,7 +221,6 @@ Server C → Redis
 
 Sessions stored centrally.
 
----
 
 ##### Option 2 — Stateless Authentication
 
@@ -256,8 +250,6 @@ Services communicate through **events**, not direct requests.
 
 No service stores conversational state about other services.
 
----
-
 ##### Example
 
 E-commerce order processing.
@@ -278,7 +270,6 @@ Example brokers:
 - SQS
 - NATS
 
----
 
 ##### Step-by-step flow
 
@@ -297,7 +288,6 @@ OrderCreated
 
 Event sent to message broker.
 
----
 
 ##### Step 2 — Payment Service consumes event
 
@@ -315,8 +305,6 @@ PaymentCompleted
 }
 ```
 
----
-
 ##### Step 3 — Inventory Service reacts
 
 Consumes PaymentCompleted event.
@@ -329,15 +317,11 @@ Publishes event:
 InventoryReserved
 ```
 
----
-
 ##### Step 4 — Notification Service reacts
 
 Consumes InventoryReserved.
 
 Sends confirmation email.
-
----
 
 ##### Characteristics
 
@@ -373,7 +357,6 @@ Example technologies:
 
 A central orchestrator **tracks workflow state** across multiple asynchronous steps.
 
----
 
 ##### Example
 
@@ -390,7 +373,7 @@ Create Order
 
 Orchestrator maintains workflow state.
 
----
+
 
 ##### Step-by-step workflow
 
@@ -411,7 +394,6 @@ OrderWorkflow
 status = STARTED
 ```
 
----
 
 ##### Step 2
 
@@ -419,7 +401,6 @@ Orchestrator calls Payment Service.
 
 Payment runs asynchronously.
 
----
 
 ##### Step 3
 
@@ -431,7 +412,6 @@ Workflow engine updates state.
 paymentStatus = SUCCESS
 ```
 
----
 
 ##### Step 4
 
@@ -441,7 +421,6 @@ Next step triggered.
 Reserve Inventory
 ```
 
----
 
 ##### Why this is stateful
 
@@ -455,7 +434,6 @@ Workflow engine stores state like:
 }
 ```
 
----
 
 ##### Scaling challenge
 
@@ -486,7 +464,7 @@ Real applications use **multiple patterns simultaneously**.
 
 Example e-commerce checkout flow.
 
----
+
 
 #### Step 1 — User creates order
 
@@ -500,7 +478,7 @@ Pattern used:
 
 **Synchronous + Stateless**
 
----
+
 
 #### Step 2 — Order service publishes event
 
@@ -512,7 +490,7 @@ Pattern used:
 
 **Async + Stateless**
 
----
+
 
 #### Step 3 — Background services process events
 
@@ -522,17 +500,17 @@ Fraud Detection
 
 All consume events.
 
-Pattern:
+Pattern used:
 
 **Async + Stateless**
 
----
+
 
 #### Step 4 — Complex workflows
 
 Refund process or shipment coordination may require orchestration.
 
-Pattern:
+Pattern used:
 
 **Async + Stateful**
 
@@ -555,7 +533,7 @@ Each service listens and emits next event.
 
 This is **event choreography**.
 
----
+
 
 #### Advantages
 
@@ -563,15 +541,15 @@ This is **event choreography**.
 - Fully distributed
 - Highly scalable
 
----
+
 
 #### Downsides
 
-1. Hard to track workflow state
-2. Difficult debugging
-3. Event dependency complexity
-4. Harder error handling
-5. Lack of global visibility
+- Hard to track workflow state
+- Difficult debugging
+- Event dependency complexity
+- Harder error handling
+- Lack of global visibility
 
 Example problem:
 
