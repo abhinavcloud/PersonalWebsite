@@ -72,7 +72,7 @@ User retrieves order details.
 
 - User sends request
 
-```
+```api
 GET /orders/123
 Authorization: Bearer JWT
 ```
