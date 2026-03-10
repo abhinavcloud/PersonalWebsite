@@ -72,7 +72,7 @@ User retrieves order details.
 
 - User sends request
 
-```api
+```json
 GET /orders/123
 Authorization: Bearer JWT
 ```
@@ -88,7 +88,7 @@ Authorization: Bearer JWT
 
 - Response returned
 
-```
+```json
 200 OK
 {
   "orderId": 123,
@@ -134,7 +134,7 @@ Example: login-based web application.
 
 ##### Step 1 — User logs in
 
-```
+```json
 POST /login
 username
 password
@@ -145,13 +145,13 @@ Server:
 - Authenticates user
 - Creates session object
 
-```
+```json
 SessionID = ABC123
 ```
 
 Session stored in server memory:
 
-```
+```json
 SessionStore
 {
  ABC123: {
@@ -163,7 +163,7 @@ SessionStore
 
 Server response:
 
-```
+```json
 Set-Cookie: SESSIONID=ABC123
 ```
 
@@ -171,7 +171,7 @@ Set-Cookie: SESSIONID=ABC123
 
 Client sends:
 
-```
+```json
 GET /profile
 Cookie: SESSIONID=ABC123
 ```
@@ -192,7 +192,7 @@ This requires:
 
 Load balancer config:
 
-```
+```json
 Client → Server A
 Next request → Server A
 ```
@@ -213,7 +213,7 @@ Problems:
 
 Use Redis or Memcached.
 
-```
+```json
 Server A → Redis
 Server B → Redis
 Server C → Redis
@@ -230,7 +230,7 @@ Session moves to client.
 
 Example:
 
-```
+```json
 Authorization: Bearer JWT
 ```
 
@@ -277,7 +277,7 @@ Example brokers:
 
 Order Service publishes event:
 
-```
+```json
 OrderCreated
 {
  orderId: 1001
@@ -297,7 +297,7 @@ Processes payment.
 
 Then emits new event:
 
-```
+```json
 PaymentCompleted
 {
  orderId: 1001
@@ -313,7 +313,7 @@ Reduces stock.
 
 Publishes event:
 
-```
+```json
 InventoryReserved
 ```
 
@@ -381,7 +381,7 @@ Orchestrator maintains workflow state.
 
 API request:
 
-```
+```jsom
 POST /create-order
 ```
 
@@ -389,7 +389,7 @@ System starts workflow.
 
 Workflow state created.
 
-```
+```json
 OrderWorkflow
 status = STARTED
 ```
@@ -408,7 +408,7 @@ Payment returns result.
 
 Workflow engine updates state.
 
-```
+```json
 paymentStatus = SUCCESS
 ```
 
@@ -417,7 +417,7 @@ paymentStatus = SUCCESS
 
 Next step triggered.
 
-```
+```json
 Reserve Inventory
 ```
 
@@ -426,7 +426,7 @@ Reserve Inventory
 
 Workflow engine stores state like:
 
-```
+```json
 {
  step: payment
  retries: 2
@@ -470,7 +470,7 @@ Example e-commerce checkout flow.
 
 Frontend → API
 
-```
+```json
 POST /orders
 ```
 
@@ -482,7 +482,7 @@ Pattern used:
 
 #### Step 2 — Order service publishes event
 
-```
+```json
 OrderCreated
 ```
 
@@ -522,7 +522,7 @@ Instead of a central orchestrator, services react to events.
 
 Example:
 
-```
+```json
 OrderCreated
 PaymentCompleted
 InventoryReserved
