@@ -1,5 +1,5 @@
 ---
-title: "Architecture Pattern Every Solution Architecht Should Know"
+title: "Architecture Pattern Every Solution Architect Should Know"
 subtitle: "Understanding How Fundamental Communication Models aWork Together in Real-World"
 author: "Abhinav Kumar"
 date: "2026-03-10"
@@ -11,7 +11,7 @@ tags:
 reading_time: "8 minutes"
 ---
 
-# Architecture Pattern Every Solution Architecht Should Know
+# Architecture Pattern Every Solution Architect Should Know
 
 ---
 ## Understanding How Fundamental Communication Models aWork Together in Real-World
