@@ -4,7 +4,6 @@ date: 2026-01-19
 readingTime: 4 min read
 tags: 
   - Terraform
-  - IaC
 subtitle: How Terraform Really Resolves Variables — The Flow No One Explains Clearly
 icon: 🏗️
 ---

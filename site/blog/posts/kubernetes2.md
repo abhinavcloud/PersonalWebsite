@@ -2,7 +2,7 @@
 title: Kubernetes Load Balancer vs Ingress Explained
 date: 2026-01-15
 readingTime: 5 min read
-tags: [Kubernetes, Ingress, LoadBalancer, Networking]
+tags: [Kubernetes]
 subtitle: Understanding where load balancers, ingress controllers, and services actually sit
 icon: ⚙️
 ---

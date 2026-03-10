@@ -2,7 +2,7 @@
 title: Kubernetes Autoscaling Beyond CPU-Based HPA
 date: 2026-01-15
 readingTime: 7 min read
-tags: [Kubernetes, Autoscaling, HPA, Prometheus, ServiceMesh]
+tags: [Kubernetes]
 subtitle: Designing load-aware autoscaling using request and concurrency metrics
 icon: ⚙️
 ---

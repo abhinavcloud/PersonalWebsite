@@ -2,7 +2,7 @@
 title: Building Kubernetes the Real Way (Without Managed Services)
 date: 2026-01-15
 readingTime: 4 min read
-tags: [Kubernetes, kubeadm, containerd, Networking, Labs]
+tags: [Kubernetes]
 subtitle: Building a reproducible Kubernetes cluster from scratch using Multipass and kubeadm
 icon: ⚙️
 ---

@@ -7,7 +7,7 @@ tags: [GitHubActions]
 icon: ▶️
 ---
 
-# How GitHub Actions Triggers Actually Work
+# GitHub Actions with Event Fiters and Action Types
 
 ---
 
