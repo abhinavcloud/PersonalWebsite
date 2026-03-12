@@ -14,7 +14,7 @@ reading_time: "8 minutes"
 # Architecture Pattern Every Solution Architect Should Know
 
 ---
-## Understanding How Fundamental Communication Models aWork Together in Real-World
+## Understanding How Fundamental Communication Models Work Together in Real-World
 
 ---
 
