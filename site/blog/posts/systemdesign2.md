@@ -89,15 +89,15 @@ A cache system such as Redis is not a proxy. It is simply a fast key-value store
 
 Example architecture:
 
-    Client
-      ↓
+      Client
+        ↓
     Reverse Proxy
-      ↓
-    Application
-      ↓
-    Redis
-      ↓
-    Database
+        ↓
+     Application
+        ↓
+      Redis
+        ↓
+      Database
 
 The application decides when to read from cache and when to read from the database.
 
@@ -135,10 +135,10 @@ The application controls the cache explicitly.
 
 Read flow:
 
-1. Application checks cache.
-2. If the key exists, return it.
-3. If the key does not exist, read from database.
-4. Store the result in cache.
+- Application checks cache.
+- If the key exists, return it.
+- If the key does not exist, read from database.
+- Store the result in cache.
 
 Example flow:
 
