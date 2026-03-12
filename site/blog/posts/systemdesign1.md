@@ -1,6 +1,6 @@
 ---
-title: "Architecture Pattern Every Solution Architect Should Know"
-subtitle: "Understanding How Fundamental Communication Models aWork Together in Real-World"
+title: "Essential Architecture Patterns"
+subtitle: "Communication Models in Action"
 author: "Abhinav Kumar"
 date: "2026-03-10"
 tags:
@@ -11,10 +11,10 @@ tags:
 reading_time: "8 minutes"
 ---
 
-# Architecture Pattern Every Solution Architect Should Know
+# Essential Architecture Patterns
 
 ---
-## Understanding How Fundamental Communication Models Work Together in Real-World
+## Communication Models in Action
 
 ---
 
