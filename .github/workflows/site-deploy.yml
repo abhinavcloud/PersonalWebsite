@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "site/**"
+      - ".github/workflows/**"
 
 jobs:
   deploy:
@@ -96,7 +97,6 @@ jobs:
       - name: Sync site folder to S3
         run: |
           aws s3 sync site/ s3://${{ secrets.S3_BUCKET_NAME }} \
-            --exclude "/resume/*" \
             --exclude "/images/Profile.png" \
             --delete
 
