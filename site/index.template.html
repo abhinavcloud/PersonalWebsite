@@ -147,7 +147,7 @@ guiding teams through complex legacy-to-cloud transitions.
 
 <h3>Domain</h3>
 
-<p>Telecom BSS – Billing, Charging, Invoicing, Payments, CRM</p>
+<p>10+ years in Telecom BSS (Billing, Charging, CRM), enabling architecture decisions aligned with real-world scale, transaction volume, and business workflows.</p>
 
 </details>
 
@@ -187,6 +187,19 @@ guiding teams through complex legacy-to-cloud transitions.
 </details>
 
 <details>
+<summary>How I Think (Architecture Approach)</summary>
+<ul>
+  <h3>I design systems with a focus on:</h3>
+  <li>Scalability & failure handling: systems should degrade gracefully, not break</li>
+  <li>Cost vs performance trade-offs: every design decision has an economic impact</li>
+  <li>Infrastructure as Code: reproducibility and consistency are non-negotiable</li>
+  <li>CI/CD-driven infrastructure: eliminate manual deployment risks</li>
+  <li>Security by design: minimal access, no static credentials, auditable changes</li>
+</ul>
+
+</details>
+
+<details>
 
 <summary>Selected Architecture Work</summary>
 
@@ -194,7 +207,7 @@ guiding teams through complex legacy-to-cloud transitions.
 
 <li>
 
-<strong>Three Tier AWS Architecture (Terraform)</strong><br>
+<strong>Production-Grade Three-Tier AWS Architecture (Terraform + CI/CD)</strong><br>
 
 <a href="{{AWS_PROJECT1}}" target="_blank">
 
@@ -202,8 +215,19 @@ GitHub Repository
 
 </a>
 
-<p>Modular three-tier AWS setup with VPC, subnets, load balancing, and
-environment isolation.</p>
+<h3>Problem</h3>
+<p>Design a scalable and repeatable infrastructure across multiple environments (dev/test/prod) with minimal manual intervention and no configuration drift.</p>
+<h3>Key Decisions</h3>
+<ul>
+<li>Designed modular Terraform architecture to enable reuse and consistency across environments</li>
+<li>Implemented environment isolation (dev/test/prod) to prevent cross-environment impact</li>
+<li>Adopted CI/CD-driven infrastructure deployment using GitHub Actions</li>
+<li>Used OIDC-based authentication to eliminate static AWS credentials</li>
+<li>Selected Application Load Balancer (ALB) for flexible Layer 7 traffic routing</li>
+<li>Configured remote state management to ensure safe and consistent Terraform operations</li>
+</ul>
+<h3>Outcome</h3>
+<p>A production-style cloud architecture that enables scalable, secure, and repeatable deployments, with built-in controls to reduce manual errors and configuration drift.</p>
 
 </li>
 
