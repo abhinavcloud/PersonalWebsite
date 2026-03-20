@@ -22,6 +22,8 @@ The focus is not just on automation, but on **control, consistency, and correctn
 
 Traditional pipelines optimize for speed. This design prioritizes **state awareness and deployment safety**, especially in the presence of infrastructure drift.
 
+**GitHub Repo link: https://github.com/abhinavcloud/Three-Tier-AWS-Architecture-Terraform**
+
 ![GitHub Action Pipleine for Terraform Multi Environment Infa Structure](/images/terraform-githubactions2.png)
 
 ---
