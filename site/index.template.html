@@ -87,15 +87,37 @@
 
 <p>
 
-Solution Architect with 14+ years of experience across Telecom BSS systems, currently
-owning enterprise invoicing and billing modernization initiatives. Experienced in
-architecting integration-heavy platforms handling millions of business transactions per
-billing cycle, with a strong focus on scalability, reliability, and long-term maintainability.
-Deep domain expertise in Telecom BSS (Billing, Charging, Invoicing, Payments, CRM)
-combined with hands-on experience in AWS cloud-native and event-driven architectures.
-Known for making pragmatic architectural decisions under enterprise constraints and
-guiding teams through complex legacy-to-cloud transitions.
+Solution Architect with 14+ years of experience in Telecom BSS systems, currently leading
 
+architecture for enterprise-scale invoicing and billing modernization.
+
+
+
+Designing systems that process millions of invoices per billing cycle under strict batch
+
+windows and downstream integration constraints. Experience includes architecting
+
+event-driven and asynchronous platforms to handle bursty workloads, failure scenarios,
+
+and high-volume transaction processing.
+
+
+
+Core focus areas include system decomposition, integration patterns, and non-functional
+
+design (scalability, resiliency, cost efficiency). Regularly make architecture decisions
+
+under real-world constraints such as legacy dependencies, release timelines, and
+
+cross-system coupling.
+
+
+
+Strong domain expertise in Billing, Charging, Invoicing, Payments, and CRM, combined
+
+with hands-on implementation experience in AWS cloud-native architectures and
+
+Infrastructure as Code.
 </p>
 
 </details>
@@ -110,19 +132,19 @@ guiding teams through complex legacy-to-cloud transitions.
 
 <ul>
 
-<li>End-to-end Solution Architecture</li>
+<li>End-to-end solution architecture for distributed systems</li>
 
-<li>Event-driven, Asynchronous and serverless architectures</li>
+<li>Event-driven and asynchronous system design for burst workloads</li>
 
-<li>Microservices and Modular Decompositions</li>
+<li>Service decomposition and boundary definition</li>
 
-<li>API First Integration Architecture</li>
+<li>API-first and integration architecture</li>
 
-<li>Non-Functional Requirements (Scalability, Availability, Performance)</li>
+<li>Non-functional design: scalability, availability, performance</li>
 
-<li>Architectural trade-off analysis</li>
+<li>Architectural trade-off analysis under constraints</li>
 
-<li>Cloud Cost Optimization</li>
+<li>Cost-aware architecture and optimization strategies</li>
 
 </ul>
 
@@ -133,13 +155,13 @@ guiding teams through complex legacy-to-cloud transitions.
 
 <ul>
 
-<li>AWS: Lambda, API Gateway, EC2, EKS, S3, RDS, DynamoDB, IAM, CloudFront Cognito, CloudWatch, CloudTrail</li>
+<li>AWS: Designing and building cloud-native architectures using compute, storage, networking, and managed services</li>
 
-<li>Kubernetes: Deployments, HPA, RBAC, Ingress, Network Policies, Secrets</li>
+<li>Kubernetes: Workload orchestration, scaling, and secure service exposure</li>
 
-<li>Terraform: Modular & Multi-Environment Architecture, Remote State Backends, Version Control Systems (VCS), Terraform Cloud</li>
+<li>Terraform: Multi-environment infrastructure design, remote state management, and modular architecture</li>
 
-<li>GitHub Actions: Workflow, Triggers, Action Types, Event Filters, Actions, Artifacts, Output, Secrets</li>
+<li>GitHub Actions: CI/CD pipelines for application and infrastructure deployment</li>
 
 </ul>
 
@@ -189,12 +211,21 @@ guiding teams through complex legacy-to-cloud transitions.
 <details>
 <summary>How I Think (Architecture Approach)</summary>
 <ul>
+
   <h4>I design systems with a focus on:</h4>
-  <li>Scalability & failure handling: systems should degrade gracefully, not break</li>
-  <li>Cost vs performance trade-offs: every design decision has an economic impact</li>
-  <li>Infrastructure as Code: reproducibility and consistency are non-negotiable</li>
-  <li>CI/CD-driven infrastructure: eliminate manual deployment risks</li>
-  <li>Security by design: minimal access, no static credentials, auditable changes</li>
+
+  <li>Scalability and failure handling: systems are designed to degrade gracefully under partial failures and downstream outages</li>
+
+  <li>Cost vs performance trade-offs: optimize for actual workload patterns, not theoretical peak capacity</li>
+
+  <li>Pragmatic architecture: prefer incremental evolution over premature over-engineering</li>
+
+  <li>Infrastructure as Code: reproducibility and consistency across environments</li>
+
+  <li>CI/CD-driven infrastructure: eliminate manual deployment risks and configuration drift</li>
+
+  <li>Security by design: least privilege access, no static credentials, and auditable changes</li>
+
 </ul>
 
 </details>
@@ -216,36 +247,66 @@ GitHub Repository
 </a>
 
 <h4>Problem</h4>
-<p>Design a scalable and repeatable infrastructure across multiple environments (dev/test/prod) with minimal manual intervention and no configuration drift.</p>
-<h4>Key Decisions</h4>
+
+<p>
+
+Design a repeatable multi-environment infrastructure (dev/test/prod) with strict isolation,
+
+minimal manual intervention, and protection against configuration drift, while enabling
+
+safe and controlled CI/CD-based deployments.
+
+</p>
+
+
+
+<h4>Constraints</h4>
+
 <ul>
-<li>Designed modular Terraform architecture to enable reuse and consistency across environments</li>
-<li>Implemented environment isolation (dev/test/prod) to prevent cross-environment impact</li>
-<li>Adopted CI/CD-driven infrastructure deployment using GitHub Actions</li>
-<li>Used OIDC-based authentication to eliminate static AWS credentials</li>
-<li>Selected Application Load Balancer (ALB) for flexible Layer 7 traffic routing</li>
-<li>Configured remote state management to ensure safe and consistent Terraform operations</li>
+
+<li>Multiple environments with independent state and lifecycle</li>
+
+<li>Need to prevent cross-environment impact during deployments</li>
+
+<li>Eliminate static credentials and secure CI/CD authentication</li>
+
+<li>Ensure consistency across deployments without manual steps</li>
+
 </ul>
+
+
+
+<h4>Key Decisions</h4>
+
+<ul>
+
+<li>Adopted modular Terraform architecture to standardize infrastructure across environments</li>
+
+<li>Implemented environment isolation using separate state backends and configurations</li>
+
+<li>Used GitHub Actions for CI/CD-driven infrastructure deployment</li>
+
+<li>Integrated OIDC-based authentication to remove static AWS credentials</li>
+
+<li>Selected ALB for Layer 7 routing to support flexible request handling</li>
+
+<li>Configured remote state management for safe concurrent operations</li>
+
+</ul>
+
+
+
 <h4>Outcome</h4>
-<p>A production-style cloud architecture that enables scalable, secure, and repeatable deployments, with built-in controls to reduce manual errors and configuration drift.</p>
 
-</li>
+<p>
 
-<li>
+Achieved consistent and repeatable infrastructure deployments across environments with
 
-<hr>
-<strong>Personal Portfolio & Blog Website on AWS</strong><br>
+reduced risk of configuration drift, secure CI/CD integration, and clear separation of
 
-<a href="{{AWS_PROJECT2}}" target="_blank">
+environment lifecycles.
 
-GitHub Repository
-
-</a>
-
-<p>This repository contains my personal portfolio and technical blog website,
-hosted on AWS using S3 + CloudFront and fully automated using GitHub
-Actions and Terraform.</p>
-
+</p>
 </li>
 
 <li>
@@ -264,6 +325,28 @@ GitHub Repository
 scripting.</p>
 
 </ul>
+<hr>
+<strong>Personal Portfolio & Blog Website on AWS</strong><br>
+
+<a href="{{AWS_PROJECT2}}" target="_blank">
+
+GitHub Repository
+
+</a>
+
+<p>
+
+Static website hosted on AWS using S3 and CloudFront, automated via Terraform and GitHub Actions.
+
+Primarily used as a platform to publish architecture-focused technical content.
+
+</p>
+
+</li>
+
+<li>
+
+<hr>
 
 </details>
 
@@ -290,6 +373,8 @@ workloads and downstream integrations.</li>
 <li>Lead modernization initiatives from tightly coupled legacy systems toward
 cloud-native, loosely coupled services.</li>
 
+<li>Handle bursty billing workloads within defined processing windows, ensuring downstream system stability and data consistency</li>
+
 <li>Define service boundaries, integration patterns, and non-functional
 requirements.</li>
 
@@ -310,6 +395,8 @@ used by national-scale telecom operators</li>
 <li>Defined system decomposition and integration strategies across distributed
 components</li>
 
+<li>Worked on integration architectures involving multiple distributed systems with high coupling and dependency constraints</li>
+
 <li>Ensured delivery alignment with target architecture and long-term platform
 evolution</li>
 
@@ -329,7 +416,8 @@ concerns.</li>
 <li>Led architecture discussions around scalability, integration complexity, and
 release constraints.</li>
 
-<li>Balanced near-term delivery needs with long-term architectural sustainability.</li>
+<li>Balanced architectural decisions between short-term delivery pressures and long-term platform scalability</li>
+
 
 </ul>
 
