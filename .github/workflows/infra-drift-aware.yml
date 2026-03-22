@@ -1,4 +1,4 @@
-name: Terraform Drift-Aware Pipeline
+name: Terraform Plan and Apply
 
 on:
   pull_request:
