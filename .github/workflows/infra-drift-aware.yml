@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - "infra/**"
-      - ".github/workflows/**"
 
 env:
   TF_VERSION: 1.14.3
