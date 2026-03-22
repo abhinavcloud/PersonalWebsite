@@ -9,10 +9,8 @@ env:
   TF_VERSION: 1.14.3
 
 jobs:
-# --------------------------------------------------
-# 1. DRIFT DETECTION (REFRESH-ONLY)
-# --------------------------------------------------
-  drift-detect:
+
+  plan-and-apply:
     name: Detect Infrastructure Drift
     runs-on: ubuntu-latest
 
@@ -20,13 +18,10 @@ jobs:
       run:
         working-directory: infra
 
-    outputs:
-      drift: ${{ steps.drift.outputs.drift }}
-
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: ${{ env.TF_VERSION }}
 
@@ -50,140 +45,17 @@ jobs:
           echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
           echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
 
-      - name: Detect Drift (Refresh Only)
-        id: drift
+      - name: Run Terraform Plan
         run: |
-          set +e
-          terraform plan -refresh-only -detailed-exitcode -out=drift.tfplan
-          EXIT_CODE=$?
+          terraform plan -out tfplan
 
-          if [ "$EXIT_CODE" -eq 0 ]; then
-            echo "drift=false" >> $GITHUB_OUTPUT
-          elif [ "$EXIT_CODE" -eq 2 ]; then
-            echo "drift=true" >> $GITHUB_OUTPUT
-          else
-            echo "Terraform plan failed"
-            exit 1
-          fi
-
-      - uses: actions/upload-artifact@v4
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: drift-plan
-          path: infra/drift.tfplan
-
-# --------------------------------------------------
-# 2. WAIT FOR HUMAN DECISION (LABEL-BASED)
-# --------------------------------------------------
-  drift-decision:
-    name: Drift Decision Gate
-    needs: drift-detect
-    if: needs.drift-detect.outputs.drift == 'true'
-    runs-on: ubuntu-latest
-    environment: drift-decision
-
-    steps:
-      - name: Validate Decision Label
-        run: |
-          echo "Validating PR labels..."
-          LABELS=$(jq -r '.pull_request.labels[].name' "$GITHUB_EVENT_PATH")
-
-          if echo "$LABELS" | grep -q "^accept-drift$"; then
-            echo "decision=accept" >> $GITHUB_ENV
-          elif echo "$LABELS" | grep -q "^reject-drift$"; then
-            echo "decision=reject" >> $GITHUB_ENV
-          else
-            echo "❌ Missing required label: accept-drift or reject-drift"
-            exit 1
-          fi
-
-# --------------------------------------------------
-# 3A. ACCEPT DRIFT (REALITY → STATE)
-# --------------------------------------------------
-  accept-drift:
-    name: Accept Drift (Refresh State)
-    needs: [drift-detect, drift-decision]
-    if: contains(github.event.pull_request.labels.*.name, 'accept-drift')
-    runs-on: ubuntu-latest
-    environment: accept-drift
-
-    defaults:
-      run:
-        working-directory: infra
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: ${{ env.TF_VERSION }}
-
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - run: |
-            terraform init -input=false -reconfigure \
-            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
-            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
-            -backend-config="region=${{ secrets.TF_BACKEND_REGION }}" \
-            -backend-config="use_lockfile=true" \
-            -backend-config="encrypt=true"
-
-      - name: Set Terraform Variables
-        run: |
-          echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
-          echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: drift-plan
-          path: infra
-
-      - name: Apply Refresh-Only Plan
-        run: terraform apply -input=false -auto-approve drift.tfplan
-
-# --------------------------------------------------
-# 3B. REJECT DRIFT (CODE → REALITY)
-# --------------------------------------------------
-  reject-drift:
-    name: Reject Drift (Restore Infra from Code)
-    needs: [drift-detect, drift-decision]
-    if: contains(github.event.pull_request.labels.*.name, 'reject-drift')
-    runs-on: ubuntu-latest
-    environment: reject-drift
-
-    defaults:
-      run:
-        working-directory: infra
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: ${{ env.TF_VERSION }}
-
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - run: |
-            terraform init -input=false -reconfigure \
-            -backend-config="bucket=${{ secrets.TF_BACKEND_BUCKET }}" \
-            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
-            -backend-config="region=${{ secrets.TF_BACKEND_REGION }}" \
-            -backend-config="use_lockfile=true" \
-            -backend-config="encrypt=true"
-      
-      - name: Set Terraform Variables
-        run: |
-          echo "TF_VAR_bucket_name=${{ secrets.BUCKET_NAME }}" >> $GITHUB_ENV
-          echo "TF_VAR_domain_name=${{ secrets.DOMAIN_NAME }}" >> $GITHUB_ENV
+          name: tfplan
+          path: tfplan
+          if-no-files-found: error
 
 
       - name: Restore Infra from Code
-        run: terraform apply -input=false -auto-approve
+        run: terraform apply -auto-approve

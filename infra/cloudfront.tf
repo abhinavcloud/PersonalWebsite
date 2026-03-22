@@ -29,8 +29,9 @@ resource "aws_cloudfront_distribution" "cdn" {
 
     "www.${var.domain_name}"
 
-  ]
+  
 
+  ]
 
   origin {
 
@@ -58,6 +59,18 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   }
 
+    ordered_cache_behavior {
+    path_pattern           = "/resume/Abhinav_Kumar_Solution_Architect_Resume.pdf"
+    target_origin_id       = "s3-site"
+    viewer_protocol_policy = "redirect-to-https"
+
+    allowed_methods = ["GET", "HEAD"]
+    cached_methods  = ["GET", "HEAD"]
+
+    cache_policy_id            = data.aws_cloudfront_cache_policy.caching_optimized.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.resume_download.id
+  }
+
 
   viewer_certificate {
 
@@ -78,4 +91,24 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   }
 
+}
+
+
+resource "aws_cloudfront_response_headers_policy" "resume_download" {
+  name = "resume-download-headers"
+
+  custom_headers_config {
+    items {
+      header   = "Content-Disposition"
+      value    = "attachment; filename=\"Abhinav_Kumar_Solution_Architect_Resume.pdf\""
+      override = true
+    }
+
+    # Optional but safe: ensures browser treats it as PDF
+    items {
+      header   = "Content-Type"
+      value    = "application/pdf"
+      override = true
+    }
+  }
 }
