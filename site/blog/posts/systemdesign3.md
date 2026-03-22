@@ -20,7 +20,7 @@ reading_time: "8 minutes"
 
 Kubernetes networking is easy to simplify and harder to explain precisely in production. I worked through it by following a chain of practical questions. Each answer sharpened the model of **what does routing**, **what does load distribution**, and **what drives scaling**—and where each behavior actually happens in a Kubernetes setup.
 
-![System Design Patterns](/images/systemdesign3.PNG)
+![System Design Patterns](/images/ystemdesign3.png)
 
 ---
 
