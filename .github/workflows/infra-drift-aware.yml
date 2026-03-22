@@ -1,7 +1,7 @@
-name: Terraform Plan and Apply
+name: Terraform Plan and Apply (Auto Approve)
 
 on:
-  pull_request:
+  push:
     paths:
       - "infra/**"
       - ".github/workflows/**"
