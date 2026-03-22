@@ -15,8 +15,8 @@ reading_time: "8 minutes"
 
 # Load Balancing in Kubernetes
 
---
-## A Deep Dive from L4 → L7 → Autoscaling (with YAMLs)
+---
+## A Deep Dive
 
 Kubernetes networking is easy to simplify and harder to explain precisely in production. I worked through it by following a chain of practical questions. Each answer sharpened the model of **what does routing**, **what does load distribution**, and **what drives scaling**—and where each behavior actually happens in a Kubernetes setup.
 
