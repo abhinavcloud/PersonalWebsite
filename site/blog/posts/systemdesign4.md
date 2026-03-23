@@ -265,7 +265,7 @@ Does API need auth, rate limiting, caching, header/cookie routing?
     |
     |─ Serverless → API Gateway → Lambda → Scale Auto
     |
-    ├─ EC2 → ALB → EC2 → Metric-driven Scaling
+    |─ EC2 → ALB → EC2 → Metric-driven Scaling
     |
     |─ EKS → Complex Routing?
         |
