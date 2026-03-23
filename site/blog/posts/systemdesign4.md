@@ -213,13 +213,9 @@ If your API does **not need auth, rate limiting, caching, or complex routing**:
 
 
 | Backend | Scaling Mechanism |
-
 |---------|----------------|
-
 | Lambda  | Auto-scaling; pre-warmed functions |
-
 | EC2     | Metrics (RPS) → HPA/KEDA or Auto Scaling |
-
 | EKS     | Metrics (RPS, queue depth) → HPA/KEDA on pods |
 
 
@@ -233,15 +229,10 @@ If your API does **not need auth, rate limiting, caching, or complex routing**:
 
 
 | Scenario | Recommended LB |
-
 |----------|----------------|
-
 | Simple path + weight routing | ALB |
-
 | Complex routing inside Kubernetes | NLB + internal gateway (NGINX/HAProxy) |
-
 | Serverless | API Gateway only |
-
 | EC2 with API Gateway | ALB required (production-grade) |
 
 
@@ -255,31 +246,18 @@ If your API does **not need auth, rate limiting, caching, or complex routing**:
 Does API need auth, rate limiting, caching, header/cookie routing?
 
 │
-
 ├─ YES → Backend Type?
-
 │       ├─ Serverless → API Gateway → Lambda → Scale Auto
-
 │       ├─ EC2 → API Gateway → ALB → EC2 → Metric-driven Scaling
-
 │       └─ EKS → Complex Routing?
-
 │                 ├─ YES → API Gateway → NLB → NGINX/HAProxy → Pods → HPA/KEDA
-
 │                 └─ NO  → API Gateway → ALB → Pods → HPA/KEDA
-
 │
-
 └─ NO → Backend Type?
-
 ├─ Serverless → API Gateway → Lambda → Scale Auto
-
 ├─ EC2 → ALB → EC2 → Metric-driven Scaling
-
 └─ EKS → Complex Routing?
-
 ├─ YES → NLB → NGINX/HAProxy → Pods → HPA/KEDA
-
 └─ NO  → ALB → Pods → HPA/KEDA
 
 ---
