@@ -249,29 +249,29 @@ Does API need auth, rate limiting, caching, header/cookie routing?
 
     │
     |    
-    ├─ YES → Backend Type?
+    |─ YES → Backend Type?
     |   |
     |   |── Serverless → API Gateway → Lambda → Scale Auto
     |   |
     |   │── EC2 → API Gateway → ALB → EC2 → Metric-driven Scaling
     |   |
-    |   └─ EKS → Complex Routing?
+    |   |─ EKS → Complex Routing?
     |        |─ YES → API Gateway → NLB → NGINX/HAProxy → Pods → HPA/KEDA
     |        |─ NO  → API Gateway → ALB → Pods → HPA/KEDA
     |
     │
     |
-    └─ NO → Backend Type?
+    |─ NO → Backend Type?
     |
-    ├─ Serverless → API Gateway → Lambda → Scale Auto
+    |─ Serverless → API Gateway → Lambda → Scale Auto
     |
     ├─ EC2 → ALB → EC2 → Metric-driven Scaling
     |
-    └─ EKS → Complex Routing?
+    |─ EKS → Complex Routing?
         |
-        ├─ YES → NLB → NGINX/HAProxy → Pods → HPA/KEDA
+        |─ YES → NLB → NGINX/HAProxy → Pods → HPA/KEDA
         |
-        └─ NO  → ALB → Pods → HPA/KEDA
+        |─ NO  → ALB → Pods → HPA/KEDA
 
 ---
 ### Key Takeaways
