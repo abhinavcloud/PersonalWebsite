@@ -19,6 +19,8 @@ reading_time: "8 minutes"
 
 ## It's Not About The Tools But Real Architecture Thinking
 
+---
+
 This started as a simple question.
 
 Which one should I use. SQS or SNS or EventBridge.
