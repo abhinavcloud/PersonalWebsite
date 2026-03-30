@@ -246,4 +246,4 @@ It is a layered system:
 
 ### Final One-Line Truth
 
- Modern authentication is not about trusting requests — it is about continuously verifying them at every layer:::
+ Modern authentication is not about trusting requests — it is about continuously verifying them at every layer.
