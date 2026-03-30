@@ -13,16 +13,17 @@ reading_time: "8 minutes"
 ---
 
 # From Sessions to Zero Trust
+
 ---
+
 ## A Deep, End-to-End Walkthrough of Session Management in Applications
+
 ---
 
 Modern authentication has shifted from stateful, server-side sessions—where every request depends on centralized lookups and becomes a scaling bottleneck—to a layered, verification-first model: identity and permissions are carried in signed JWTs that each service can verify locally, API gateways enforce edge concerns like TLS, auth, rate limiting, and routing, short‑lived access tokens with refresh tokens restore control without per-request state, services validate independently using scoped token exchange and mTLS to limit blast radius, and Zero Trust ties it together by continuously verifying user, service, context, and policy at every hop.
 
 ---
 ### Stateful Sessions — What Really Happens Under the Hood
-
-
 
 Let’s start with the simplest system: a user logging into a web application.
 When a user enters username and password, the server does not just “log them in.” It creates a stateful representation of that user session. This is a structured object that lives entirely on the server side. It contains identity, permissions, and often application data like cart items or preferences.
@@ -104,6 +105,7 @@ In the session model, trust comes from lookup.In the JWT model, trust comes from
 Verification is a local computation. It does not require a network call. This removes the biggest bottleneck in the system.
 
 ![System Design Patterns](/images/systemdesign6_3.png)
+
 ---
 
 ### API Gateway — The Real Gatekeeper (Not Just a Router)
@@ -148,6 +150,7 @@ The important shift is this:
 This drastically reduces the load on the session store while still allowing centralized control.
 
 ![System Design Patterns](/images/systemdesign6_5.png)
+
 ---
 
 ### Service-to-Service Authentication — What Actually Happens Internally
@@ -167,6 +170,8 @@ At first glance, this seems inefficient. If there are 50 services in a chain, do
 This is why the system scales. Instead of one centralized check, you have many distributed checks, each cheap and independent.
 
 ![System Design Patterns](/images/systemdesign6_6.png)
+
+
 ---
 
 ### The Problem with Token Propagation — Lateral Movement
@@ -178,6 +183,7 @@ This is known as lateral movement. The attacker moves sideways within the system
 The root cause is that the token is over-privileged. It carries more authority than is necessary for any single service interaction.
 
 ![System Design Patterns](/images/systemdesign6_7.png)
+
 ---
 
 ### Token Exchange — Reducing Blast Radius
@@ -190,6 +196,7 @@ For example, the Order Service might request a token that only allows calling th
 This reduces the blast radius significantly.
 
 ![System Design Patterns](/images/systemdesign6_8.png)
+
 ---
 
 ### mTLS — Proving Service Identity
@@ -204,6 +211,7 @@ This ensures that Service B knows it is actually talking to Service A, not an at
 This adds a second layer of identity: service identity.
 
 ![System Design Patterns](/images/systemdesign6_9.png)
+
 ---
 
 ### Zero Trust — Continuous Verification Across the System
@@ -222,6 +230,7 @@ Each service does not assume that a request is safe just because it came from in
 This means trust is not a one-time decision. It is a continuous process.
 
 ![System Design Patterns](/images/systemdesign6_10.png)
+
 ---
 ### Final Mental Model
 
@@ -234,7 +243,6 @@ It is a layered system:
 - Policy engines for decision-making
 
 ---
-
 
 ### Final One-Line Truth
 
