@@ -1,5 +1,5 @@
 ---
-title: "Session Manahement in Applications"
+title: "Session Management in Applications"
 subtitle: "End to End Walktrhough"
 author: "Abhinav Kumar"
 date: "2026-03-27"
