@@ -248,25 +248,23 @@ hr {
   flex-wrap: wrap;
 }
 
+
 .blog-tile {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;        /* ✅ FIX: stop vertical centering */
   gap: 1rem;
-  padding: 0.5rem 1.1rem;
+  padding: 0.8rem 1.4rem;         /* balanced vertical padding */
   min-width: 300px;
-  background: linear-gradient(
-    135deg,
-    var(--card),
-    rgba(56, 189, 248, 0.08)
-  );
+  background: linear-gradient(135deg, var(--card), rgba(56,189,248,0.08));
   border-radius: 14px;
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  border: 1px solid rgba(56,189,248,0.35);
   text-decoration: none;
   color: var(--text);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   overflow: hidden;
 }
+
 
 /* Glow layer */
 .blog-tile::before {
