@@ -64,7 +64,7 @@ function renderPosts() {
           <!-- <div class="blog-subtitle">${p.subtitle}</div> -->
           <div class="blog-tags">
           <!-- ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")} -->
-          ${(p.tags || []).slice(0, 2).map(t => `<span class="tag">${t}</span>`).join("")}
+          <!-- ${(p.tags || []).slice(0, 2).map(t => `<span class="tag">${t}</span>`).join("")} -->
           </div>
         </div>
         <div class="blog-arrow">→</div>
