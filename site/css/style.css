@@ -253,7 +253,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.1rem 1.6rem;
+  padding: 0.5rem 1.1rem;
   min-width: 300px;
   background: linear-gradient(
     135deg,
