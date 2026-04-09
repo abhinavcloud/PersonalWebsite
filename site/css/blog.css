@@ -224,13 +224,11 @@
     font-size: 1.4rem;
   }
 
-  .blog-title {
-    font-size: 1rem;
-    line-height: 1.3;
-  }
-
+ 
   .blog-meta {
     font-size: 0.7rem;
+    color: var(--muted);
+    margin: 0.3rem;
   }
 
   .blog-subtitle {
