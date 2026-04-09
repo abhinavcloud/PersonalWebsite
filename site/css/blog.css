@@ -80,7 +80,6 @@
 
 .blog-tile {
   display: flex;
-  flex-direction: column;
   gap: 1.2rem;
   padding: 1.4rem 1.6rem;
   border-radius: 16px;
@@ -124,6 +123,16 @@
   margin-left: auto;
   opacity: 0.6;
 }
+
+
+/* Make Blogs + Projects appear in one row */
+.blogs-section {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* ================= Blog Post ================= */
 
