@@ -215,8 +215,14 @@ hr {
   display: flex;           
   gap: 1rem;                  
   justify-content: center;   
-  align-items: center;        
+  align-items: center;
+  flex-wrap: nowrap;        
 
+}
+
+.blogs-section1 {
+  margin-top: 2.5rem;
+  text-align: center;
 }
 
 .blogs-section h3 {
