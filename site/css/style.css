@@ -424,3 +424,9 @@ hr {
     flex-wrap: wrap;
   }
 }
+
+@media (max-width: 600px) {
+  .blogs-section1 {
+    flex-wrap: wrap;
+  }
+}
