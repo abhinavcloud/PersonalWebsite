@@ -212,6 +212,11 @@ hr {
 .blogs-section {
   margin-top: 2.5rem;
   text-align: center;
+  display: flex;           
+  gap: 1rem;                  
+  justify-content: center;   
+  align-items: center;        
+
 }
 
 .blogs-section h3 {
@@ -232,7 +237,7 @@ hr {
 }
 
 .blog-tiles {
-  display: flex;
+  display: block;
   justify-content: center;
   flex-wrap: wrap;
 }

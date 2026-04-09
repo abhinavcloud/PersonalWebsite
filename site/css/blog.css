@@ -125,15 +125,6 @@
 }
 
 
-/* Make Blogs + Projects appear in one row */
-.blogs-section {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-
 /* ================= Blog Post ================= */
 
 .blog-post {
