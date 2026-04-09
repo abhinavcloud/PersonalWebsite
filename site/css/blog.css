@@ -214,7 +214,7 @@
 
   /* Blog cards become vertical */
   .blog-tile {
-    flex-direction: column;
+    
     align-items: flex-start;
     padding: 1rem 1.1rem;
     gap: 0.6rem;
