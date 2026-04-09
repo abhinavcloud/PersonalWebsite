@@ -1,0 +1,76 @@
+const list = document.getElementById("blog-list");
+const tagFilter = document.getElementById("tag-filter");
+const search = document.getElementById("search");
+
+let posts = [];
+let activeTag = "All";
+
+function sortPosts(posts) {
+  return posts.sort((a, b) => {
+    const dateA = a.date ? new Date(a.date) : new Date(0);
+    const dateB = b.date ? new Date(b.date) : new Date(0);
+
+    // Newest first
+    const dateDiff = dateB - dateA;
+    if (dateDiff !== 0) return dateDiff;
+
+    // Same date → alphabetical by title
+    return a.title.localeCompare(b.title);
+  });
+}
+
+
+fetch("posts.json")
+  .then(res => res.json())
+  .then(data => {
+    posts = data;
+    posts = sortPosts(data);
+    renderTags();
+    renderPosts();
+  });
+
+function renderTags() {
+  const tags = new Set(["All"]);
+  posts.forEach(p => p.tags.forEach(t => tags.add(t)));
+
+  tagFilter.innerHTML = [...tags].map(tag =>
+    `<button class="tag ${tag === "All" ? "active" : ""}" data-tag="${tag}">${tag}</button>`
+  ).join("");
+
+  document.querySelectorAll(".tag").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".tag").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      activeTag = btn.dataset.tag;
+      renderPosts();
+    };
+  });
+}
+
+function renderPosts() {
+  const query = search.value.toLowerCase();
+
+  list.innerHTML = posts
+    .filter(p =>
+      (activeTag === "All" || p.tags.includes(activeTag)) &&
+      p.title.toLowerCase().includes(query)
+    )
+    .map(p => `
+      <a class="blog-tile" href="post.html?post=${p.slug}">
+        <div class="blog-icon">${p.icon}</div>
+        <div class="blog-text">
+          <div class="blog-title">${p.title}</div>
+          <div class="blog-meta">${p.date} · ${p.readingTime}</div>
+          <!-- <div class="blog-subtitle">${p.subtitle}</div> -->
+          <div class="blog-tags">
+          <!-- ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")} -->
+          <!-- ${(p.tags || []).slice(0, 2).map(t => `<span class="tag">${t}</span>`).join("")} -->
+          </div>
+        </div>
+        <div class="blog-arrow">→</div>
+      </a>
+    `)
+    .join("") || "<p>No posts found.</p>";
+}
+
+search.oninput = renderPosts;
