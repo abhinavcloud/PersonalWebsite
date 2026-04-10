@@ -1,7 +1,7 @@
 ---
 title: API Gateway vs Load Balancers
 date: 2026-03-24
-readingtime: 5 min read
+readingTime: 5 min read
 tags:
   - software-architecture
   - distributed-systems

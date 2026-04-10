@@ -1,7 +1,7 @@
 ---
 title: Sharding & Partitioning
 date: 2026-04-10
-readingtime: 8 min read
+readingTime: 8 min read
 tags:
   - software-architecture
   - database

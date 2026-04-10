@@ -1,7 +1,7 @@
 ---
 title: Session Management in Applications
 date: 2026-03-27
-readingtime: 6 min read
+readingTime: 6 min read
 tags:
   - software-architecture
   - distributed-systems

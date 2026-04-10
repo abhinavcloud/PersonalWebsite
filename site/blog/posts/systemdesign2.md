@@ -1,7 +1,7 @@
 ---
 title: Cache Strategies and Proxy Layers
 date: 2026-03-11
-readingtime: 5 min read
+readingTime: 5 min read
 tags:
   - software-architecture
   - distributed-systems

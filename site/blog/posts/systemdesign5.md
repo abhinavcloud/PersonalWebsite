@@ -1,7 +1,7 @@
 ---
 title: SQS vs SNS vs EventBridge
 date: 2026-03-26
-readingtime: 8 min read
+readingTime: 8 min read
 tags:
   - software-architecture
   - distributed-systems

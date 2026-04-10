@@ -1,7 +1,7 @@
 ---
 title: Essential Architecture Patterns
 date: 2026-03-10
-readingtime: 5 min read
+readingTime: 5 min read
 tags:
   - software-architecture
   - distributed-systems
