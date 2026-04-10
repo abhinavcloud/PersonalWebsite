@@ -56,7 +56,7 @@ function renderPosts() {
       p.title.toLowerCase().includes(query)
     )
     .map(p => `
-      <a class="blog-tile" href="post.html?post=${p.slug}">
+      <a class="blog-tile" href="project.html?post=${p.slug}">
         <div class="blog-icon">${p.icon}</div>
         <div class="blog-text">
           <div class="blog-title">${p.title}</div>
@@ -70,7 +70,7 @@ function renderPosts() {
         <div class="blog-arrow">→</div>
       </a>
     `)
-    .join("") || "<p>No posts found.</p>";
+    .join("") || "<p>No projects found.</p>";
 }
 
 search.oninput = renderPosts;
