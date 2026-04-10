@@ -1,7 +1,7 @@
 ---
 title: "Sharding & Partitioning"
 date: "2026-04-10"
-reading_time: "8 minutes"
+readingtime: 8 min read
 tags:
   - software-architecture
   - database
@@ -35,6 +35,7 @@ The request reaches an edge layer, typically a load balancer or API gateway. At 
 Inside the database engine, the query planner evaluates available indexes. If a B-tree index exists on user_id, the planner selects an index lookup path. The execution engine navigates the tree structure, performs key comparisons, locates the leaf node containing the pointer to the data row, and fetches the row from memory or disk. The entire execution remains local to a single machine, and latency is primarily bounded by CPU cycles and disk access time.
 
 ![System Design Patterns](/images/sharding.PNG)
+
 ---
 
 ### Observing how scale exposes limits in a single database
@@ -114,6 +115,7 @@ Internally, the shard resolver often maintains a sorted list of ranges. The look
 The drawback appears in write-heavy systems with sequential keys. New records always fall into the highest range. This causes one shard to handle most writes, leading to uneven load distribution. CPU utilization, disk I/O, and replication lag become concentrated on a single shard. The system becomes imbalanced despite having multiple shards.
 
 ![System Design Patterns](/images/rangebased.PNG)
+
 ---
 
 ### Understanding how hashing removes ordering to improve distribution
@@ -132,6 +134,7 @@ At runtime, the application computes the hash, performs the modulo operation, an
 The tradeoff is that range queries lose locality. A query that spans a range of user_ids cannot be routed to a single shard because the data is scattered. The application must send the query to all shards, wait for responses, and merge the results. This increases latency due to multiple network calls and introduces complexity in handling partial failures.
 
 ![System Design Patterns](/images/hashbasedsharding.PNG)
+
 ---
 
 ### Seeing how consistent hashing changes the mapping model
@@ -167,6 +170,7 @@ Internally, this lookup is implemented using a balanced tree or a sorted array w
 To improve distribution, each physical server is assigned multiple positions in the hash space. These virtual nodes reduce uneven gaps and ensure a more balanced load across servers.
 
 ![System Design Patterns](/images/consistenthashing.PNG)
+
 ---
 
 ### Integrating geography introduces another layer of routing
@@ -178,6 +182,7 @@ At the DNS or load balancer level, the system resolves the user’s IP address t
 This creates a multi-layer routing model. The first layer routes based on geography. The second layer distributes data across shards. The third layer may apply partitioning within each shard for query optimization.
 
 ![System Design Patterns](/images/geobasedsharding.PNG)
+
 ---
 
 ### Observing how these strategies coexist in a real system

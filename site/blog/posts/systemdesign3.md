@@ -1,7 +1,7 @@
 ---
 title: "Load Balancing in Kubernetes"
 date: "2026-03-23"
-reading_time: "8 minutes"
+readingtime: 5 min read
 tags:
   - software-architecture
   - distributed-systems
