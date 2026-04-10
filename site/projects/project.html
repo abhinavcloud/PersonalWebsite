@@ -46,7 +46,7 @@
   if (!post) {
     content.innerHTML = "<p>❌ No post specified.</p>";
   } else {
-    const path = `projects/project/${post}.md`;
+    const path = `project/${post}.md`;
 
     fetch(path)
       .then(res => {

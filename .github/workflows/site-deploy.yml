@@ -93,6 +93,47 @@ jobs:
           console.log(`✔ Generated ${posts.length} posts`);
           EOF
 
+      - name: Generate project index
+        run: |
+          npm install js-yaml
+          node <<'EOF'
+          const fs = require("fs");
+          const yaml = require("js-yaml");
+
+          const POSTS_DIR = "site/projects/project";
+          const OUT_FILE = "site/blog/posts.json";
+
+          const files = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith(".md"));
+
+          const posts = files.map(file => {
+            const raw = fs.readFileSync(`${POSTS_DIR}/${file}`, "utf8");
+
+            const match = raw.match(/---([\s\S]*?)---/);
+            if (!match) {
+              throw new Error(`Missing front-matter in ${file}`);
+            }
+
+            const meta = yaml.load(match[1]);
+
+            return {
+              slug: file.replace(".md", ""),
+              title: meta.title,
+              date: new Date(meta.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              }),
+              readingTime: meta.readingTime,
+              subtitle: meta.subtitle,
+              tags: meta.tags || [],
+              icon: meta.icon || "📝"
+            };
+          });
+
+          fs.writeFileSync(OUT_FILE, JSON.stringify(posts, null, 2));
+          console.log(`✔ Generated ${posts.length} posts`);
+          EOF
+
             
       - name: Sync site folder to S3
         run: |
