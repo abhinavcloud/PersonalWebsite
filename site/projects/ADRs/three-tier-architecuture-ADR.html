@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Architecture Decision Records | Three‑Tier AWS Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="../../../css/style.css">
-  <link rel="stylesheet" href="../../../css/blog.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
 
   <!-- Prism syntax highlighting -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
@@ -14,206 +14,158 @@
 
 <body>
 
+<!-- ================= Header ================= -->
 <header class="blog-header">
+
+  <!-- TOP ROW -->
+  <div class="header-top">
+    <a class="back-link home-link" href="../../index.html">← Home</a>
+  </div>
+
+  <!-- MAIN HEADER -->
   <div class="header-main">
-    <a href="../index.html" class="back-link">← Back</a>
+    <a class="back-link" href="index.html">← All Architecture</a>
 
     <h1 class="blog-title-center">Architecture Decision Records</h1>
 
-    <button class="theme-toggle">🌗</button>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
   </div>
 
-  <p class="header-top">
-    This page documents the intentional architectural decisions behind the
-    Three‑Tier AWS Platform — capturing context, rationale, trade‑offs, and
-    long‑term consequences.
-  </p>
 </header>
 
+<!-- ================= Content ================= -->
 <main class="container">
-
-  <!-- ADR 001 -->
   <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑001 · Approved · 10 Apr 2026
-    </div>
 
-    <h2>Strict Three‑Tier Architecture with Explicit Network Boundaries</h2>
-
-    <h3>Context</h3>
-    <p>
-      Prior systems suffered from implicit trust boundaries, accidental internet
-      exposure, and unclear tier responsibilities. A predictable, reviewable
-      baseline architecture was required.
-    </p>
-
-    <h3>Decision</h3>
-    <p>
-      Adopt a strict three‑tier model with a public ingress layer, a web tier,
-      and a private application tier. Each tier communicates only with explicitly
-      authorized adjacent layers.
-    </p>
-
-    <h3>Rationale</h3>
-    <p>
-      Explicit tiering reduces cognitive load, strengthens security posture,
-      and simplifies audits and incident reasoning.
-    </p>
-
-    <h3>Trade‑offs</h3>
-    <p>
-      Slightly increased infrastructure complexity and configuration overhead.
-    </p>
-
-    <h3>Consequences</h3>
-    <p>
-      Predictable traffic flow, reduced blast radius, and improved long‑term
-      maintainability.
+    <p class="blog-meta">
+      Living documentation of intentional architectural choices for the
+      <strong>Three‑Tier AWS Platform</strong>.
     </p>
 
     <hr>
 
-    <p><strong>Design principle:</strong> If traffic reaches a tier, it is because the design explicitly allowed it.</p>
-  </article>
-
-  <!-- ADR 002 -->
-  <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑002 · Approved · 10 Apr 2026
-    </div>
-
-    <h2>Use EC2 Instead of Managed Compute Services</h2>
+    <!-- ADR 001 -->
+    <h2>ADR‑001 — Strict Three‑Tier Architecture</h2>
+    <p class="blog-meta">Status: Approved · Date: 10 Apr 2026</p>
 
     <h3>Context</h3>
     <p>
-      Managed compute abstractions obscure networking and security boundaries,
-      making architectural reasoning and auditing more difficult.
+      Prior platforms suffered from implicit trust boundaries, accidental
+      internet exposure, and unclear tier responsibilities.
     </p>
 
     <h3>Decision</h3>
     <p>
-      Deploy workloads on Amazon EC2 to preserve full visibility of network,
-      identity, and security controls.
+      Adopt a strict three‑tier model with explicit network boundaries:
+      public ingress, web tier, and private application tier.
     </p>
 
     <h3>Rationale</h3>
     <p>
-      EC2 enforces deliberate design decisions and removes hidden control
-      planes that complicate reviews.
+      Predictable traffic flow, reduced cognitive load, and improved security posture.
     </p>
 
     <h3>Trade‑offs</h3>
     <p>
-      Higher operational overhead and manual scaling responsibility.
+      Slightly higher infrastructure configuration complexity.
     </p>
 
     <h3>Consequences</h3>
     <p>
-      Improved clarity, stronger fundamentals, and easier future evolution.
-    </p>
-  </article>
-
-  <!-- ADR 003 -->
-  <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑003 · Approved
-    </div>
-
-    <h2>Full Environment Isolation via Separate Terraform State</h2>
-
-    <h3>Context</h3>
-    <p>
-      Shared state across environments increases blast radius and introduces
-      unpredictable behavior.
-    </p>
-
-    <h3>Decision</h3>
-    <p>
-      Each environment uses an independent Terraform backend and lifecycle.
-    </p>
-
-    <h3>Rationale</h3>
-    <p>
-      Environment isolation enforces safe experimentation and predictable
-      deployments.
-    </p>
-
-    <h3>Consequences</h3>
-    <p>
-      Cleaner promotion, safer rollbacks, and strong ownership boundaries.
-    </p>
-  </article>
-
-  <!-- ADR 004 -->
-  <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑004 · Approved
-    </div>
-
-    <h2>S3 Access Restricted via VPC Gateway Endpoint</h2>
-
-    <h3>Decision</h3>
-    <p>
-      Application workloads access S3 exclusively through a VPC Gateway
-      Endpoint. No internet routing is permitted.
-    </p>
-
-    <h3>Rationale</h3>
-    <p>
-      Keeps data traffic internal to AWS, reduces attack surface, and supports
-      compliance auditing.
-    </p>
-
-    <h3>Trade‑offs</h3>
-    <p>
-      Increased complexity in IAM and endpoint policy configuration.
-    </p>
-  </article>
-
-  <!-- ADR 005 -->
-  <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑005
-    </div>
-
-    <h2>Promotion‑Based CI/CD with Immutable Commits</h2>
-
-    <h3>Decision</h3>
-    <p>
-      Use commit‑based promotion from Dev to Production without branch divergence.
-    </p>
-
-    <h3>Rationale</h3>
-    <p>
-      Guarantees infrastructure parity and simplifies rollback and debugging.
-    </p>
-  </article>
-
-  <!-- ADR 006 -->
-  <article class="blog-post">
-    <div class="blog-meta">
-      ADR‑006
-    </div>
-
-    <h2>Infrastructure Drift Treated as an Incident</h2>
-
-    <h3>Decision</h3>
-    <p>
-      Terraform drift detection blocks deployment and requires explicit human
-      intervention.
+      Reduced blast radius and improved long‑term maintainability.
     </p>
 
     <hr>
 
-    <p><strong>Principle:</strong> Drift represents uncertainty — not something to auto‑correct.</p>
-  </article>
+    <!-- ADR 002 -->
+    <h2>ADR‑002 — EC2 Over Managed Compute</h2>
+    <p class="blog-meta">Status: Approved · Date: 10 Apr 2026</p>
 
+    <h3>Context</h3>
+    <p>
+      Managed compute abstractions hide networking and security behavior.
+    </p>
+
+    <h3>Decision</h3>
+    <p>
+      Deploy workloads directly on Amazon EC2.
+    </p>
+
+    <h3>Rationale</h3>
+    <p>
+      Forces explicit ownership of security, identity, and network boundaries.
+    </p>
+
+    <h3>Trade‑offs</h3>
+    <p>
+      Increased operational responsibility.
+    </p>
+
+    <hr>
+
+    <!-- ADR 003 -->
+    <h2>ADR‑003 — Environment Isolation via Terraform State</h2>
+    <p class="blog-meta">Status: Approved</p>
+
+    <h3>Decision</h3>
+    <p>
+      Each environment maintains an independent Terraform backend.
+    </p>
+
+    <h3>Consequences</h3>
+    <p>
+      Safer changes, cleaner promotions, and stronger ownership boundaries.
+    </p>
+
+    <hr>
+
+    <!-- ADR 004 -->
+    <h2>ADR‑004 — S3 Access via VPC Gateway Endpoint</h2>
+    <p class="blog-meta">Status: Approved</p>
+
+    <h3>Decision</h3>
+    <p>
+      S3 access is restricted to a VPC Gateway Endpoint with no internet routing.
+    </p>
+
+    <h3>Trade‑offs</h3>
+    <p>
+      More complex IAM and endpoint policies.
+    </p>
+
+    <hr>
+
+    <!-- ADR 005 -->
+    <h2>ADR‑005 — Promotion‑Based CI/CD</h2>
+    <p class="blog-meta">Status: Accepted</p>
+
+    <p>
+      Promote immutable commits from development to production without
+      branch divergence.
+    </p>
+
+    <hr>
+
+    <!-- ADR 006 -->
+    <h2>ADR‑006 — Infrastructure Drift as an Incident</h2>
+    <p class="blog-meta">Status: Accepted</p>
+
+    <p>
+      Terraform drift blocks deployments and requires explicit human action.
+    </p>
+
+    <p><strong>Principle:</strong> Drift represents uncertainty — not automation opportunity.</p>
+
+  </article>
 </main>
 
+<!-- ================= Footer ================= -->
 <footer>
-  <p>Architecture Decisions — Designed for clarity, safety, and long‑term trust.</p>
+  <p>Architecture Decisions — clarity, safety, and long‑term trust.</p>
 </footer>
 
-<script src="../../js/theme.js"></script>
+<!-- ================= Scripts ================= -->
+<script src="../js/theme.js"></script>
+
 </body>
 </html>
