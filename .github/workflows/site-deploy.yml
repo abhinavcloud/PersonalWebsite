@@ -101,7 +101,7 @@ jobs:
           const yaml = require("js-yaml");
 
           const POSTS_DIR = "site/projects/project";
-          const OUT_FILE = "site/blog/posts.json";
+          const OUT_FILE = "site/projects/posts.json";
 
           const files = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith(".md"));
 
