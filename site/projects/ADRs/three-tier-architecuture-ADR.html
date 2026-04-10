@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Architecture Decision Records | Three‑Tier AWS Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+
+ <!-- <link rel="stylesheet" href="../css/style-final.css"> -->
+
+  <!-- Prism syntax highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Architecture Decision Records</h1>
+  <p>
+    This page documents the intentional architectural decisions behind the
+    Three‑Tier AWS Platform. Each ADR captures context, rationale, trade‑offs,
+    and long‑term consequences to ensure clarity, accountability, and reuse.
+  </p>
+</header>
+
+<main>
+
+  <!-- ADR 001 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑001</span>
+        <span>Status: Approved</span>
+        <span>Date: 10 Apr 2026</span>
+      </div>
+
+      <h2>Strict Three‑Tier Architecture with Explicit Network Boundaries</h2>
+
+      <h3>Context</h3>
+      <p>
+        Prior systems suffered from implicit trust boundaries, accidental
+        internet exposure, and unclear tier responsibilities. A predictable,
+        reviewable baseline architecture was required.
+      </p>
+
+      <h3>Decision</h3>
+      <p>
+        Adopt a strict three‑tier model with a public ingress layer, a web tier,
+        and a private application tier. Each tier communicates only with
+        explicitly authorized adjacent layers.
+      </p>
+
+      <h3>Rationale</h3>
+      <p>
+        Explicit tiering reduces cognitive load, strengthens security posture,
+        and simplifies audits and incident reasoning.
+      </p>
+
+      <h3>Trade‑offs</h3>
+      <p>
+        Slightly increased infrastructure complexity and configuration overhead.
+      </p>
+
+      <h3>Consequences</h3>
+      <p>
+        Predictable traffic flow, reduced blast radius, and improved long‑term
+        maintainability.
+      </p>
+
+      <div class="callout">
+        If traffic reaches a tier, it is because the design explicitly allowed it.
+      </div>
+    </div>
+  </section>
+
+  <!-- ADR 002 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑002</span>
+        <span>Status: Approved</span>
+        <span>Date: 10 Apr 2026</span>
+      </div>
+
+      <h2>Use EC2 Instead of Managed Compute Services</h2>
+
+      <h3>Context</h3>
+      <p>
+        Managed compute abstractions obscure networking and security boundaries,
+        making architectural reasoning and auditing more difficult.
+      </p>
+
+      <h3>Decision</h3>
+      <p>
+        Deploy workloads on Amazon EC2 to preserve full visibility of network,
+        identity, and security controls.
+      </p>
+
+      <h3>Rationale</h3>
+      <p>
+        EC2 enforces deliberate design decisions and removes hidden control
+        planes that complicate reviews.
+      </p>
+
+      <h3>Trade‑offs</h3>
+      <p>
+        Higher operational overhead and manual scaling responsibility.
+      </p>
+
+      <h3>Consequences</h3>
+      <p>
+        Improved clarity, stronger fundamentals, and easier future evolution.
+      </p>
+    </div>
+  </section>
+
+  <!-- ADR 003 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑003</span>
+        <span>Status: Approved</span>
+      </div>
+
+      <h2>Full Environment Isolation via Separate Terraform State</h2>
+
+      <h3>Context</h3>
+      <p>
+        Shared state across environments increases blast radius and introduces
+        unpredictable behavior.
+      </p>
+
+      <h3>Decision</h3>
+      <p>
+        Each environment uses an independent Terraform backend and lifecycle.
+      </p>
+
+      <h3>Rationale</h3>
+      <p>
+        Environment isolation enforces safe experimentation and predictable
+        deployments.
+      </p>
+
+      <h3>Consequences</h3>
+      <p>
+        Cleaner promotion, safer rollbacks, and strong ownership boundaries.
+      </p>
+    </div>
+  </section>
+
+  <!-- ADR 004 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑004</span>
+        <span>Status: Approved</span>
+      </div>
+
+      <h2>S3 Access Restricted via VPC Gateway Endpoint</h2>
+
+      <h3>Decision</h3>
+      <p>
+        Application workloads access S3 exclusively through a VPC Gateway
+        Endpoint. No internet routing is permitted.
+      </p>
+
+      <h3>Rationale</h3>
+      <p>
+        Keeps data traffic internal to AWS, reduces attack surface, and supports
+        compliance auditing.
+      </p>
+
+      <h3>Trade‑offs</h3>
+      <p>
+        Increased complexity in IAM and endpoint policy configuration.
+      </p>
+    </div>
+  </section>
+
+  <!-- ADR 005 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑005</span>
+      </div>
+
+      <h2>Promotion‑Based CI/CD with Immutable Commits</h2>
+
+      <h3>Decision</h3>
+      <p>
+        Use commit‑based promotion from Dev to Production without branch
+        divergence.
+      </p>
+
+      <h3>Rationale</h3>
+      <p>
+        Guarantees infrastructure parity and simplifies rollback and debugging.
+      </p>
+    </div>
+  </section>
+
+  <!-- ADR 006 -->
+  <section class="adr">
+    <div class="adr-card">
+      <div class="adr-meta">
+        <span>ADR‑006</span>
+      </div>
+
+      <h2>Infrastructure Drift Treated as an Incident</h2>
+
+      <h3>Decision</h3>
+      <p>
+        Terraform drift detection blocks deployment and requires explicit human
+        intervention.
+      </p>
+
+      <div class="callout">
+        Drift represents uncertainty — not something to auto‑correct.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    Architecture Decisions — Designed for clarity, safety, and long‑term trust.
+  </p>
+</footer>
+
+</body>
+</html>
