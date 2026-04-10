@@ -220,7 +220,7 @@ Infrastructure as Code.
 </details>
 
 <details>
-<summary>How I Think (Architecture Approach)</summary>
+<summary>Architecture Approach</summary>
 <ul>
 
   <h4>I design systems with a focus on:</h4>
@@ -243,135 +243,10 @@ Infrastructure as Code.
 
 <details>
 
-<summary>Selected Architecture Work</summary>
-
-<ul>
-
-<li>
-
-<strong>Production-Grade Three-Tier AWS Architecture (Terraform + CI/CD)</strong><br>
-
-<a href="{{AWS_PROJECT1}}" target="_blank">
-
-GitHub Repository
-
-</a>
-
-<h4>Problem</h4>
-
-<p>
-
-Design a repeatable multi-environment infrastructure (dev/test/prod) with strict isolation,
-
-minimal manual intervention, and protection against configuration drift, while enabling
-
-safe and controlled CI/CD-based deployments.
-
-</p>
-
-
-
-<h4>Constraints</h4>
-
-<ul>
-
-<li>Multiple environments with independent state and lifecycle</li>
-
-<li>Need to prevent cross-environment impact during deployments</li>
-
-<li>Eliminate static credentials and secure CI/CD authentication</li>
-
-<li>Ensure consistency across deployments without manual steps</li>
-
-</ul>
-
-
-
-<h4>Key Decisions</h4>
-
-<ul>
-
-<li>Adopted modular Terraform architecture to standardize infrastructure across environments</li>
-
-<li>Implemented environment isolation using separate state backends and configurations</li>
-
-<li>Used GitHub Actions for CI/CD-driven infrastructure deployment</li>
-
-<li>Integrated OIDC-based authentication to remove static AWS credentials</li>
-
-<li>Selected ALB for Layer 7 routing to support flexible request handling</li>
-
-<li>Configured remote state management for safe concurrent operations</li>
-
-</ul>
-
-
-
-<h4>Outcome</h4>
-
-<p>
-
-Achieved consistent and repeatable infrastructure deployments across environments with
-
-reduced risk of configuration drift, secure CI/CD integration, and clear separation of
-
-environment lifecycles.
-
-</p>
-</li>
-
-<li>
-
-<hr>
-<strong>Kubernetes From Scratch</strong><br>
-
-<a href="{{KUBERNETES_PROJECT1}}" target="_blank">
-
-GitHub Repository
-
-</a>
-
-</li>
-<p>Automated Kubernetes cluster provisioning using kubeadm and Bash
-scripting.</p>
-
-<li>
-<hr>
-<strong>Personal Portfolio & Blog Website on AWS</strong><br>
-
-<a href="{{AWS_PROJECT2}}" target="_blank">
-
-GitHub Repository
-
-</a>
-
-
-<p>
-
-Static website hosted on AWS using S3 and CloudFront, automated via Terraform and GitHub Actions.
-
-Primarily used as a platform to publish architecture-focused technical content.
-
-</p>
-
-</li>
-
-</ul>
-
-
-
-</details>
-
-
-
-
-
-<details>
-
 <summary>Professional Experience</summary>
 
 
-<h3>Solution Architect – Telstra Global Services ( Mar2024 – Present)</h3>
+<h3>Cloud Solution Architect : AWS – Telstra Global Services ( Mar2024 – Present)</h3>
 <h4>Official HR title: Senior Technical Business Analyst</h4>
 
 <ul>
@@ -418,8 +293,7 @@ concerns.</li>
 </ul>
 
 <hr>
-<h3>Solution Architect – Amdocs (Jan 2022 - Nov 2022)</h3>
-<h4>Official HR title: Product Owner</h4>
+<h3>Solution Designer – Amdocs (Jan 2022 - Nov 2022)</h3>
 
 <ul>
 
