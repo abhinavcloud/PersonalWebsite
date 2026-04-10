@@ -1,15 +1,12 @@
 ---
 title: "Session Management in Applications"
-subtitle: "End to End Walktrhough"
-author: "Abhinav Kumar"
 date: "2026-03-27"
-tags:
-  - system-design
-  - aws
-  - session-storage
-  - authentication
 reading_time: "8 minutes"
-
+tags:
+  - software-architecture
+  - distributed-systems
+  - system-design
+subtitle: "End to End Walktrhough"
 ---
 
 # From Sessions to Zero Trust

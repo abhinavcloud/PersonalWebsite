@@ -1,15 +1,14 @@
 ---
 title: "API Gateway vs Load Balancers"
+date: "2026-03-24"
+reading_time: "8 minutes"
+tags:
+  - software-architecture
+  - distributed-systems
+  - system-design
 subtitle: "A Decision Matrix"
 author: "Abhinav Kumar"
-date: "2026-03-24"
-tags:
-  - system-design
-  - api-gateway
-  - load-balancers
-  - serverless
-  - auto-scaling
-reading_time: "8 minutes"
+
 ---
 # API Gateway vs Load Balancers
 

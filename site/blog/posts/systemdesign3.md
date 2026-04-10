@@ -1,16 +1,12 @@
 ---
 title: "Load Balancing in Kubernetes"
-subtitle: "A Deep Dive"
-author: "Abhinav Kumar"
 date: "2026-03-23"
-tags:
-  - system-design
-  - kubernetes
-  - load-balancers
-  - network-policies
-  - ingress
-  - auto-scaling
 reading_time: "8 minutes"
+tags:
+  - software-architecture
+  - distributed-systems
+  - system-design
+subtitle: "A Deep Dive"
 ---
 
 # Load Balancing in Kubernetes

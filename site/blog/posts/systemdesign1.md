@@ -1,14 +1,14 @@
 ---
 title: "Essential Architecture Patterns"
-subtitle: "Communication Models in Action"
-author: "Abhinav Kumar"
 date: "2026-03-10"
+reading_time: "8 minutes"
 tags:
   - software-architecture
   - distributed-systems
   - event-driven-architecture
   - system-design
-reading_time: "8 minutes"
+subtitle: "Communication Models in Action"
+
 ---
 
 # Essential Architecture Patterns

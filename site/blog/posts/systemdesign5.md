@@ -1,17 +1,13 @@
 ---
 title: "SQS vs SNS vs EventBridge "
-subtitle: "Real Architecture Thinking"
-author: "Abhinav Kumar"
 date: "2026-03-26"
-tags:
-  - system-design
-  - aws
-  - even-driven-architecture
-  - sqs
-  - sns
-  - event-bridge
 reading_time: "8 minutes"
-
+tags:
+  - software-architecture
+  - distributed-systems
+  - event-driven-architecture
+  - system-design
+subtitle: "Real Architecture Thinking"
 ---
 # SQS vs SNS vs EventBridge 
 

@@ -1,14 +1,13 @@
 ---
 title: "Cache Strategies and Proxy Layers"
-subtitle: "How Proxies and Caches Work Together"
-author: "Abhinav Kumar"
 date: "2026-03-11"
+reading_time: "8 minutes"
 tags:
   - software-architecture
   - distributed-systems
   - event-driven-architecture
   - system-design
-reading_time: "8 minutes"
+subtitle: "How Proxies and Caches Work Together"
 ---
 
 # Cache Strategies and Proxy Layers
