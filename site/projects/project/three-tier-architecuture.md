@@ -23,9 +23,9 @@ This document presents the architecture, deployment strategy, and operational mo
 This is not a showcase of tooling.  
 It is a deliberate exercise in **architectural restraint and operational clarity**.
 
-[Link to GitHub repository containing Three-Tier AWS Architecture Terraform implementation](https://github.com/abhinavcloud/Three-Tier-AWS-Architecture-Terraform)
+[Link to GitHub repository containing Three-Tier AWS Architecture Terraform implementation](https://github.com/abhinavcloud/Three-Tier-AWS-Architecture-Terraform){:target="_blank"}
 
-[Link to Architecture Decision Records documenting design rationale for three-tier architecture](/projects/ADRs/three-tier-architecuture-ADR.md)
+[Link to Architecture Decision Records documenting design rationale for three-tier architecture](/projects/ADRs/three-tier-architecuture-ADR.md){:target="_blank"}
 
 
 
