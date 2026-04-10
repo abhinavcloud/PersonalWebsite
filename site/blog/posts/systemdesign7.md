@@ -1,12 +1,12 @@
 ---
-title: "Sharding & Partitioning"
-date: "2026-04-10"
+title: Sharding & Partitioning
+date: 2026-04-10
 readingtime: 8 min read
 tags:
   - software-architecture
   - database
   - system-design
-subtitle: "From First Principles to Production-Grade Strategies"
+subtitle: From First Principles to Production-Grade Strategies
 ---
 
 # Sharding & Partitioning

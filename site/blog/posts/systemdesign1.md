@@ -1,13 +1,13 @@
 ---
-title: "Essential Architecture Patterns"
-date: "2026-03-10"
+title: Essential Architecture Patterns
+date: 2026-03-10
 readingtime: 5 min read
 tags:
   - software-architecture
   - distributed-systems
   - event-driven-architecture
   - system-design
-subtitle: "Communication Models in Action"
+subtitle: Communication Models in Action
 
 ---
 

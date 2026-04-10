@@ -1,12 +1,12 @@
 ---
-title: "Load Balancing in Kubernetes"
-date: "2026-03-23"
+title: Load Balancing in Kubernetes
+date: 2026-03-23
 readingtime: 5 min read
 tags:
   - software-architecture
   - distributed-systems
   - system-design
-subtitle: "A Deep Dive"
+subtitle: A Deep Dive
 ---
 
 # Load Balancing in Kubernetes

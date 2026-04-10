@@ -1,13 +1,13 @@
 ---
-title: "SQS vs SNS vs EventBridge "
-date: "2026-03-26"
+title: SQS vs SNS vs EventBridge
+date: 2026-03-26
 readingtime: 8 min read
 tags:
   - software-architecture
   - distributed-systems
   - event-driven-architecture
   - system-design
-subtitle: "Real Architecture Thinking"
+subtitle: Real Architecture Thinking
 ---
 # SQS vs SNS vs EventBridge 
 

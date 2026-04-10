@@ -1,13 +1,13 @@
 ---
-title: "Cache Strategies and Proxy Layers"
-date: "2026-03-11"
+title: Cache Strategies and Proxy Layers
+date: 2026-03-11
 readingtime: 5 min read
 tags:
   - software-architecture
   - distributed-systems
   - event-driven-architecture
   - system-design
-subtitle: "How Proxies and Caches Work Together"
+subtitle: How Proxies and Caches Work Together
 ---
 
 # Cache Strategies and Proxy Layers
