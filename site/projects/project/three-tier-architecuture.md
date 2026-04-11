@@ -12,7 +12,7 @@ icon: ▶️
 
 ---
 
-## A Production‑Ready Architecture and Deployment Strategy**
+## A Production‑Ready Architecture and Deployment Strategy
 
 ---
 
