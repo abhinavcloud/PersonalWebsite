@@ -1,4 +1,4 @@
-# Architecture Decision Records
+# Architecture Decision Records - Three‑Tier AWS Platform
 
 This section captures the intentional architectural decisions made for the Three‑Tier AWS Platform. Each ADR records the context, decision, rationale, trade‑offs, and consequences to ensure long‑term clarity and repeatability.
 
