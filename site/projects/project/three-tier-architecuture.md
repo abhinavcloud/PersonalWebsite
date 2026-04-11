@@ -25,7 +25,7 @@ It is a deliberate exercise in **architectural restraint and operational clarity
 
 <a href="https://github.com/abhinavcloud/Three-Tier-AWS-Architecture-Terraform" target="_blank">Link to GitHub repository containing Three-Tier AWS Architecture Terraform implementation</a>
 
-<a href="ADRs/ADR.html?post=three-tier-architecuture">Link to Architecture Decision Records</a>
+<a href="ADRs/ADR.html?post=three-tier-arch-ADR">Link to Architecture Decision Records</a>
 
 ---
 
