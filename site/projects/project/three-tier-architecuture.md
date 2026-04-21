@@ -67,7 +67,7 @@ These goals shaped every technical decision that follows.
 
 At a glance, this is a familiar three‑tier design. The difference lies in how strictly the boundaries are enforced.
 
-![Three-tier AWS architecture diagram showing public load balancer layer connected to web tier EC2 instances in public subnets, which connect to application tier EC2 instances in private subnets, with private ALB controlling access. S3 bucket accessed through VPC endpoint. All components organized within VPC with explicit security group boundaries, emphasizing strict network isolation](/images/3-Tier-AWS-Architectures.jpg)
+![Three-tier AWS architecture diagram showing public load balancer layer connected to web tier EC2 instances in public subnets, which connect to application tier EC2 instances in private subnets, with private ALB controlling access. S3 bucket accessed through VPC endpoint. All components organized within VPC with explicit security group boundaries, emphasizing strict network isolation](/images/3-Tier.jpg)
 
 ---
 
