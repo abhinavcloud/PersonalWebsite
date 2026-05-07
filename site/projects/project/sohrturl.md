@@ -277,32 +277,7 @@ EOF
 
 ## Sequence Diagram
 
-```mermaid
-sequenceDiagram
-  participant User
-  participant Browser
-  participant Cognito
-  participant CloudFront
-  participant APIGateway
-  participant Lambda
-  participant DynamoDB
-
-  User->>Browser: Open Application
-  Browser->>Cognito: Login
-  Cognito->>Browser: Return JWT
-
-  Browser->>CloudFront: POST /createUrl
-  CloudFront->>APIGateway: Forward Request
-  APIGateway->>Lambda: Create URL
-  Lambda->>DynamoDB: Store Mapping
-  Lambda->>Browser: Return Short URL
-
-  Browser->>CloudFront: GET /r/code
-  CloudFront->>APIGateway: Route Request
-  APIGateway->>Lambda: Fetch URL
-  Lambda->>DynamoDB: Lookup
-  Lambda->>Browser: Redirect
-```
+![Serverless URL shortener using CloudFront, API Gateway, Lambda, and DynamoDB, with Cognito authentication and CI/CD‑driven, domain‑agnostic configuration.](/images/sequence_diagram_premium.png)
 
 ---
 
