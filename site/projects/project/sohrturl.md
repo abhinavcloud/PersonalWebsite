@@ -15,7 +15,7 @@ icon: ▶️
 
 ---
 
-## Executive Summary
+### Executive Summary
 
 This document presents the architecture, deployment strategy, and operational model for a fully serverless URL shortener built on AWS and provisioned using Terraform.
 
@@ -32,7 +32,7 @@ The system demonstrates:
 
 ---
 
-## Problem Statement
+### Problem Statement
 
 The objective is to design an infrastructure system that can be deployed consistently across environments, adapt to different domains without modification, and evolve without introducing hidden dependencies or configuration drift.
 In most implementations, infrastructure and configuration become tightly coupled over time. Domain values, API endpoints, and environment-specific settings are embedded into code or Terraform definitions. Deployment workflows begin to diverge, and infrastructure behavior becomes dependent on implicit assumptions rather than explicit configuration.
@@ -62,7 +62,7 @@ The result is an infrastructure setup that is predictable, reusable, and control
 
 ---
 
-## Architectural Goals
+### Architectural Goals
 
 From the outset, the following constraints were enforced:
 
@@ -77,7 +77,7 @@ These constraints dictated the architecture.
 
 ---
 
-## High-Level Architecture
+### High-Level Architecture
 
 The goal of this architecture is to establish an infrastructure system that can be deployed consistently across environments, adapt to different domains without modification, and operate with fully controlled configuration and lifecycle management.
 The system is designed to achieve the following:
@@ -99,7 +99,7 @@ The resulting system allows infrastructure to behave consistently across environ
 
 
 
-## Design Strategy: Configuration is External
+### Design Strategy: Configuration is External
 
 The design strategy focuses on establishing an infrastructure model where configuration, deployment, and system behavior remain fully controlled and independent of code changes.
 
@@ -117,7 +117,7 @@ The resulting design enables infrastructure to adapt to different environments a
 
 ---
 
-## Feature Flag Strategy
+### Feature Flag Strategy
 
 Infrastructure lifecycle dependencies are handled using feature flags.
 
@@ -127,7 +127,7 @@ variable "enable_custom_domain" {
 
 ---
 
-## Deployment Flow
+### Deployment Flow
 
 Phase 1
 - Deploy with flag disabled
@@ -143,7 +143,7 @@ Phase 3
 
 ---
 
-## Runtime Configuration Injection
+### Runtime Configuration Injection
 
 window.APP_CONFIG = {
   API_URL: "<injected>",
@@ -154,9 +154,9 @@ window.APP_CONFIG = {
 
 ---
 
-## Terraform Resources
+### Terraform Resources
 
-### CloudFront
+#### CloudFront
 
 CloudFront serves as the single entry point for all incoming traffic, routing requests between frontend assets and backend APIs based on path patterns.
 
@@ -194,7 +194,7 @@ resource "aws_cloudfront_distribution" "site" {
 }
 ```
 
-### S3
+#### S3
 
 S3 hosts the frontend and is kept private.
 
@@ -205,7 +205,7 @@ resource "aws_s3_bucket" "site" {
 }
 ```
 
-### API Gateway
+#### API Gateway
 
 Handles backend routing.
 
@@ -216,7 +216,7 @@ resource "aws_apigatewayv2_api" "shorturl" {
 }
 ```
 
-### Lambda
+#### Lambda
 
 Executes business logic.
 
@@ -234,7 +234,7 @@ domain = os.environ["DOMAIN_NAME"]
 short_url = f"{domain}/r/{short_code}"
 ```
 
-### DynamoDB
+#### DynamoDB
 
 Stores URL mappings.
 
@@ -244,7 +244,7 @@ resource "aws_dynamodb_table" "short_urls" {
 }
 ```
 
-### Cognito
+#### Cognito
 
 Handles authentication.
 
@@ -252,7 +252,7 @@ Handles authentication.
 allowed_oauth_flows = ["code", "implicit"]
 ```
 
-### ACM and Feature Flag
+#### ACM and Feature Flag
 
 ```hcl
 viewer_certificate {
@@ -260,7 +260,7 @@ viewer_certificate {
 }
 ```
 
-### CI/CD
+#### CI/CD
 
 ```yaml
 env:
@@ -275,13 +275,13 @@ EOF
 
 ---
 
-## Sequence Diagram
+### Sequence Diagram
 
 ![Serverless URL shortener using CloudFront, API Gateway, Lambda, and DynamoDB, with Cognito authentication and CI/CD‑driven, domain‑agnostic configuration.](/images/sequence_diagram_premium.png)
 
 ---
 
-## Security Model
+### Security Model
 
 - Private S3 with OAC
 - JWT-authorized API
@@ -290,7 +290,7 @@ EOF
 
 ---
 
-## Operational Observations
+### Operational Observations
 
 - Feature flags control lifecycle
 - Config injection prevents drift
@@ -298,11 +298,12 @@ EOF
 
 ---
 
-## Conclusion
+### Conclusion
 
 This system demonstrates how infrastructure can be designed to operate with predictability, controlled configuration, and repeatable deployment behavior, independent of environment-specific assumptions.
+
 By externalizing all configuration, enforcing CI/CD as the single deployment path, and managing lifecycle dependencies through feature flags, the architecture ensures that infrastructure remains consistent across environments and adaptable without modification to code.
+
 Each component is deployed with a clearly defined responsibility and explicit boundaries, enabling requests, configuration, and access paths to remain fully controlled. This approach removes implicit behavior and ensures that changes are introduced deliberately rather than incidentally.
+
 The result is an infrastructure model that can be reused across environments and domains, scaled without modifying core definitions, and evolved without introducing hidden dependencies or inconsistencies.
-The system remains intentionally simple in functionality.
-Its value lies in how consistently and predictably it behaves under change.
