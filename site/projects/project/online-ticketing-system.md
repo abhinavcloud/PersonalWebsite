@@ -115,7 +115,7 @@ This separation ensures browsing remains responsive even when booking traffic sp
 
 ---
 
-### AWS Architecture (Icon‑Level)
+### AWS Architecture
 
 The AWS deployment uses managed services to enforce clear boundaries:
 
