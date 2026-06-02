@@ -1,9 +1,11 @@
-### title: RDS Proxy Cost Reality with Aurora Serverless v2
+---
+title: RDS Proxy Cost Reality with Aurora Serverless v2
 subtitle: What the managed proxy buys you, why the bill rises, and what reconfiguration paths are actually viable
 date: 2026-06-02
 readingTime: 14 min read
 tags: [AWS, Aurora, RDS, Cost Optimization]
 icon: ☁️🛢️
+---
 
 ## RDS Proxy Cost Reality with Aurora Serverless v2
 
