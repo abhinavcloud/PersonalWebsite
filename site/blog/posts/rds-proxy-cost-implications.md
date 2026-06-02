@@ -57,6 +57,10 @@ This distinction matters when the existing stack is already deeply integrated ar
 
 ---
 
+![Aurora_Architecture](/images/RDS_Proxy_Cost_Implications.png)
+
+---
+
 ### Reconfiguration Option 1: Keep the Proxy and Accept the Always-On Model
 
 The first option is the simplest operationally. Keep the current design and accept that the environment is an always-on managed backend. This makes sense if the point of the project is to demonstrate a production-style serverless database access pattern rather than to minimize monthly spend. In that framing, the proxy is not an optimization target. It is part of the architectural statement. The project showcases connection pooling, IAM-based access, and managed failover behavior under Lambda-style concurrency, all of which are legitimate capabilities to highlight. citeturn5search102turn5search106turn7search143
