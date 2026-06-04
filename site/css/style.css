@@ -407,12 +407,16 @@ hr {
 /* Mobile */
 @media (max-width: 600px) {
   .cert-strip {
-    gap: 12px;
+    gap: 15px;
   }
 
   .cert-strip img {
-    height: 50px;
+    height: 75px;
   }
+}
+
+.cert-strip img:hover {
+  transform: scale(1.50);
 }
 
 
