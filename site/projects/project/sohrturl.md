@@ -7,13 +7,11 @@ tags: [serverless, cloudfront, cognito, lambda, terraform, ci-cd]
 icon: ▶️
 ---
 
-# lshort.in - Serverless URL Shortener on AWS
-
-#### [Visit the website: lshort.in](https://lshort.in)
+# lshort.in - Serverless URL Shortener on AWS - Production‑Ready Architecture and Deployment Strategy
 
 ---
 
-## A Production‑Ready Architecture and Deployment Strategy
+## [Visit the website: lshort.in](https://lshort.in)
 
 ---
 

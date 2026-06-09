@@ -9,14 +9,9 @@ icon: 🎟️
 
 # mytickets.click — A Complete Architecture Story of an Online Ticketing Platform on AWS
 
-#### [Visit the website: mytickets.click](https://mytickets.click)
+## [Visit the website: mytickets.click](https://mytickets.click)
 
 ---
-
-## From Read-Heavy Event Discovery to Consistent Seat Booking, Serverless Backend Services, and Terraform-Managed Cloud Infrastructure
-
----
-
 
 A detailed solution architecture narrative for **mytickets.click**, covering the complete journey from requirements and design principles to frontend experience, backend service boundaries, cache-based seat coordination, Aurora-backed durable booking, Cognito security, KMS-verified booking tokens, SNS notifications, Terraform infrastructure, cost tradeoffs, risks, and future evolution.
 
