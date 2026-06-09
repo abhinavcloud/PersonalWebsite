@@ -9,6 +9,8 @@ icon: 🎟️
 
 # mytickets.click — A Complete Architecture Story of an Online Ticketing Platform on AWS
 
+#### [Visit the website: mytickets.click](https://mytickets.click)
+
 ---
 
 ## From Read-Heavy Event Discovery to Consistent Seat Booking, Serverless Backend Services, and Terraform-Managed Cloud Infrastructure
@@ -71,7 +73,8 @@ The original design documents included several important architecture and requir
 ---
 
 #### GitHub Repository link
-[GitHub Repository link](https://github.com/abhinavcloud/Online_Ticketing_System)
+
+[Visit the GitHub Repository Here](https://github.com/abhinavcloud/Online_Ticketing_System)
 
 ---
 

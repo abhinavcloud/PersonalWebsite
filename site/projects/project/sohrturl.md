@@ -9,6 +9,8 @@ icon: ▶️
 
 # lshort.in - Serverless URL Shortener on AWS
 
+#### [Visit the website: lshort.in](https://lshort.in)
+
 ---
 
 ## A Production‑Ready Architecture and Deployment Strategy
