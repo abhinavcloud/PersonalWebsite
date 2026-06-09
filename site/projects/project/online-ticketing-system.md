@@ -1,5 +1,5 @@
 ---
-title: MyTickets.click - Online Ticketing System on AWS
+title: mytickets.click - Online Ticketing System on AWS
 subtitle: Read‑heavy browsing with Redis caching, consistent seat locking, and surge control using per‑event waiting rooms
 date: 2026-06-09
 readingTime: 15 min read
@@ -7,54 +7,22 @@ tags: [system-design, aws, api-gateway, lambda, aurora, redis, cognito, websocke
 icon: 🎟️
 ---
 
-# MyTickets.click — A Complete Architecture Story of an Online Ticketing Platform on AWS
+# mytickets.click — A Complete Architecture Story of an Online Ticketing Platform on AWS
 
---
+---
 
 ## From Read-Heavy Event Discovery to Consistent Seat Booking, Serverless Backend Services, and Terraform-Managed Cloud Infrastructure
 
---
+---
 
 
 A detailed solution architecture narrative for **mytickets.click**, covering the complete journey from requirements and design principles to frontend experience, backend service boundaries, cache-based seat coordination, Aurora-backed durable booking, Cognito security, KMS-verified booking tokens, SNS notifications, Terraform infrastructure, cost tradeoffs, risks, and future evolution.
 
 ---
 
-### Table of Contents
-
-1. [Introduction](#introduction)
-2. [The Core Problem](#the-core-problem)
-3. [Architecture Intent and Design Philosophy](#architecture-intent-and-design-philosophy)
-4. [Original Design References and Diagrams](#original-design-references-and-diagrams)
-5. [End-to-End User Journey](#end-to-end-user-journey)
-6. [Frontend Experience Layer](#frontend-experience-layer)
-7. [Backend Service Layer](#backend-service-layer)
-8. [Infrastructure and Terraform Layer](#infrastructure-and-terraform-layer)
-9. [Discovery Plane: Read-Heavy Browsing](#discovery-plane-read-heavy-browsing)
-10. [Queue Plane: Surge Admission and Waiting Room](#queue-plane-surge-admission-and-waiting-room)
-11. [Seat Availability Plane: Database Truth plus Cache Overlay](#seat-availability-plane-database-truth-plus-cache-overlay)
-12. [Reservation Plane: Atomic Seat Holds](#reservation-plane-atomic-seat-holds)
-13. [Payment Plane: Externalized Payment Responsibility](#payment-plane-externalized-payment-responsibility)
-14. [Confirmation Plane: Durable Commit and Ticket Generation](#confirmation-plane-durable-commit-and-ticket-generation)
-15. [Notification Plane: Post-Commit Communication](#notification-plane-post-commit-communication)
-16. [Data Model and State Ownership](#data-model-and-state-ownership)
-17. [Cache Key Design and Cluster-Safe Locking](#cache-key-design-and-cluster-safe-locking)
-18. [Security Model](#security-model)
-19. [Consistency Model](#consistency-model)
-20. [Failure Handling and Recovery](#failure-handling-and-recovery)
-21. [Terraform Module Architecture](#terraform-module-architecture)
-22. [How Frontend, Backend, and Terraform Integrate](#how-frontend-backend-and-terraform-integrate)
-23. [Cost Optimization and the Light Branch](#cost-optimization-and-the-light-branch)
-24. [Implementation Lessons and Design Evolution](#implementation-lessons-and-design-evolution)
-25. [Known Limitations](#known-limitations)
-26. [Future Improvements](#future-improvements)
-27. [Conclusion](#conclusion)
-
----
-
 ### Introduction
 
-**MyTickets.click** is a cloud-native online ticketing platform designed to demonstrate how a real event booking system can be built using AWS managed services, serverless compute, cache-based coordination, relational durability, and a static frontend. The system is not positioned as a simple CRUD application. It is designed around the harder problems that appear in real ticketing platforms: read-heavy event discovery, sudden traffic surges, queue-based admission, seat contention, temporary reservations, payment handoff, booking confirmation, and notification publishing.
+**mytickets.click** is a cloud-native online ticketing platform designed to demonstrate how a real event booking system can be built using AWS managed services, serverless compute, cache-based coordination, relational durability, and a static frontend. The system is not positioned as a simple CRUD application. It is designed around the harder problems that appear in real ticketing platforms: read-heavy event discovery, sudden traffic surges, queue-based admission, seat contention, temporary reservations, payment handoff, booking confirmation, and notification publishing.
 
 The application supports a complete booking journey. A user can browse locations and events, authenticate through Cognito, enter an event/category-specific queue, retrieve a seat map, select seats, reserve seats, complete a mock payment flow, confirm the booking, generate tickets, and receive a notification. The flow is intentionally decomposed into separate stages because ticketing correctness cannot be safely handled as a single request. Discovery, admission, reservation, payment, confirmation, and notification each have different consistency, latency, and failure-handling requirements.
 
@@ -90,15 +58,20 @@ Another deliberate design choice is that the frontend should remain user-friendl
 
 The original design documents included several important architecture and requirement links. These links are preserved below exactly as references within the project documentation.
 
-- ![High level design showing Discovery, Surge Admission, Correctness, and System of Record](/images/High_Level_Design.jpg)
+#### High level design showing Discovery, Surge Admission, Correctness, and System of Record
+
+![High level design showing Discovery, Surge Admission, Correctness, and System of Record](/images/High_Level_Design.jpg)
 
 ---
 
-- ![AWS architecture showing CloudFront, private S3, Cognito, API Gateway, Lambda services, Redis, and Aurora](/images/AWS_Architecture.jpg)
+#### AWS architecture showing CloudFront, private S3, Cognito, API Gateway, Lambda services, Redis, and Aurora
+
+![AWS architecture showing CloudFront, private S3, Cognito, API Gateway, Lambda services, Redis, and Aurora](/images/AWS_Architecture.jpg)
 
 ---
 
-- [GitHub Repository link](https://github.com/abhinavcloud/Online_Ticketing_System)
+#### GitHub Repository link
+[GitHub Repository link](https://github.com/abhinavcloud/Online_Ticketing_System)
 
 ---
 
@@ -606,7 +579,7 @@ Natural next steps include:
 
 ### Conclusion
 
-MyTickets.click is a complete online ticketing architecture built around real system design concerns. It separates read-heavy discovery from correctness-heavy booking. It uses queue admission to control surge traffic. It uses cache locks for short-lived seat holds. It uses Aurora PostgreSQL for durable booking truth. It uses Cognito and KMS to secure the protected flow. It uses Terraform to provision and integrate all infrastructure repeatably.
+mytickets.click is a complete online ticketing architecture built around real system design concerns. It separates read-heavy discovery from correctness-heavy booking. It uses queue admission to control surge traffic. It uses cache locks for short-lived seat holds. It uses Aurora PostgreSQL for durable booking truth. It uses Cognito and KMS to secure the protected flow. It uses Terraform to provision and integrate all infrastructure repeatably.
 
 The most important lesson is that ticket booking is not a single operation. It is a lifecycle:
 
@@ -616,4 +589,4 @@ Discovery → Admission → Seat Selection → Reservation Hold → Payment → 
 
 Each stage has a clear owner and a clear consistency responsibility. The frontend provides a clean user journey. Backend services enforce correctness. Terraform makes the system deployable and reproducible.
 
-That combination makes MyTickets.click a strong solution architecture example rather than just a frontend page or a backend API demo.
+That combination makes mytickets.click a strong solution architecture example rather than just a frontend page or a backend API demo.

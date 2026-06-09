@@ -1,5 +1,5 @@
 ---
-title: Serverless URL Shortener on AWS
+title: lshort.in - Serverless URL Shortener on AWS
 subtitle: A disciplined approach to domain-agnostic deployment, feature flags, and CI/CD-driven infrastructure
 date: 2026-05-07
 readingTime: 10 min read
@@ -7,7 +7,7 @@ tags: [serverless, cloudfront, cognito, lambda, terraform, ci-cd]
 icon: ▶️
 ---
 
-# Designing a Disciplined Serverless URL Platform
+# lshort.in - Serverless URL Shortener on AWS
 
 ---
 
