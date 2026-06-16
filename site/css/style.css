@@ -82,15 +82,32 @@ body {
 }
 
 
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px; /* more breathing space */
+  margin-top: 16px;
+}
+
 .contact a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
 }
 
+
 .contact img {
-  width: 20px;
-  height: 20px;
+  width: 34px;
+  height: 34px;
+  padding: 6px;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.05);
+}
+
+
+.contact img:hover {
+  transform: scale(1.2); /* subtle hover effect */
 }
 
 
@@ -432,3 +449,12 @@ hr {
     flex-wrap: wrap;
   }
 }
+
+
+@media (max-width: 768px) {
+  .contact img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
