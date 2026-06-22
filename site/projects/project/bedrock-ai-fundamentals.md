@@ -7,9 +7,9 @@ tags: [ai, llm, rag, aws, bedrock, guardrails]
 icon: 🧠
 ---
 
-## Bedrock AI Fundamentals — A Complete Architecture Story of a Serverless RAG Platform on AWS
+# Bedrock AI Fundamentals — A Complete Architecture Story of a Serverless RAG Platform on AWS
 
-### [Visit the GitHub repository: Bedrock_AI](https://github.com/abhinavcloud/Bedrock_AI)
+## [Visit the GitHub repository: Bedrock_AI](https://github.com/abhinavcloud/Bedrock_AI)
   
 A detailed solution architecture narrative for a cost-optimized **serverless AI / LLM platform on AWS**, covering the complete journey from learning intent and platform requirements to Bedrock Knowledge Bases, S3 Vectors, Guardrails, Inference Profiles, Terraform-managed infrastructure, Lambda-triggered ingestion, retrieval flows, safety boundaries, cost tradeoffs, implementation lessons, and future evolution.
 
