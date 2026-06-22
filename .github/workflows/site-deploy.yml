@@ -6,6 +6,10 @@ on:
       - "site/**"
  
 
+permissions:
+  id-token: write
+  contents: read 
+
 jobs:
   deploy:
     name: Sync site to S3 and invalidate CloudFront
