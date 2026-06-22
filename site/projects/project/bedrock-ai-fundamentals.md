@@ -1,11 +1,11 @@
-### title: Bedrock AI Fundamentals - Serverless RAG and Guardrails on AWS
+---
+title: Bedrock AI Fundamentals - Serverless RAG and Guardrails on AWS
 subtitle: A cost-optimized Bedrock architecture using Knowledge Bases, S3 Vectors, Guardrails, Inference Profiles, and Terraform-managed infrastructure
 date: 2026-06-22
 readingTime: 18 min read
-tags: [
-ai, llm, rag, aws, bedrock, terraform, guardrails, serverless, vector-database, architecture
-a]
+tags: [ai, llm, rag, aws, bedrock, guardrails]
 icon: 🧠
+---
 
 ## Bedrock AI Fundamentals — A Complete Architecture Story of a Serverless RAG Platform on AWS
 
