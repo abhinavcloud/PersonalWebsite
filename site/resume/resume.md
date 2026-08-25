@@ -1,13 +1,14 @@
-# Abhinav Kumar
-**Solution Architect | AWS Cloud Architecture | AI/LLM Platforms | Distributed Systems**  
-**Noida, India**  
-**Mobile:** +91 7875757010  
-**Email:** abhinavkumar1987@yahoo.com, abhinav01061987@gmail.com  
-**LinkedIn:** https://linkedin.com/in/abhinavkumar1  
-**GitHub:** https://github.com/abhinavcloud  
-**Website:** https://abhinav-cloud.com
-
 ---
+name: Abhinav Kumar
+title: Solution Architect | AWS Cloud Architecture | AI/LLM Platforms | Distributed Systems
+location: Noida, India
+phone: "+91 7875757010"
+email: [abhinavkumar1987@yahoo.com, abhinav01061987@gmail.com]
+linkedin: https://linkedin.com/in/abhinavkumar1
+github: https://github.com/abhinavcloud
+website: https://abhinav-cloud.com
+---
+
 
 ## Architect Profile
 Solution Architect with 15+ years of experience designing, governing, and modernizing large-scale AWS-based enterprise platforms, including serverless AI/LLM architectures and Retrieval-Augmented Generation (RAG) systems.
