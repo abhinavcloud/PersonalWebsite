@@ -1,21 +1,19 @@
 ---
 title: "What “Send” Really Means in an Agentic Email Workflow"
 subtitle: "How drafts stay stable, where the addresses come from, and what the assistant can prove after a timeout"
-date: 2026-11-23
+date: 2026-11-21
 readingTime: 4 min read
 tags: [AWS, SES, DynamoDB, Idempotency]
 icon: ✉️
 ---
 
-# What “Send” Really Means in an Agentic Email Workflow
+# What “Send” Really Means in an Agentic Email Workflow : Bedrock AgentCore Series - Part 4
 
 ---
 
 ## How drafts stay stable, where the addresses come from, and what the assistant can prove after a timeout
 
-## Bedrock AgentCore Series - Part 4
-
-## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
+### [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 
 ---
 

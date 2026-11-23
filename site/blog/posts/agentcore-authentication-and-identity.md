@@ -1,21 +1,19 @@
 ---
 title: "Identity Wiring in a Bedrock AgentCore Assistant"
 subtitle: "How a Google login reaches the runtime, where IAM takes over, and whose calendar the assistant can use"
-date: 2026-11-23
+date: 2026-11-19
 readingTime: 4 min read
 tags: [AWS, Cognito, IAM, OAuth]
 icon: 🔐
 ---
 
-# Identity Wiring in a Bedrock AgentCore Assistant
+# Identity Wiring in a Bedrock AgentCore Assistant : Bedrock AgentCore Series - Part 2
 
 ---
 
 ## How a Google login reaches the runtime, where IAM takes over, and whose calendar the assistant can use
 
-## Bedrock AgentCore Series - Part 2
-
-## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
+### [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction

@@ -1,21 +1,18 @@
 ---
 title: "Conversation Memory in a Bedrock AgentCore Assistant"
 subtitle: "What follows a visitor across chats, what belongs to one session, and where a request ID fits"
-date: 2026-11-23
+date: 2026-11-20
 readingTime: 4 min read
 tags: [AWS, Bedrock AgentCore, Strands Agents, DynamoDB]
 icon: 🧠
 ---
 
-# Conversation Memory in a Bedrock AgentCore Assistant
-
+# Conversation Memory in a Bedrock AgentCore Assistant : Bedrock AgentCore Series - Part 3
 ---
 
 ## What follows a visitor across chats, what belongs to one session, and where a request ID fits
 
-## Bedrock AgentCore Series - Part 3
-
-## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
+### [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction

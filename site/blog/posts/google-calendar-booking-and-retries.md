@@ -1,21 +1,19 @@
 ---
 title: "Booking Meetings Through a Personal Assistant"
 subtitle: "How a chat request becomes a Google Calendar event, when a retry can recover, and why two visitors can still book the same slot"
-date: 2026-11-23
+date: 2026-11-22
 readingTime: 5 min read
 tags: [AWS, Google Calendar, OAuth, DynamoDB]
 icon: 📅
 ---
 
-# Booking Meetings Through a Personal Assistant
+# Booking Meetings Through a Personal Assistant : Bedrock AgentCore Series - Part 5
 
 ---
 
 ## How a chat request becomes a Google Calendar event, when a retry can recover, and why two visitors can still book the same slot
 
-## Bedrock AgentCore Series - Part 5
-
-## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
+### [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction

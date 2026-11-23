@@ -1,21 +1,19 @@
 ---
 title: "Building an Agent Harness Around a Personal Assistant"
 subtitle: "Where the main agent delegates, how answers get their evidence, and why the runtime owns the write path"
-date: 2026-11-23
+date: 2026-11-18
 readingTime: 5 min read
 tags: [AWS, Bedrock AgentCore, Strands Agents, MCP]
 icon: 🤖
 ---
 
-# Building an Agent Harness Around a Personal Assistant
+# Building an Agent Harness Around a Personal Assistant : Bedrock AgentCore Series - Part 1
 
 ---
 
 ## Where the main agent delegates, how answers get their evidence, and why the runtime owns the write path
 
-## Bedrock AgentCore Series - Part 1
-
-## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
+### [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction
