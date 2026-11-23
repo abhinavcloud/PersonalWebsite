@@ -13,7 +13,9 @@ icon: ✉️
 
 ## How drafts stay stable, where the addresses come from, and what the assistant can prove after a timeout
 
-## GitHub Project: https://github.com/abhinavcloud/personal-assistant
+## Bedrock AgentCore Series - Part 4
+
+## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 
 ---
 
@@ -28,6 +30,8 @@ icon: ✉️
 The assistant supports drafting, composing and sending on request, and sending the latest saved draft. A structured-output model produces the subject and body. Backend code adds the signature and stores the operation and latest-draft pointer in DynamoDB. The authenticated user and session scope the draft. The send-draft path uses the stored text, so the assistant can send what the visitor reviewed without regenerating the message.
 
 The SES sender and owner recipient come from configuration. The visitor’s verified Cognito email becomes Reply-To. An email address mentioned in the body stays in the body. The model composes the message, and the backend supplies the addresses that govern delivery and replies.
+
+![GitHub Actions](/images/ses-email-architecture.png)
 
 ---
 

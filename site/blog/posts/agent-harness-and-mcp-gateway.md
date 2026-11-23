@@ -13,7 +13,9 @@ icon: 🤖
 
 ## Where the main agent delegates, how answers get their evidence, and why the runtime owns the write path
 
-## GitHub Project: https://github.com/abhinavcloud/personal-assistant
+## Bedrock AgentCore Series - Part 1
+
+## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction
@@ -27,6 +29,8 @@ A personal assistant looks finished when it can answer “What does Abhinav do?�
 The main Strands agent routes a turn to the profile, mail, or calendar workflow. The runtime connects to AgentCore Gateway over MCP, where five Lambda targets expose eighteen tools. The profile agent gets the subset for resume, blog, and project retrieval, along with skills that describe how to use those tools. For email, a model produces a structured subject and body. For scheduling, a model produces a structured plan or asks for clarification. Backend code fills in the authenticated identity and other trusted arguments before it invokes a write operation.
 
 Tool selection and IAM operate at different levels. The filtered catalog shapes what the profile agent can call during a turn. IAM governs what the runtime and Gateway can invoke as AWS principals. A single Gateway simplifies integration while leaving the application in charge of which capabilities belong in each workflow.
+
+![GitHub Actions](/images/agent-harness-architecture.png)
 
 ---
 

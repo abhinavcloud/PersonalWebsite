@@ -13,7 +13,9 @@ icon: 🔐
 
 ## How a Google login reaches the runtime, where IAM takes over, and whose calendar the assistant can use
 
-## GitHub Project: https://github.com/abhinavcloud/personal-assistant
+## Bedrock AgentCore Series - Part 2
+
+## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction
@@ -33,6 +35,8 @@ The subject scopes memory and saved drafts. The verified address supplies Reply-
 ### Where IAM Takes Over
 
 The terminal client needs no AWS credentials for chat. Inside the service, the runtime signs MCP calls to the Gateway using SigV4. The Gateway assumes a role that can invoke its Lambda targets. The targets have their own execution roles. Email can access SES and mail storage. The calendar Lambda can access its configured secret and operation table. A failure at each hop points to a different place to check, from JWT validation to Gateway invocation to the downstream permissions of a particular Lambda.
+
+![GitHub Actions](/images/agentcore-identity-architecture.png)
 
 ---
 

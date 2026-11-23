@@ -13,7 +13,9 @@ icon: 📅
 
 ## How a chat request becomes a Google Calendar event, when a retry can recover, and why two visitors can still book the same slot
 
-## GitHub Project: https://github.com/abhinavcloud/personal-assistant
+## Bedrock AgentCore Series - Part 5
+
+## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction
@@ -25,6 +27,8 @@ icon: 📅
 ### From a Calendar Plan to an Event
 
 The interpreter gets the current UTC time, defaults interpretation to Asia/Kolkata, and produces a structured CalendarPlan or asks for clarification. Backend code adds the verified requester and operation attributes. The Lambda validates explicitly offset timestamps and requires a future start for a new booking. It obtains a temporary Google access token using the owner’s grant, checks availability, and inserts an event on the configured calendar. The owner and verified requester are included as attendees, and the handler requests updates with `sendUpdates=all`. [Google Calendar event insertion API](https://developers.google.com/workspace/calendar/api/v3/reference/events/insert)
+
+![GitHub Actions](/images/google-calendar-architecture.png)
 
 ---
 

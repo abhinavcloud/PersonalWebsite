@@ -13,7 +13,9 @@ icon: 🧠
 
 ## What follows a visitor across chats, what belongs to one session, and where a request ID fits
 
-## GitHub Project: https://github.com/abhinavcloud/personal-assistant
+## Bedrock AgentCore Series - Part 3
+
+## [Visit the GitHub repository: Bedrock AgentCore Personal Assistant](https://github.com/abhinavcloud/personal-assistant)
 ---
 
 ### Introduction
@@ -29,6 +31,8 @@ The terminal client sends the latest prompt and a stable session ID. The runtime
 The Terraform module organizes semantic facts under `/users/{actorId}/facts/` and summaries under `/users/{actorId}/sessions/{sessionId}/summaries/`. A later conversation for the same actor can retrieve relevant facts. A session summary stays scoped to a specific actor and session. The runtime asks for up to five facts and three summaries, with separate relevance thresholds. [AWS memory namespaces](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/specify-long-term-memory-organization.html)
 
 There is also a separate context-window decision inside the agent. The main agent summarizes at 85 percent utilization and preserves four recent messages. The profile agent can truncate selected large tool results and retrieve omitted material. Retrieval decides which stored context to bring back. Context management decides what the active agent can fit on the turn.
+
+![GitHub Actions](/images/agentcore-memory-architecture.png)
 
 ---
 
