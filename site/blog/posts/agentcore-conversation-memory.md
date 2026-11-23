@@ -1,5 +1,5 @@
 ---
-title: "Conversation Memory in a Bedrock AgentCore Assistant"
+title: "Conversation Memory in a Bedrock AgentCore Assistant : Bedrock AgentCore Series - Part 3"
 subtitle: "What follows a visitor across chats, what belongs to one session, and where a request ID fits"
 date: 2026-11-20
 readingTime: 4 min read

@@ -1,5 +1,5 @@
 ---
-title: "What “Send” Really Means in an Agentic Email Workflow"
+title: "What “Send” Really Means in an Agentic Email Workflow : Bedrock AgentCore Series - Part 4"
 subtitle: "How drafts stay stable, where the addresses come from, and what the assistant can prove after a timeout"
 date: 2026-11-21
 readingTime: 4 min read

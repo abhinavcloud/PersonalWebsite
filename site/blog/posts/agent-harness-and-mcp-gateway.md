@@ -1,5 +1,5 @@
 ---
-title: "Building an Agent Harness Around a Personal Assistant"
+title: "Building an Agent Harness Around a Personal Assistant : Bedrock AgentCore Series - Part 1"
 subtitle: "Where the main agent delegates, how answers get their evidence, and why the runtime owns the write path"
 date: 2026-11-18
 readingTime: 5 min read

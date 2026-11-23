@@ -1,5 +1,5 @@
 ---
-title: "Booking Meetings Through a Personal Assistant"
+title: "Booking Meetings Through a Personal Assistant : Bedrock AgentCore Series - Part 5"
 subtitle: "How a chat request becomes a Google Calendar event, when a retry can recover, and why two visitors can still book the same slot"
 date: 2026-11-22
 readingTime: 5 min read

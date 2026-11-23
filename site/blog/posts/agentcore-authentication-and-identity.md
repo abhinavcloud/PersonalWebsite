@@ -1,5 +1,5 @@
 ---
-title: "Identity Wiring in a Bedrock AgentCore Assistant"
+title: "Identity Wiring in a Bedrock AgentCore Assistant : Bedrock AgentCore Series - Part 2"
 subtitle: "How a Google login reaches the runtime, where IAM takes over, and whose calendar the assistant can use"
 date: 2026-11-19
 readingTime: 4 min read
